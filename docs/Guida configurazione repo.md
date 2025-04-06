@@ -1,5 +1,9 @@
 # Guida alla configurazione del repository
 
+[![Continuous Integration (CI)](https://github.com/softeng2425-inf-uniba/project2-naur/actions/workflows/CI.yml/badge.svg)](https://github.com/softeng2425-inf-uniba/project2-naur/actions/workflows/CI.yml)
+
+[![Continuous Integration and Continuous Delivery (CI/CD)](https://github.com/softeng2425-inf-uniba/project2-naur/actions/workflows/CI-CD.yml/badge.svg)](https://github.com/softeng2425-inf-uniba/project2-naur/actions/workflows/CI-CD.yml)
+
 ## Indice
 
 - Accettazione assignment del primo componente e creazione repository su GitHub

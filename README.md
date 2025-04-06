@@ -1,5 +1,11 @@
 # App scacchi
 
+### Badge di workflow
+[![Continuous Integration (CI)](https://github.com/softeng2425-inf-uniba/project2-naur/actions/workflows/CI.yml/badge.svg)](https://github.com/softeng2425-inf-uniba/project2-naur/actions/workflows/CI.yml)
+
+[![Continuous Integration and Continuous Delivery (CI/CD)](https://github.com/softeng2425-inf-uniba/project2-naur/actions/workflows/CI-CD.yml/badge.svg)](https://github.com/softeng2425-inf-uniba/project2-naur/actions/workflows/CI-CD.yml)
+
+____
 * Applicazione per il gioco *2-players* degli scacchi
 
   * I due giocatori si alternano su un unico device Command Line Interface (**CLI**) 

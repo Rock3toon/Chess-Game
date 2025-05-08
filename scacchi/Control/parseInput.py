@@ -30,3 +30,11 @@ class ParseInput:
             return input
         else:
             return -1
+
+    def parseConfirm(self, input):
+        if input.lower() in {"s", "si", "y", "ys", "yes"}:
+            return "si"
+        elif input.lower() in {"n", "no", "nop", "nope"}:
+            return "no"
+        else:
+            return -1   

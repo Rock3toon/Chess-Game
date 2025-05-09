@@ -1,5 +1,5 @@
+from Control import parse_input
 from rich import print
-
 
 class UI:
     """Defines the configuration of the game's UI."""
@@ -76,6 +76,7 @@ class UI:
 
 def main():
     """Run the Scacchi game and activate the GH workflows."""
+    p = parse_input.parse_input()
     ui = UI()
     ui.set_accent_color("blue")
 
@@ -83,8 +84,44 @@ def main():
     print(
         f"Ciao [bold {ui.get_accent_color()}]{name}[/bold {ui.get_accent_color()}]! "
         "Iniziamo a giocare a [bold]scacchi[/bold]!"
+        # Aggiungere la chiamata ad una funzione di benvenuto
     )
 
+    while True:
+        user_input = input("> ")
+        if user_input.startswith("/"):
+            if p.parseCommand(user_input) == -1:
+                print("Comando non riconosciuto. " \
+                "Digitare /help per altre informazioni.")
+            elif p.parseCommand(user_input) == 1:
+                #/help
+                pass
+            elif p.parseCommand(user_input) == 2:
+                #/esci
+                pass
+            elif p.parseCommand(user_input) == 3:
+                #/scacchiera
+                pass
+            elif p.parseCommand(user_input) == 4:
+                #/gioca
+                pass
+            elif p.parseCommand(user_input) == 5:
+                #/abbandona
+                break
+            elif p.parseCommand(user_input) == 6:
+                #/patta
+                pass
+            elif p.parseCommand(user_input) == 7:
+                #/mosse
+                pass
+        elif p.parseMove(user_input)== -1:
+            print("La mossa non è scritta correttamente. " \
+            "Scrivi /help per altre informazioni.")
+        else:
+            print(p.parseMove(user_input))
+            # Gestione della mossa che chiama come paremetro p.parseMove(user_input)
+            pass
+            
 
 if __name__ == "__main__":
     main()

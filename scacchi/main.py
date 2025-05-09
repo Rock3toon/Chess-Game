@@ -1,4 +1,4 @@
-from Control import parse_input
+from scacchi.Control import parse_input
 from rich import print
 
 class UI:

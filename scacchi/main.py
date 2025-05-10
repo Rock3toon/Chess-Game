@@ -1,3 +1,4 @@
+from scacchi.Boundary.welcome import visualizza_benvenuto
 from scacchi.Control import parse_input
 from rich import print
 
@@ -80,12 +81,9 @@ def main():
     ui = UI()
     ui.set_accent_color("blue")
 
-    name = input("Benvenuto in Scacchi! Inserisci il tuo nome: ")
-    print(
-        f"Ciao [bold {ui.get_accent_color()}]{name}[/bold {ui.get_accent_color()}]! "
-        "Iniziamo a giocare a [bold]scacchi[/bold]!"
-        # Aggiungere la chiamata ad una funzione di benvenuto
-    )
+    # visualizza la schermata di benvenuto
+    visualizza_benvenuto()
+    
 
     while True:
         user_input = input("> ")

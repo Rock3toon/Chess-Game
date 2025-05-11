@@ -1,6 +1,7 @@
+
 from scacchi.Entity.Casa import Casa
 
-MARRONE = "\033[48;5;94m"   # Sfondo marrone
+BIANCO = "\033[48;5;15m"  # Sfondo BIANCO
 BEIGE = "\033[48;5;180m"    # Sfondo beige
 RESET = "\033[0m"           # Reset colori
 
@@ -31,26 +32,41 @@ class Scacchiera:
     
     def set_casa(self, riga, colonna, pezzo):                               # metodo che chiama il costruttore di casa 
         self.__matrice[riga][colonna] = Casa(riga, colonna, pezzo)
+
+    def converti_pezzo_unicode(self,pezzo):
+        simboli = {
+            'P': ("♙", "♟"),
+            'T': ("♖", "♜"),
+            'C': ("♘", "♞"),
+            'A': ("♗", "♝"),
+            'D': ("♕", "♛"),
+            'R': ("♔", "♚")
+        }
+        tipo = pezzo.get_tipo()
+        colore = pezzo.get_colore()
+        return simboli[tipo][0] if colore == 0 else simboli[tipo][1]
         
     def stampa_scacchiera(self, scacchi):
-        print("   a  b  c  d  e  f  g  h")
+        lettere_colonne = "a  b  c  d  e  f  g  h"
+        print("   " + lettere_colonne)
+
         for i in range(8):
             numero_riga = 8 - i
             riga_str = f"{numero_riga} "
             for j in range(8):
-                casa = scacchi.get_casa(i,j)
-                pezzo = casa.get_pezzo() if casa.get_pezzo() else " "
-                sfondo = MARRONE if (i + j) % 2 == 0 else BEIGE
-                riga_str += f"{sfondo} {pezzo} {RESET}"
+                casa = scacchi.get_casa(i, j)
+                pezzo = casa.get_pezzo()
+                sfondo = BIANCO if (i + j) % 2 == 0 else BEIGE
+
+                if isinstance(pezzo, str):
+                    simbolo = pezzo
+                elif pezzo:
+                    simbolo = scacchi.converti_pezzo_unicode(pezzo)
+                else:
+                    simbolo = " "
+
+                riga_str += f"{sfondo} {simbolo} {RESET}"
             print(riga_str + f" {numero_riga}")
-        print("   a  b  c  d  e  f  g  h")
-        
 
-        
-
-    
-
-
-    
-
-
+        print("   " + lettere_colonne)
+            

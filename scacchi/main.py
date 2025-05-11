@@ -1,7 +1,7 @@
 import argparse
 from scacchi.Control.parse_input import parse_input
 from scacchi.Boundary.welcome import visualizza_benvenuto
-from scacchi.Control.cli import esci, HelpCompleto, HelpRapido
+from scacchi.Control.cli import esci, HelpCompleto, HelpRapido, gioca
 from scacchi.Entity.Scacchiera import Scacchiera
 from scacchi.Entity.Partita import Partita
 from scacchi.Entity.Pezzo import Pezzo
@@ -91,6 +91,8 @@ def main():
                     print("La partita non è iniziata.")
                 else:
                     scacchiera.stampa_scacchiera(scacchiera)  # mostra scacchiera    
+            elif cmd == 4:
+                gioca(scacchiera, partita)  # /gioca
             elif cmd == 5:
                 break  # /abbandona
             else:

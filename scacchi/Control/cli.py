@@ -90,6 +90,28 @@ def HelpRapido():
         "  /esci           - Esce dal programma\n"
     )
 
+
+def abbandona(partita):
+        parse=parse_input.parse_input()                                                     # Crea un'istanza della classe parse_input
+        while True:
+            print("Confermi l'abbandono della partita? (si/no)")    
+            risposta = parse.parseConfirm(input(">>>"))                                     #prende in input la risposta dell'utente e usa il parser
+            if risposta == 'si':
+                #controlla che la risposta sia 'si' e determina il vincitore in base al turno attuale
+                turno_attuale = partita.get_turno()  # 0 = giocatore 1, 1 = giocatore 2
+                vincitore = 2 if turno_attuale == 0 else 1
+                print(f"Partita abbandonata... GIOCATORE {vincitore} ha vinto!")
+                partita.cambia_stato_partita()  # Imposta lo stato della partita come terminato
+                print("Per effettuare una nuova partita digita '/gioca'")
+                break
+                                              
+            elif risposta == 'no':                                                          #controlla che la risposta sia 'no'
+                print("Operazione annullata!")
+                break                                                                      #esce dal ciclo e continua la partita  
+                                              
+            elif risposta == -1:                                                           #controlla se la risposta non è valida (il parser restituisce -1 se ci sono errori) 
+                print("Risposta non valida! Riprova")
+
 def esci():                                                                                 # Funzione che permette di uscire dal programma restituendo il controllo al sistema operativo
         parse=parse_input.parse_input()                                                     # Crea un'istanza della classe parse_input
         while True:
@@ -97,12 +119,14 @@ def esci():                                                                     
             risposta = parse.parseConfirm(input(">>>"))                                     #prende in input la risposta dell'utente e usa il parser
             if risposta == 'si':                                                            #controlla che la risposta sia 'si'
                 print("Uscita in corso...")
-                sys.exit(0)                                                                 #esce dal programma                                               
+                sys.exit(0)                                                                 #esce dal programma    
+
             elif risposta == 'no':                                                          #controlla che la risposta sia 'no'
-                print("Operazione annullata.")
-                break                                                                      #esce dal ciclo                                    
+                print("Operazione annullata!")
+                break                                                                      #esce dal ciclo   
+
             elif risposta == -1:                                                            #controlla se la risposta non è valida (il parser restituisce -1 se ci sono errori) 
-                print("Risposta non valida, riprovare.")
+                print("Risposta non valida! Riprova")
                 
 
 # Exportable CLI wrapper

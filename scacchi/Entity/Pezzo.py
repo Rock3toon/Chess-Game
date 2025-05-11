@@ -33,6 +33,9 @@ class Pedone(Pezzo):
     def set_prima_mossa(self):
         self._prima_mossa = False
 
+    def get_prima_mossa(self):
+        return self._prima_mossa
+
 class Torre(Pezzo):
     def __init__(self, colore):  # inizializza la torre
         super().__init__(colore, "T")

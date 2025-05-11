@@ -1,9 +1,11 @@
 import argparse
 import sys
 from scacchi.Entity.Partita import Partita
-from scacchi.Control import parse_input  
+from scacchi.Control import parse_input 
+from scacchi.Entity.Pezzo import Torre, Cavallo, Alfiere, Donna, Re, Pedone 
 from rich.console import Console
 from rich.text import Text
+
 
 console = Console()
 
@@ -90,7 +92,45 @@ def HelpRapido():
         "  /mosse          - Mostra le mosse effettuate\n"
         "  /esci           - Esce dal programma\n"
     )
+def gioca(Scacchiera, Partita):  # Funzione per avviare una nuova partita
+    
+    if Partita.get_stato_partita() != 0:
 
+        # Posizionamento pezzi neri
+        Scacchiera.set_pezzo_scacchiera(0, 0, Torre(1))
+        Scacchiera.set_pezzo_scacchiera(0, 1, Cavallo(1))
+        Scacchiera.set_pezzo_scacchiera(0, 2, Alfiere(1))
+        Scacchiera.set_pezzo_scacchiera(0, 3, Donna(1))
+        Scacchiera.set_pezzo_scacchiera(0, 4, Re(1))
+        Scacchiera.set_pezzo_scacchiera(0, 5, Alfiere(1))
+        Scacchiera.set_pezzo_scacchiera(0, 6, Cavallo(1))
+        Scacchiera.set_pezzo_scacchiera(0, 7, Torre(1))
+        for col in range(8):
+            Scacchiera.set_pezzo_scacchiera(1, col, Pedone(1))
+
+        # Posizionamento pezzi bianchi
+        Scacchiera.set_pezzo_scacchiera(7, 0, Torre(0))
+        Scacchiera.set_pezzo_scacchiera(7, 1, Cavallo(0))
+        Scacchiera.set_pezzo_scacchiera(7, 2, Alfiere(0))
+        Scacchiera.set_pezzo_scacchiera(7, 3, Donna(0))
+        Scacchiera.set_pezzo_scacchiera(7, 4, Re(0))
+        Scacchiera.set_pezzo_scacchiera(7, 5, Alfiere(0))
+        Scacchiera.set_pezzo_scacchiera(7, 6, Cavallo(0))
+        Scacchiera.set_pezzo_scacchiera(7, 7, Torre(0))
+        for col in range(8):
+            Scacchiera.set_pezzo_scacchiera(6, col, Pedone(0))
+
+        # Imposta lo stato della partita a "in corso"
+    
+        Partita.cambia_stato_partita()
+        Scacchiera.stampa_scacchiera(Scacchiera)  # Stampa la scacchiera iniziale
+        print("La partita è iniziata! Buona fortuna!")
+
+    else:
+        print("Errore: la partita è già iniziata." \
+        " Procedi con una mossa o digita /help per assistenza.")
+        
+                
 
 def abbandona(partita):
         parse=parse_input.parse_input()                                                     # Crea un'istanza della classe parse_input

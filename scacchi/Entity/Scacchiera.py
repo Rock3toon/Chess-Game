@@ -1,4 +1,8 @@
-from Casa import Casa
+from scacchi.Entity.Casa import Casa
+
+MARRONE = "\033[48;5;94m"   # Sfondo marrone
+BEIGE = "\033[48;5;180m"    # Sfondo beige
+RESET = "\033[0m"           # Reset colori
 
 
 class Scacchiera:
@@ -28,7 +32,20 @@ class Scacchiera:
     def set_casa(self, riga, colonna, pezzo):                               # metodo che chiama il costruttore di casa 
         self.__matrice[riga][colonna] = Casa(riga, colonna, pezzo)
         
-    
+    def stampa_scacchiera(self, scacchi):
+        print("   a  b  c  d  e  f  g  h")
+        for i in range(8):
+            numero_riga = 8 - i
+            riga_str = f"{numero_riga} "
+            for j in range(8):
+                casa = scacchi.get_casa(i,j)
+                pezzo = casa.get_pezzo() if casa.get_pezzo() else " "
+                sfondo = MARRONE if (i + j) % 2 == 0 else BEIGE
+                riga_str += f"{sfondo} {pezzo} {RESET}"
+            print(riga_str + f" {numero_riga}")
+        print("   a  b  c  d  e  f  g  h")
+        
+
         
 
     

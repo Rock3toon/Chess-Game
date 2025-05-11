@@ -2,7 +2,9 @@ import argparse
 from scacchi.Control.parse_input import parse_input
 from scacchi.Boundary.welcome import visualizza_benvenuto
 from scacchi.Control.cli import esci, HelpCompleto, HelpRapido
-
+from scacchi.Entity.Scacchiera import Scacchiera
+from scacchi.Entity.Partita import Partita
+from scacchi.Entity.Pezzo import Pezzo
 
 
 class UI:
@@ -66,6 +68,8 @@ def main():
     p = parse_input()
     ui = UI()
     ui.set_accent_color("blue")
+    scacchiera = Scacchiera() 
+    partita = Partita()
 
     
     # Show welcome screen
@@ -82,6 +86,11 @@ def main():
                 HelpCompleto()  # mostra help completo
             elif cmd == 2:
                 esci()          # /esci 
+            elif cmd == 3:
+                if partita.get_stato_partita() == 1:
+                    print("La partita non è iniziata.")
+                else:
+                    scacchiera.stampa_scacchiera(scacchiera)  # mostra scacchiera    
             elif cmd == 5:
                 break  # /abbandona
             else:

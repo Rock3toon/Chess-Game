@@ -2,7 +2,7 @@ class Partita:
     """Classe di tipo <<  Entity >>, per la gestione della partita."""
     
     def __init__(self):
-        self.__stato_partita = 0  # 0 = in corso, 1 = non in corso
+        self.__stato_partita = 1  # 0 = in corso, 1 = non in corso
         self.__turno = 0  # 0= turno del bianco, 1 = turno del nero
 
     def get_turno(self):

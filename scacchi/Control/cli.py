@@ -100,20 +100,13 @@ def esci():                                                                     
                 sys.exit(0)                                                                 #esce dal programma                                               
             elif risposta == 'no':                                                          #controlla che la risposta sia 'no'
                 print("Operazione annullata.")
-                break                                    
+                break                                                                      #esce dal ciclo                                    
             elif risposta == -1:                                                            #controlla se la risposta non è valida (il parser restituisce -1 se ci sono errori) 
                 print("Risposta non valida, riprovare.")
-                break
+                pass
 
 # Exportable CLI wrapper
-class cli:
-    def HelpCompleto(self):
-        HelpCompleto()
 
-    def HelpRapido(self):
-        HelpRapido()
-    def esci(self):
-        esci()
 # Avvio diretto
 if __name__ == "__main__":
     args = ConfigurazioneParser().parse_args()

@@ -1,5 +1,6 @@
 import argparse
 import sys
+from scacchi.Entity.Partita import Partita
 from scacchi.Control import parse_input  
 from rich.console import Console
 from rich.text import Text

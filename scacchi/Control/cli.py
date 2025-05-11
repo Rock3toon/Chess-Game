@@ -1,6 +1,6 @@
 import argparse
 import sys
-from Control import parse_input  
+from scacchi.Control import parse_input  
 from rich.console import Console
 from rich.text import Text
 
@@ -103,7 +103,7 @@ def esci():                                                                     
                 break                                                                      #esce dal ciclo                                    
             elif risposta == -1:                                                            #controlla se la risposta non è valida (il parser restituisce -1 se ci sono errori) 
                 print("Risposta non valida, riprovare.")
-                pass
+                
 
 # Exportable CLI wrapper
 

@@ -1,7 +1,7 @@
 import argparse
-from Control.parse_input import parse_input
-from Boundary.welcome import visualizza_benvenuto
-from Control.cli import esci, HelpCompleto, HelpRapido
+from scacchi.Control.parse_input import parse_input
+from scacchi.Boundary.welcome import visualizza_benvenuto
+from scacchi.Control.cli import esci, HelpCompleto, HelpRapido
 
 
 

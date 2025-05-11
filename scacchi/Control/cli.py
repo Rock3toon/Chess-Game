@@ -1,4 +1,6 @@
 import argparse
+import sys
+from scacchi.Control import parse_input  
 from rich.console import Console
 from rich.text import Text
 
@@ -88,13 +90,22 @@ def HelpRapido():
         "  /esci           - Esce dal programma\n"
     )
 
-# Exportable CLI wrapper
-class cli:
-    def HelpCompleto(self):
-        HelpCompleto()
+def esci():                                                                                 # Funzione che permette di uscire dal programma restituendo il controllo al sistema operativo
+        parse=parse_input.parse_input()                                                     # Crea un'istanza della classe parse_input
+        while True:
+            print("Sei sicuro di voler uscire l'operazione sarà IRREVERSIBILE? (si/no)")    #chiede all'utente di confermare l'uscita
+            risposta = parse.parseConfirm(input(">>>"))                                     #prende in input la risposta dell'utente e usa il parser
+            if risposta == 'si':                                                            #controlla che la risposta sia 'si'
+                print("Uscita in corso...")
+                sys.exit(0)                                                                 #esce dal programma                                               
+            elif risposta == 'no':                                                          #controlla che la risposta sia 'no'
+                print("Operazione annullata.")
+                break                                                                      #esce dal ciclo                                    
+            elif risposta == -1:                                                            #controlla se la risposta non è valida (il parser restituisce -1 se ci sono errori) 
+                print("Risposta non valida, riprovare.")
+                
 
-    def HelpRapido(self):
-        HelpRapido()
+# Exportable CLI wrapper
 
 # Avvio diretto
 if __name__ == "__main__":

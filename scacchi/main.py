@@ -1,7 +1,8 @@
 import argparse
 from scacchi.Control.parse_input import parse_input
 from scacchi.Boundary.welcome import visualizza_benvenuto
-from scacchi.Control.cli import HelpCompleto, HelpRapido
+from scacchi.Control.cli import esci, HelpCompleto, HelpRapido
+
 
 
 class UI:
@@ -79,6 +80,8 @@ def main():
                 print("Comando non riconosciuto. Digitare /help per altre informazioni.")
             elif cmd == 1:
                 HelpCompleto()  # mostra help completo
+            elif cmd == 2:
+                esci()          # /esci 
             elif cmd == 5:
                 break  # /abbandona
             else:

@@ -14,6 +14,5 @@ class Partita:
     def get_stato_partita(self):
         return self.__stato_partita
     
-
     def cambia_stato_partita(self):                             # cambia lo stato della partita
             self.__stato_partita =1-self.__stato_partita

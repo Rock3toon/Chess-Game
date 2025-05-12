@@ -1,10 +1,11 @@
 import argparse
-from scacchi.Control.parse_input import parse_input
-from scacchi.Boundary.welcome import visualizza_benvenuto
-from scacchi.Control.cli import esci, HelpCompleto, HelpRapido, abbandona, gioca, patta
-from scacchi.Entity.Scacchiera import Scacchiera
-from scacchi.Entity.Partita import Partita
-from scacchi.Entity.Pezzo import Pezzo
+from Boundary.welcome import visualizza_benvenuto
+from Control.cli import esci, HelpCompleto, HelpRapido, abbandona, gioca, patta
+from Control.GestoreMosse import GestioneInput
+from Control.parse_input import parse_input
+from Entity.Scacchiera import Scacchiera
+from Entity.Partita import Partita
+from Entity.Pezzo import Pezzo
 
 
 class UI:
@@ -70,7 +71,6 @@ def main():
     ui.set_accent_color("blue")
     scacchiera = Scacchiera() 
     partita = Partita()
-
     
     # Show welcome screen
     visualizza_benvenuto()
@@ -104,7 +104,7 @@ def main():
             if move_result == -1:
                 print("La mossa non è scritta correttamente. Scrivi /help per altre informazioni.")
             else:
-                print(move_result) # gestione della mossa
+                GestioneInput(move_result, scacchiera)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(add_help=False, allow_abbrev=False)
@@ -117,4 +117,7 @@ if __name__ == "__main__":
     elif args.h:
         HelpRapido()
     else:
-        main()
+        try:
+            main()
+        except Exception as e:
+            print(f"An unexpected error occurred: {e}")

@@ -168,7 +168,45 @@ def esci():                                                                     
 
             elif risposta == -1:                                                            #controlla se la risposta non è valida (il parser restituisce -1 se ci sono errori) 
                 print("Risposta non valida! Riprova")
+
+def patta(partita):
+    stato = partita.get_stato_partita()
+    if stato == 0:                                                                                      # recupera lo stato della partita
+        parse = parse_input.parse_input()                                                               # Crea un'istanza della classe parse_input
+        giocatore=partita.get_turno()                                                                   # recupera il turno del giocatore
+        if giocatore == 0:                                                                              # controlla se il giocatore a richiedere la patta è bianco o nero
+            giocatore = "Nero"                                                                          # i colori sono invertiti rispetto al turno                 
+        else:
+            giocatore = "Bianco"
+
+        while True:
+            print("Sei sicuro di voler richiedere la PATTA l'operazione sarà IRREVERSIBILE? (si/no)")   
+            risposta = parse.parseConfirm(input(">>>"))                                                 # prende in input la risposta dell'utente e usa il parser
+            if risposta == 'si':                                                                        # controlla che la risposta sia 'si' 
                 
+                while True:
+                    print(giocatore, "Vuoi accettare la patta? (si/no)")
+                    risposta = parse.parseConfirm(input(">>>"))                                         # prende in input la risposta dell'utente e usa il parser                                        
+                    if risposta == 'si':                                                                # controlla che la risposta sia 'si'
+                        print("La partita è terminata in patta.")                                       
+                        partita.cambia_stato_partita()                                                  # termina la partita tornando al menu principale    
+                        break                                                                          
+                    elif risposta == 'no':                                                              # controlla che la risposta sia 'no'
+                        print("Patta rifiutata. La partita continua.")                                      
+                        break
+                    elif risposta == -1:                                                                # controlla se la risposta non è valida (il parser restituisce -1 se ci sono errori)
+                        print("Risposta non valida, riprovare.")
+                break                                                                                       
+            
+            elif risposta == 'no':                                                                      # controlla che la risposta sia 'no'
+                print("Operazione annullata.")
+                break                                                                                   # esce dal ciclo
+            elif risposta == -1:                                                                        # controlla se la risposta non è valida (il parser restituisce -1 se ci sono errori)
+                print("Risposta non valida, riprovare.")
+    else:
+        print("Nssuna partita in corso, impossibile richiedere la patta. " \
+        "Usa /help per vedere l'elenco dei comandi")                                                         # controlla se la partita è in corso
+                        
 
 # Exportable CLI wrapper
 

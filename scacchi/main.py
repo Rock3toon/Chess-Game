@@ -104,7 +104,7 @@ def main():
             if move_result == -1:
                 print("La mossa non è scritta correttamente. Scrivi /help per altre informazioni.")
             else:
-                GestioneInput(move_result, scacchiera)
+                GestioneInput(move_result, scacchiera, partita)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(add_help=False, allow_abbrev=False)

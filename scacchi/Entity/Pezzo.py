@@ -1,10 +1,16 @@
 from abc import ABC, abstractmethod
 from Entity.Scacchiera import Scacchiera
 from Entity.Partita import Partita
+import re
 
 class Pezzo(ABC):
     """Classe di tipo <<Entity>>, per la gestione dei pezzi e delle relative mosse."""
     
+    Conversione = {
+        'a': 1, 'b': 2, 'c': 3, 'd': 4,
+        'e': 5, 'f': 6, 'g': 7, 'h': 8
+    }
+
     def __init__(self, colore, tipo):
         self._colore = colore  # 'bianco' o 'nero'
         self._tipo = tipo      # 'R' = Re, 'D' = Donna, 'A' = Alfiere, 'C' = Cavallo, 'T' = Torre, 'P' = Pedone
@@ -12,6 +18,20 @@ class Pezzo(ABC):
     @abstractmethod
     def mossa(self, mossa_na, scacchiera):
         pass
+
+    def Algebrica_a_Matrice(self, posizione):
+        if re.match("^[RDTAC]", posizione):
+            colonna = self.Conversione.get(posizione[1])
+            riga = int(posizione[2])
+        else:
+            colonna = self.Conversione.get(posizione[0])
+            riga = int(posizione[1])
+        return riga, colonna    
+
+    def Matrice_a_Algebrica(self, posizione):
+        colonna = chr(posizione[1] + ord('a'))  # 0 -> 'a', 1 -> 'b', ..., 7 -> 'h'
+        riga = str(8 - posizione[0])  # 7 -> '1', 6 -> '2', ..., 0 -> '8'
+        return colonna + riga    
     
     def set_colore(self, colore):
         self._colore = colore
@@ -35,21 +55,10 @@ class Pedone(Pezzo):
 
     def get_prima_mossa(self):
         return self._prima_mossa
-
-    def Algebrica_a_Matrice(self, posizione):
-        colonna = ord(posizione[0].lower()) - ord('a')  # 'a' -> 0, 'b' -> 1, ..., 'h' -> 7
-        riga = 8 - int(posizione[1])  # '1' -> 7, '2' -> 6, ..., '8' -> 0
-        return riga, colonna    
-
-    def Matrice_a_Algebrica(self, posizione):
-        colonna = chr(posizione[1] + ord('a'))  # 0 -> 'a', 1 -> 'b', ..., 7 -> 'h'
-        riga = str(8 - posizione[0])  # 7 -> '1', 6 -> '2', ..., 0 -> '8'
-        return colonna + riga
-
+    
     def MossaPedone(self, posizione_arrivo, scacchiera):
         # Converte la posizione di arrivo in coordinate della matrice
         riga_arrivo, colonna_arrivo = self.Algebrica_a_Matrice(posizione_arrivo)
-
         # Verifica che la posizione di arrivo sia valida
         if not (0 <= riga_arrivo <= 7 and 0 <= colonna_arrivo <= 7):
             raise ValueError("La posizione di arrivo è fuori dai limiti della scacchiera.")
@@ -59,18 +68,21 @@ class Pedone(Pezzo):
 
         # Controlla la casella immediatamente prima della posizione di arrivo
         riga_partenza = riga_arrivo - direzione
-        if 0 <= riga_partenza < 8:
-            pezzo = scacchiera[riga_partenza][colonna_arrivo]
-            if isinstance(pezzo, Pedone) and pezzo._colore == self._colore:
+        if 0 <= riga_partenza <= 7:
+            pezzo = scacchiera.get_pezzo_scacchiera(riga_partenza, colonna_arrivo)
+            print("preif")
+            if isinstance(pezzo, self.__class__) and pezzo._colore == self._colore:
                 # Effettua la mossa del pedone
-                scacchiera[riga_arrivo][colonna_arrivo] = Scacchiera.set_pezzo_scacchiera(riga_arrivo, colonna_arrivo, pezzo)
-                scacchiera[riga_partenza][colonna_arrivo] = None  # Libera la posizione di partenza
+                print("inif")
+                scacchiera.set_pezzo_scacchiera(riga_arrivo, colonna_arrivo, pezzo)
+                scacchiera.set_pezzo_scacchiera(riga_partenza, colonna_arrivo)  # Libera la posizione di partenza          
                 if not pezzo.get_prima_mossa():
                     pezzo.set_prima_mossa()  # Aggiorna lo stato del pedone
                 print(f"Mossa effettuata: {pezzo.get_tipo()} da {pezzo.Matrice_a_Algebrica((riga_partenza, colonna_arrivo))} a {posizione_arrivo}")
                 Partita.cambiaturno()  # Cambia il turno della partita
             else:
                 raise ValueError("Nessun pedone può raggiungere la posizione specificata.")
+                
         elif self.get_prima_mossa():
             # Controlla la casella due righe prima della posizione di arrivo (solo per la prima mossa)
             riga_partenza_due = riga_arrivo - 2 * direzione

@@ -1,9 +1,17 @@
 from Entity.Scacchiera import Scacchiera
 from Entity.Pezzo import Pedone
+from Entity.Partita import Partita
 import re
 
 
-def GestioneInput(move_result, scacchiera):
+def GestioneInput(move_result, scacchiera, partita):
+    
+    if partita.get_turno() == 0:
+        colore = 'bianco'
+    elif partita.get_turno() == 1:
+        colore = 'nero'
+    
+    pedone = Pedone(colore)
     try:
         if re.match("^R", move_result):
             pass # Inserire gestore mossa Re
@@ -16,6 +24,6 @@ def GestioneInput(move_result, scacchiera):
         elif re.match("^T", move_result):
             pass # Inserire gestore mossa Torre
         else:
-            Pedone.MossaPedone(move_result, scacchiera)
+            pedone.MossaPedone(move_result, scacchiera)
     except ValueError as e:
         print(f"Errore: {e}")

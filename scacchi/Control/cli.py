@@ -171,10 +171,10 @@ def esci():                                                                     
 
 def patta(partita):
     stato = partita.get_stato_partita()
-    if stato == 0:                                                                                       # recupera lo stato della partita
+    if stato == 0:                                                                                      # recupera lo stato della partita
         parse = parse_input.parse_input()                                                               # Crea un'istanza della classe parse_input
-        
-        if Partita.get_turno == 0:                                                                      # controlla se il giocatore a richiedere la patta è bianco o nero
+        giocatore=partita.get_turno()                                                                   # recupera il turno del giocatore
+        if giocatore == 0:                                                                              # controlla se il giocatore a richiedere la patta è bianco o nero
             giocatore = "Nero"                                                                          # i colori sono invertiti rispetto al turno                 
         else:
             giocatore = "Bianco"
@@ -204,8 +204,8 @@ def patta(partita):
             elif risposta == -1:                                                                        # controlla se la risposta non è valida (il parser restituisce -1 se ci sono errori)
                 print("Risposta non valida, riprovare.")
     else:
-        print("La partita non è in corso, impossibile richiedere la patta. " \
-        "Usa /help per vedere l'eenco comandi")                                                         # controlla se la partita è in corso
+        print("Nssuna partita in corso, impossibile richiedere la patta. " \
+        "Usa /help per vedere l'elenco dei comandi")                                                         # controlla se la partita è in corso
                         
 
 # Exportable CLI wrapper

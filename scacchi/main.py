@@ -1,7 +1,7 @@
 import argparse
 from scacchi.Control.parse_input import parse_input
 from scacchi.Boundary.welcome import visualizza_benvenuto
-from scacchi.Control.cli import esci, HelpCompleto, HelpRapido, abbandona, gioca
+from scacchi.Control.cli import esci, HelpCompleto, HelpRapido, abbandona, gioca, patta
 from scacchi.Entity.Scacchiera import Scacchiera
 from scacchi.Entity.Partita import Partita
 from scacchi.Entity.Pezzo import Pezzo
@@ -95,6 +95,8 @@ def main():
                 gioca(scacchiera, partita)  # /gioca
             elif cmd == 5:
                 abbandona(partita)  # /abbandona
+            elif cmd == 6:
+                patta(partita)  # /patta
             else:
                 pass  # altre opzioni da implementare
         else:

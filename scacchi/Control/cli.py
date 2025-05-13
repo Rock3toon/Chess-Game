@@ -1,7 +1,7 @@
 import argparse
 import sys
 from scacchi.Entity.Partita import Partita
-from scacchi.Control import parse_input 
+from scacchi.Control.parse_input import parse_input 
 from scacchi.Entity.Pezzo import Torre, Cavallo, Alfiere, Donna, Re, Pedone 
 from rich.console import Console
 from rich.text import Text

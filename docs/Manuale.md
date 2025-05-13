@@ -3,23 +3,23 @@
 
 ## **INDICE**
 1. [Introduzione](#1-introduzione)
-2. [Regolamento degli Scacchi](#2-regolamento-degli-scacchi) <br>
-    2.1 [Movimenti dei pezzi](#21-movimenti-dei-pezzi) <br>
-    2.2 [Regole Speciali](#22-regole-speciali) <br>
-    2.3 [Scopo del gioco](#23-scopo-del-gioco) <br>
-    2.4 [Esiti della partita](#24-esiti-della-partita) <br>
+2. [Regolamento degli Scacchi](#2-regolamento-degli-scacchi) <br/>
+    2.1 [Movimenti dei pezzi](#21-movimenti-dei-pezzi) <br/>
+    2.2 [Regole Speciali](#22-regole-speciali) <br/>
+    2.3 [Scopo del gioco](#23-scopo-del-gioco) <br/>
+    2.4 [Esiti della partita](#24-esiti-della-partita) <br/>
 3. [Procedura preliminare](#3-procedura-preliminare) <br>
-    3.1 [Creazione Token per il Docker login](#31-creazione-token-per-il-docker-login) <br>
-    3.2 [Docker Login con GitHub Access Token](#32-docker-login-con-github-access-token) <br>
+    3.1 [Creazione Token per il Docker login](#31-creazione-token-per-il-docker-login) <br/>
+    3.2 [Docker Login con GitHub Access Token](#32-docker-login-con-github-access-token) <br/>
 4. [Avvio applicazione](#4-avvio-applicazione) 
-5. [Guida ai comandi](#5-guida-ai-comandi) <br>
-    5.1 [Help](#51-help) <br>
-    5.2 [Gioca](#52-gioca) <br>
-    5.3 [Scachiera](#53-scacchiera) <br>
-    5.4 [Mosse](#54-mosse) <br>
-    5.5 [Abbandona](#55-abbandona) <br>
-    5.6 [Patta](#56-patta) <br>
-    5.7 [Esci](#57-esci) <br>
+5. [Guida ai comandi](#5-guida-ai-comandi) <br/>
+    5.1 [Help](#51-help) <br/>
+    5.2 [Gioca](#52-gioca) <br/>
+    5.3 [Scachiera](#53-scacchiera) <br/>
+    5.4 [Mosse](#54-mosse) <br/>
+    5.5 [Abbandona](#55-abbandona) <br/>
+    5.6 [Patta](#56-patta) <br/>
+    5.7 [Esci](#57-esci) <br/>
 
 
 

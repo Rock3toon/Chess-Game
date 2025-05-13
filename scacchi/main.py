@@ -97,8 +97,8 @@ def main():
                 abbandona(partita)  # /abbandona
             elif cmd == 6:
                 patta(partita)  # /patta
-            else:
-                pass  # altre opzioni da implementare
+            elif cmd == 7:
+                partita.stampa_mosse()  # /mosse
         else:
             move_result = p.parseMove(user_input)
             if move_result == -1:
@@ -117,7 +117,5 @@ if __name__ == "__main__":
     elif args.h:
         HelpRapido()
     else:
-        try:
-            main()
-        except Exception as e:
-            print(f"An unexpected error occurred: {e}")
+        main()
+        

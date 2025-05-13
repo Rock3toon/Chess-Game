@@ -53,7 +53,7 @@ def HelpCompleto():
     console.print()
     console.print(Text("➤ REGOLE PRINCIPALI", style="bold white on blue"))
     print(
-        "- Inizia il giocatore con i pezzi bianchi, seguito dal giocatore con i pezscacchi.\n"
+        "- Inizia il giocatore con i pezzi bianchi, seguito dal giocatore con i pezzi neri.\n"
         "- Durante il proprio turno, il giocatore deve specificare:\n"
         "  1. Se intende muovere un pezzo diverso dal pedone, indicarlo con:\n"
         "     - 'C' per Cavallo\n"

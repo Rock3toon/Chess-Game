@@ -143,10 +143,12 @@ def gioca(Scacchiera, Partita):  # Funzione per avviare una nuova partita
                 
 
 def abbandona(partita):
+    stato = partita.get_stato_partita()         # Recupera stato della partita
+    if stato == 0:                               # Controlla se la partita è in corso
         parse=parse_input()                                                     # Crea un'istanza della classe parse_input
         while True:
             print("Confermi l'abbandono della partita? (si/no)")    
-            risposta = parse.parseConfirm(input(">>>"))                                     #prende in input la risposta dell'utente e usa il parser
+            risposta = parse.parseConfirm(input(">>>"))                                     # Prende in input la risposta dell'utente e usa il parser
             if risposta == 'si':
                 #controlla che la risposta sia 'si' e determina il vincitore in base al turno attuale
                 turno_attuale = partita.get_turno()  # 0 = giocatore 1, 1 = giocatore 2
@@ -156,12 +158,15 @@ def abbandona(partita):
                 print("Per effettuare una nuova partita digita '/gioca'")
                 break
                                               
-            elif risposta == 'no':                                                          #controlla che la risposta sia 'no'
+            elif risposta == 'no':                                                          # Controlla che la risposta sia 'no'
                 print("Operazione annullata!")
-                break                                                                      #esce dal ciclo e continua la partita  
+                break                                                                      # Esce dal ciclo e continua la partita  
                                               
-            elif risposta == -1:                                                           #controlla se la risposta non è valida (il parser restituisce -1 se ci sono errori) 
+            elif risposta == -1:                                                           # Controlla se la risposta non è valida (il parser restituisce -1 se ci sono errori) 
                 print("Risposta non valida! Riprova")
+    else:        
+        print("Nessuna partita in corso, impossibile abbandonare la partita. " \
+        "Usa /help per vedere l'elenco dei comandi")                                                        
 
 def esci():                                                                                 # Funzione che permette di uscire dal programma restituendo il controllo al sistema operativo
         parse=parse_input()                                                     # Crea un'istanza della classe parse_input
@@ -214,7 +219,7 @@ def patta(partita):
             elif risposta == -1:                                                                        # controlla se la risposta non è valida (il parser restituisce -1 se ci sono errori)
                 print("Risposta non valida, riprovare.")
     else:
-        print("Nssuna partita in corso, impossibile richiedere la patta. " \
+        print("Nessuna partita in corso, impossibile richiedere la patta. " \
         "Usa /help per vedere l'elenco dei comandi")                                                         # controlla se la partita è in corso
                         
 

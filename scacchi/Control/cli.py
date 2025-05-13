@@ -61,11 +61,13 @@ def HelpCompleto():
         "     - 'T' per Torre\n"
         "     - 'D' per Donna\n"
         "     - 'R' per Re\n"
-        "  2. La coordinata di partenza (es. e2).\n"
-        "  3. Uno spazio per separare la coordinata di partenza da quella di arrivo.\n"
-        "  4. La coordinata di arrivo (es. e4).\n"
-        "  Esempio: 'Cg1 f3' per muovere il cavallo da g1 a f3.\n"
-        "           'e2 e4' per muovere un pedone da e2 a e4.\n"
+        "  2. La coordinata di arrivo (es. e4).\n"
+        "  Esempio: Turno del bianco:\n"
+        "    Input>> 'e4'\n"
+        "          --Si muove il pedone bianco da e2 a e4--\n"
+        "           Turno del nero:\n"
+        "    Input>> 'Cf3'\n"
+        "          --Si muove il cavallo nero da g1 a\n" 
         "- Il gioco termina con scacco matto, patta o abbandono.\n"
     )
     console.print(Text("➤ COMANDI UTILI IN GIOCO", style="bold white on green"))

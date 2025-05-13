@@ -123,9 +123,19 @@ def gioca(Scacchiera, Partita):  # Funzione per avviare una nuova partita
         # Imposta lo stato della partita a "in corso"
     
         Partita.cambia_stato_partita()
-        Scacchiera.stampa_scacchiera(Scacchiera)  # Stampa la scacchiera iniziale
-        print("La partita è iniziata! Buona fortuna!")
+        print("╔═════════════════════════════╗")
+        print("║   La partita è iniziata!    ║")
+        print("║      Buona fortuna!         ║")
+        print("╚═════════════════════════════╝")
 
+        print("""
+╔════════════════════════════╗
+║    ♕  TURNO DEL BIANCO ♔   ║
+╠════════════════════════════╣
+║  In attesa della mossa...  ║
+╚════════════════════════════╝""")
+        Scacchiera.stampa_scacchiera(Scacchiera)  # Stampa la scacchiera iniziale
+        
     else:
         print("Errore: la partita è già iniziata." \
         " Procedi con una mossa o digita /help per assistenza.")
@@ -133,7 +143,7 @@ def gioca(Scacchiera, Partita):  # Funzione per avviare una nuova partita
                 
 
 def abbandona(partita):
-        parse=parse_input.parse_input()                                                     # Crea un'istanza della classe parse_input
+        parse=parse_input()                                                     # Crea un'istanza della classe parse_input
         while True:
             print("Confermi l'abbandono della partita? (si/no)")    
             risposta = parse.parseConfirm(input(">>>"))                                     #prende in input la risposta dell'utente e usa il parser
@@ -154,7 +164,7 @@ def abbandona(partita):
                 print("Risposta non valida! Riprova")
 
 def esci():                                                                                 # Funzione che permette di uscire dal programma restituendo il controllo al sistema operativo
-        parse=parse_input.parse_input()                                                     # Crea un'istanza della classe parse_input
+        parse=parse_input()                                                     # Crea un'istanza della classe parse_input
         while True:
             print("Sei sicuro di voler uscire l'operazione sarà IRREVERSIBILE? (si/no)")    #chiede all'utente di confermare l'uscita
             risposta = parse.parseConfirm(input(">>>"))                                     #prende in input la risposta dell'utente e usa il parser
@@ -172,7 +182,7 @@ def esci():                                                                     
 def patta(partita):
     stato = partita.get_stato_partita()
     if stato == 0:                                                                                      # recupera lo stato della partita
-        parse = parse_input.parse_input()                                                               # Crea un'istanza della classe parse_input
+        parse = parse_input()                                                               # Crea un'istanza della classe parse_input
         giocatore=partita.get_turno()                                                                   # recupera il turno del giocatore
         if giocatore == 0:                                                                              # controlla se il giocatore a richiedere la patta è bianco o nero
             giocatore = "Nero"                                                                          # i colori sono invertiti rispetto al turno                 

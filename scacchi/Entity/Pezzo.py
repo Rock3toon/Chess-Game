@@ -44,6 +44,9 @@ class Pezzo(ABC):
     
     def set_tipo(self, tipo):
         self._tipo 
+
+
+
 class Pedone(Pezzo):
     def __init__(self, colore):  # inizializza il pedone
         super().__init__(colore, "P")
@@ -75,7 +78,8 @@ class Pedone(Pezzo):
                     scacchiera.set_pezzo_scacchiera(riga_arrivo, colonna_arrivo, partenza_doppia) #sposto il pedone con doppia mossa
                     scacchiera.set_pezzo_scacchiera(riga_arrivo + 2*direzione, colonna_arrivo) #cancello il pedone in partenza
                     if partenza_doppia.get_prima_mossa():
-                        partenza_doppia.set_prima_mossa()  
+                        partenza_doppia.set_prima_mossa() 
+                    partita.aggiungi_mossa(posizione_arrivo) 
                     partita.cambiaturno()  # Cambia il turno dopo la mossa  
                 else:
                     print("La mossa non è valida. Il pedone non può muoversi in quella casella. Digita /help per altre informazioni.")         
@@ -84,6 +88,7 @@ class Pedone(Pezzo):
                 scacchiera.set_pezzo_scacchiera(riga_arrivo + direzione, colonna_arrivo) #cancello il pedone in partenza
                 if partenza_singola.get_prima_mossa():
                     partenza_singola.set_prima_mossa()
+                partita.aggiungi_mossa(posizione_arrivo) 
                 partita.cambiaturno()  # Cambia il turno dopo la mossa                      
             else:   
                 print("La mossa non è valida. Il pedone non può muoversi in quella casella. Digita /help per altre informazioni.")
@@ -93,7 +98,7 @@ class Pedone(Pezzo):
 class Torre(Pezzo):
     def __init__(self, colore):  # inizializza la torre
         super().__init__(colore, "T")
-    def mossa(self, mossa_na, scacchier, partita):
+    def mossa(self, mossa_na, scacchiera, partita):
         pass
 
 

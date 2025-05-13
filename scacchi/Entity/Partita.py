@@ -9,7 +9,8 @@ class Partita:
         return self.__turno
     
     def cambiaturno(self):                  # passa il turno
-        self.__turno = 1 - self.__turno 
+        self.__turno = 1 - self.__turno
+        print(f"Turno del {'bianco' if self.__turno == 0 else 'nero'}") 
 
     def get_stato_partita(self):
         return self.__stato_partita

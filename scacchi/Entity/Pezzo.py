@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
-from Entity.Scacchiera import Scacchiera
-from Entity.Partita import Partita
+from scacchi.Entity.Scacchiera import Scacchiera
+from scacchi.Entity.Partita import Partita
 import re
 
 class Pezzo(ABC):

@@ -1,11 +1,11 @@
 import argparse
-from Boundary.welcome import visualizza_benvenuto
-from Control.cli import esci, HelpCompleto, HelpRapido, abbandona, gioca, patta
-from Control.GestoreMosse import GestioneInput
-from Control.parse_input import parse_input
-from Entity.Scacchiera import Scacchiera
-from Entity.Partita import Partita
-from Entity.Pezzo import Pezzo
+from scacchi.Boundary.welcome import visualizza_benvenuto
+from scacchi.Control.cli import esci, HelpCompleto, HelpRapido, abbandona, gioca, patta
+from scacchi.Control.GestoreMosse import GestioneInput
+from scacchi.Control.parse_input import parse_input
+from scacchi.Entity.Scacchiera import Scacchiera
+from scacchi.Entity.Partita import Partita
+from scacchi.Entity.Pezzo import Pezzo
 
 
 class UI:

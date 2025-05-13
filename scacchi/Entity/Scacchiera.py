@@ -1,4 +1,4 @@
-from Entity.Casa import Casa
+from scacchi.Entity.Casa import Casa
 
 BIANCO = "\033[48;5;15m"  # Sfondo BIANCO
 BEIGE = "\033[48;5;180m"    # Sfondo beige

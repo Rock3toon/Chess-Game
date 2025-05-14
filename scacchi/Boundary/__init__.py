@@ -1,0 +1,1 @@
+"""Pacchetto <<Boundary>> per la gestione della interfaccia utente."""

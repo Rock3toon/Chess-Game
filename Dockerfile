@@ -6,6 +6,9 @@ WORKDIR /app
 # Enable bytecode compilation
 ENV UV_COMPILE_BYTECODE=1
 
+#Necessario per la configurazione locale dell'immagine
+#COPY scacchi /app/scacchi
+
 # Copy from the cache instead of linking since it's a mounted volume
 ENV UV_LINK_MODE=copy
 

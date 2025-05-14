@@ -1,1 +1,1 @@
-"""Main package for the Scacchi game."""
+"""Pacchetto principale per il gioco degli scacchi."""

@@ -1,11 +1,10 @@
 from rich.console import Console
 from rich.text import Text
 
-
 console = Console()
 
 class Partita:
-    """Classe di tipo << Entity >> per la gestione dello stato di una partita di scacchi.
+    """Classe di tipo << Entity >> per la gestione di una partita di scacchi.
 
     Responsabilità:
     - Memorizzare se la partita è in corso o meno.
@@ -38,11 +37,12 @@ class Partita:
     def get_stato_partita(self):
         return self.__stato_partita
     
-    def cambia_stato_partita(self):                             # cambia lo stato della partita
+    def cambia_stato_partita(self):                             
+            # cambia lo stato della partita
             self.__stato_partita =1-self.__stato_partita
 
     def aggiungi_mossa(self, mossa):  
-        self.__lista_mosse.append(mossa)  # iniziamo un nuovo turno
+        self.__lista_mosse.append(mossa) 
     
     def stampa_mosse(self):
         if len(self.__lista_mosse) == 0:

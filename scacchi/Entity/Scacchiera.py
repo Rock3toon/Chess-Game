@@ -1,20 +1,20 @@
-from scacchi.Entity.Casa import Casa
-
 from rich.console import Console
 from rich.style import Style
 from rich.text import Text
 
+from scacchi.Entity.Casa import Casa
+
 # Utilizziamo Rich per gestire i colori e il centraggio
-console = Console()
+console = Console(force_terminal=True, color_system="truecolor")
 
 class Scacchiera:
-    """Classe di tipo << Entity >> per rappresentare e gestire la scacchiera come una matrice 8×8.
+    """Classe di tipo << Entity >> per gestire la scacchiera come una matrice 8×8.
 
     Responsabilità:
       - Inizializzare una matrice di oggetti Casa per ogni coordinata (riga, colonna).
       - Fornire metodi di accesso e modifica alle caselle e ai pezzi in esse contenuti.
       - Convertire i pezzi nel loro simbolo Unicode corrispondente.
-      - Stampare la scacchiera formattata con colori alternati per le caselle, usando Rich
+      - Stampare la scacchiera formattata con colori alternati per le caselle
     """  
 
     def __init__(self):

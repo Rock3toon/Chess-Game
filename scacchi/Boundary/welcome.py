@@ -1,9 +1,9 @@
+from rich.align import Align
+from rich.box import DOUBLE
 from rich.console import Console
 from rich.panel import Panel
-from rich.text import Text
-from rich.align import Align
 from rich.table import Table
-from rich.box import DOUBLE
+from rich.text import Text
 
 """
 Modulo << Boundary >> per la schermata di benvenuto del gioco degli scacchi.
@@ -17,6 +17,7 @@ Questo modulo espone:
 """
 
 def visualizza_benvenuto():
+    """Visualizza una schermata di benvenuto per il gioco degli scacchi."""
     # Visualizza una bella schermata di benvenuto per il gioco degli scacchi,
     # utilizzando la libreria Rich per formattazione e colori.
     console = Console()
@@ -38,7 +39,8 @@ def visualizza_benvenuto():
         justify="center"
     )
     
-    # Creazione di un pannello per il messaggio principale con larghezza e padding ottimizzati
+    # Creazione di un pannello per il messaggio principale con larghezza e
+    # padding ottimizzati
     main_panel = Panel(
         welcome_message,
         title="[bold]♙   SCACCHI   ♙[/]",
@@ -50,13 +52,17 @@ def visualizza_benvenuto():
     )
     
     # Tabella per i suggerimenti
-    tips_table = Table(show_header=False, box=DOUBLE, border_style="bright_green", expand=False)
+    tips_table = Table(show_header=False, box=DOUBLE, border_style="bright_green", \
+                       expand=False)
     tips_table.add_column("Suggerimenti", style="bright_white", justify="center")
     
-    tips_table.add_row("[bold magenta]Sfida un altro giocatore e affina le tue abilità nel gioco degli scacchi[/]")
-    tips_table.add_row("[bold blue]Osserva con attenzione, pianifica con pazienza e colpisci con precisione[/]")
+    tips_table.add_row("[bold magenta]Sfida un altro giocatore e affina le tue abilità"
+                       "nel gioco degli scacchi[/]")
+    tips_table.add_row("[bold blue]Osserva con attenzione, pianifica con pazienza e" 
+                       "colpisci con precisione[/]")
     tips_table.add_row("🧩 [bold red]Scacco matto... o forse no? 🔥[/]")
-    tips_table.add_row("[bold yellow]🏆 Buon gioco! Preparati a sfide emozionanti 🏆[/]")
+    tips_table.add_row("[bold yellow]🏆 Buon gioco! Preparati a sfide " 
+                       "emozionanti 🏆[/]")
     
     # Footer
     footer = Text(

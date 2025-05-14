@@ -1,10 +1,22 @@
 import argparse
 import sys
-from scacchi.Entity.Partita import Partita
-from scacchi.Control.parse_input import parse_input 
-from scacchi.Entity.Pezzo import Torre, Cavallo, Alfiere, Donna, Re, Pedone 
+from Entity.Partita import Partita
+from Control.parse_input import parse_input 
+from Entity.Pezzo import Torre, Cavallo, Alfiere, Donna, Re, Pedone 
 from rich.console import Console
 from rich.text import Text
+
+"""
+Modulo << Boundary >> per l'interfaccia a riga di comando (CLI) del gioco degli scacchi.
+
+Questo modulo gestisce:
+- La configurazione del parser degli argomenti (-h, --help)
+- La visualizzazione di guide rapide e complete tramite Rich Console
+- I comandi di gioco: /gioca, /abbandona, /patta, /scacchiera, /mosse, /esci
+- L'inizializzazione e il controllo dello stato della partita e della scacchiera
+- L'interazione utente/gioco, incluse conferme e validazioni tramite ParseInput
+
+"""
 
 
 console = Console()
@@ -125,17 +137,10 @@ def gioca(Scacchiera, Partita):  # Funzione per avviare una nuova partita
         # Imposta lo stato della partita a "in corso"
     
         Partita.cambia_stato_partita()
-        print("╔═════════════════════════════╗")
-        print("║   La partita è iniziata!    ║")
-        print("║      Buona fortuna!         ║")
-        print("╚═════════════════════════════╝")
-
-        print("""
-╔════════════════════════════╗
-║    ♕  TURNO DEL BIANCO ♔   ║
-╠════════════════════════════╣
-║  In attesa della mossa...  ║
-╚════════════════════════════╝""")
+        text_start = "La partita è iniziata. Buona fortuna!"
+        console.print(Text(text_start, style="bold yellow"), justify="center")
+        text_turno = "TURNO DEL BIANCO: In attesa della mossa...\n"
+        console.print(Text(text_turno, style="italic grey50"), justify="center")
         Scacchiera.stampa_scacchiera(Scacchiera)  # Stampa la scacchiera iniziale
         
     else:

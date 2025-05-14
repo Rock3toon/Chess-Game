@@ -1,38 +1,47 @@
-from scacchi.Entity.Casa import Casa
+from Entity.Casa import Casa
 
-BIANCO = "\033[48;5;15m"  # Sfondo BIANCO
-BEIGE = "\033[48;5;180m"    # Sfondo beige
-RESET = "\033[0m"           # Reset colori
+from rich.console import Console
+from rich.style import Style
+from rich.text import Text
 
+# Utilizziamo Rich per gestire i colori e il centraggio
+console = Console()
 
 class Scacchiera:
-    """Classe di tipo <<  Entity >>, per la gestione della matrice che rappresenta la scacchiera."""
-    
+    """Classe di tipo << Entity >> per rappresentare e gestire la scacchiera come una matrice 8×8.
+
+    Responsabilità:
+      - Inizializzare una matrice di oggetti Casa per ogni coordinata (riga, colonna).
+      - Fornire metodi di accesso e modifica alle caselle e ai pezzi in esse contenuti.
+      - Convertire i pezzi nel loro simbolo Unicode corrispondente.
+      - Stampare la scacchiera formattata con colori alternati per le caselle, usando Rich
+    """  
+
     def __init__(self):
         self.__matrice = []  
-        for riga in range(8):                                               # inizializza la matrice 8x8
-            riga_corrente = []  
+        for riga in range(8):  # inizializza la matrice 8x8
+            riga_corrente = []
             for colonna in range(8):
-                casa = Casa(riga, colonna)  
-                riga_corrente.append(casa)     
+                casa = Casa(riga, colonna)
+                riga_corrente.append(casa)
             self.__matrice.append(riga_corrente)
 
     def get_matrice(self):
         return self.__matrice
 
-    def get_casa(self, riga, colonna):                                      # metodo per recuperare una casa dati indici di riga e colonna
+    def get_casa(self, riga, colonna):  # recupera una casa
         return self.__matrice[riga][colonna]
-    
+
     def set_pezzo_scacchiera(self, riga, colonna, pezzo=None):
         self.__matrice[riga][colonna].set_pezzo(pezzo)
 
-    def get_pezzo_scacchiera(self, riga, colonna):                          # metodo per recuperare il pezzo che occupa una determinata casa
+    def get_pezzo_scacchiera(self, riga, colonna):  # recupera il pezzo\        
         return self.__matrice[riga][colonna].get_pezzo()
-    
-    def set_casa(self, riga, colonna, pezzo):                               # metodo che chiama il costruttore di casa 
+
+    def set_casa(self, riga, colonna, pezzo):  # ricostruisce la casa con pezzo
         self.__matrice[riga][colonna] = Casa(riga, colonna, pezzo)
 
-    def converti_pezzo_unicode(self,pezzo):
+    def converti_pezzo_unicode(self, pezzo):
         simboli = {
             'P': ("♙", "♟"),
             'T': ("♖", "♜"),
@@ -44,18 +53,25 @@ class Scacchiera:
         tipo = pezzo.get_tipo()
         colore = pezzo.get_colore()
         return simboli[tipo][0] if colore == 0 else simboli[tipo][1]
-        
+
     def stampa_scacchiera(self, scacchi):
-        lettere_colonne = "a  b  c  d  e  f  g  h"
-        print("   " + lettere_colonne)
+        # Stili per caselle chiare e scure
+        dark_sq = Style(bgcolor="#DEB887", color="white")   # burlywood
+        light_sq = Style(bgcolor="#FFFFE0", color="black")  # light yellow
+
+        # Intestazione colonne con spazi di padding (3 caratteri ciascuna)
+        lettere_colonne = " a  b  c  d  e  f  g  h "
+        console.print(Text(lettere_colonne), justify="center")
 
         for i in range(8):
             numero_riga = 8 - i
-            riga_str = f"{numero_riga} "
+            cells = []
+            # Numero di riga a inizio (3 caratteri)
+            cells.append(Text(f"{numero_riga}  "))
             for j in range(8):
                 casa = scacchi.get_casa(i, j)
                 pezzo = casa.get_pezzo()
-                sfondo = BIANCO if (i + j) % 2 == 0 else BEIGE
+                style = light_sq if (i + j) % 2 == 0 else dark_sq
 
                 if isinstance(pezzo, str):
                     simbolo = pezzo
@@ -64,8 +80,13 @@ class Scacchiera:
                 else:
                     simbolo = " "
 
-                riga_str += f"{sfondo} {simbolo} {RESET}"
-            print(riga_str + f" {numero_riga}")
+                # Ogni casella occupa 3 spazi con padding
+                cells.append(Text(f" {simbolo} ", style=style))
 
-        print("   " + lettere_colonne)
-            
+            # Numero di riga a fine
+            cells.append(Text(f"  {numero_riga}"))
+            # Stampiamo la riga con sep="" per mantenere il padding
+            console.print(*cells, sep="", justify="center")
+
+        # Piè di pagina colonne identico all'intestazione
+        console.print(Text(lettere_colonne), justify="center")

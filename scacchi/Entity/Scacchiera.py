@@ -1,4 +1,4 @@
-from Entity.Casa import Casa
+from scacchi.Entity.Casa import Casa
 
 from rich.console import Console
 from rich.style import Style

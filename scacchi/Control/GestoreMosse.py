@@ -1,6 +1,6 @@
-from Entity.Scacchiera import Scacchiera
-from Entity.Pezzo import Pedone
-from Entity.Partita import Partita
+from scacchi.Entity.Scacchiera import Scacchiera
+from scacchi.Entity.Pezzo import Pedone
+from scacchi.Entity.Partita import Partita
 import re
 
 """

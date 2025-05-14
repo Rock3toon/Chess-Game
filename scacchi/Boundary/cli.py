@@ -1,8 +1,8 @@
 import argparse
 import sys
-from Entity.Partita import Partita
-from Control.parse_input import parse_input 
-from Entity.Pezzo import Torre, Cavallo, Alfiere, Donna, Re, Pedone 
+from scacchi.Entity.Partita import Partita
+from scacchi.Control.parse_input import parse_input 
+from scacchi.Entity.Pezzo import Torre, Cavallo, Alfiere, Donna, Re, Pedone 
 from rich.console import Console
 from rich.text import Text
 

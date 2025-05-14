@@ -1,5 +1,19 @@
+from rich.console import Console
+from rich.text import Text
+
+
+console = Console()
+
 class Partita:
-    """Classe di tipo <<  Entity >>, per la gestione della partita."""
+    """Classe di tipo << Entity >> per la gestione dello stato di una partita di scacchi.
+
+    Responsabilità:
+    - Memorizzare se la partita è in corso o meno.
+    - Tenere traccia del turno corrente (0 = bianco, 1 = nero).
+    - Registrare le mosse effettuate in ordine.
+    - Stampare il cambio di turno all’utente via Rich Console.
+    - Fornire accesso controllato a stato e turno tramite metodi getter.
+    """
     
     def __init__(self):
         self.__stato_partita = 1  # 0 = in corso, 1 = non in corso
@@ -12,19 +26,11 @@ class Partita:
     def cambiaturno(self):  # passa il turno
         self.__turno = 1 - self.__turno
         if self.__turno == 1:
-            print("""
-╔════════════════════════════╗
-║    ♛  TURNO DEL NERO ♚     ║
-╠════════════════════════════╣
-║  In attesa della mossa...  ║
-╚════════════════════════════╝""")
+                text_turno = "TURNO DEL NERO: In attesa della mossa...\n"
+                console.print(Text(text_turno, style="italic grey50"), justify="center")
         else:
-            print("""
-╔════════════════════════════╗
-║    ♕  TURNO DEL BIANCO ♔   ║
-╠════════════════════════════╣
-║  In attesa della mossa...  ║
-╚════════════════════════════╝""")
+             text_turno = "TURNO DEL BIANCO: In attesa della mossa...\n"
+             console.print(Text(text_turno, style="italic grey50"), justify="center")
 
             
 

@@ -5,11 +5,20 @@ from rich.align import Align
 from rich.table import Table
 from rich.box import DOUBLE
 
+"""
+Modulo << Boundary >> per la schermata di benvenuto del gioco degli scacchi.
+
+Questo modulo espone:
+- visualizza_benvenuto(): stampa una ricca interfaccia di benvenuto
+  usando ASCII art, pannelli e tabelle colorate via Rich.
+- Un titolo personalizzato, un messaggio di benvenuto, suggerimenti
+  di gioco e un footer con istruzioni rapide.
+
+"""
+
 def visualizza_benvenuto():
-    """
-    Visualizza una bella schermata di benvenuto per il gioco degli scacchi,
-    utilizzando la libreria Rich per formattazione e colori.
-    """
+    # Visualizza una bella schermata di benvenuto per il gioco degli scacchi,
+    # utilizzando la libreria Rich per formattazione e colori.
     console = Console()
     
     # Titolo ASCII art con colori personalizzati

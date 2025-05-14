@@ -3,6 +3,16 @@ from scacchi.Entity.Pezzo import Pedone
 from scacchi.Entity.Partita import Partita
 import re
 
+"""
+Modulo di tipo << Control >> per gestire l’input di una mossa.
+
+Responsabilità:
+    - Determinare il colore del giocatore di turno.
+    - Smistare la mossa al gestore del pezzo corretto (Re, Donna, Cavallo, Alfiere, Torre o Pedone).
+    - Aggiornare lo stato della partita e della scacchiera.
+    - Ripristinare la stampa della scacchiera se il turno è passato all’avversario.
+"""
+
 
 def GestioneInput(move_result, scacchiera, partita):
     

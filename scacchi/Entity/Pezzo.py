@@ -4,7 +4,14 @@ from scacchi.Entity.Partita import Partita
 import re
 
 class Pezzo(ABC):
-    """Classe di tipo <<Entity>>, per la gestione dei pezzi e delle relative mosse."""
+    """Classe di tipo << Entity >> per rappresentare un pezzo degli scacchi e gestirne le mosse.
+
+    Responsabilità:
+      - Conservare il colore e il tipo del pezzo (Re, Donna, Torre, Alfiere, Cavallo, Pedone).
+      - Fornire metodi di conversione tra notazione algebrica ('e4', 'Cf3', ecc.) e coordinate di matrice.
+      - Definire l' interfaccia astratta `mossa()` che ogni sottoclasse deve implementare.
+      - Consentire l' accesso controllato a colore e tipo tramite getter e setter.
+    """  
     
     Conversione = {
         'a': 0, 'b': 1, 'c': 2, 'd': 3,

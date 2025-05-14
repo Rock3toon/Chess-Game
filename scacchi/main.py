@@ -1,11 +1,12 @@
 import argparse
 from scacchi.Boundary.welcome import visualizza_benvenuto
-from scacchi.Control.cli import esci, HelpCompleto, HelpRapido, abbandona, gioca, patta
+from scacchi.Boundary.cli import esci, HelpCompleto, HelpRapido, abbandona, gioca, patta
 from scacchi.Control.GestoreMosse import GestioneInput
 from scacchi.Control.parse_input import parse_input
 from scacchi.Entity.Scacchiera import Scacchiera
 from scacchi.Entity.Partita import Partita
 from scacchi.Entity.Pezzo import Pezzo
+
 
 
 def main():

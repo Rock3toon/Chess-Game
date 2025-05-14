@@ -1,5 +1,15 @@
 import re
 
+"""
+Classe di tipo <<Control>> per la gestione e validazione degli input utente.
+
+Responsabilità:
+    - Tradurre comandi testuali (/help, /gioca, /patta, ecc.) in codici interni.
+    - Validare le mosse nel formato scacchistico (es. e4, Cf3, Dd8).
+    - Interpretare conferme sì/no da risposte libere dell’utente.
+
+"""
+
 
 class parse_input:
     """Classe di tipo <<  Control >>, per la gestione dei comandi di input."""

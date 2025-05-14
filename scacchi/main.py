@@ -58,8 +58,10 @@ if __name__ == "__main__":
 
     if args.help:
         HelpCompleto()
+        main()
     elif args.h:
         HelpRapido()
+        main()
     else:
         main()
         

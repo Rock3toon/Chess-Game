@@ -1,12 +1,11 @@
 import argparse
+
+from scacchi.Boundary.cli import HelpCompleto, HelpRapido, abbandona, esci, gioca, patta
 from scacchi.Boundary.welcome import visualizza_benvenuto
-from scacchi.Boundary.cli import esci, HelpCompleto, HelpRapido, abbandona, gioca, patta
 from scacchi.Control.GestoreMosse import GestioneInput
 from scacchi.Control.parse_input import parse_input
-from scacchi.Entity.Scacchiera import Scacchiera
 from scacchi.Entity.Partita import Partita
-from scacchi.Entity.Pezzo import Pezzo
-
+from scacchi.Entity.Scacchiera import Scacchiera
 
 
 def main():
@@ -25,7 +24,8 @@ def main():
         if user_input.startswith("/"):
             cmd = p.parseCommand(user_input)
             if cmd == -1:
-                print("Comando non riconosciuto. Digitare /help per altre informazioni.")
+                print("Comando non riconosciuto." \
+                      "Digitare /help per altre informazioni.")
             elif cmd == 1:
                 HelpCompleto()  # mostra help completo
             elif cmd == 2:
@@ -46,7 +46,8 @@ def main():
         else:
             move_result = p.parseMove(user_input)
             if move_result == -1:
-                print("La mossa non è scritta correttamente. Scrivi /help per altre informazioni.")
+                print("La mossa non è scritta correttamente." \
+                    "Scrivi /help per altre informazioni.")
             else:
                 GestioneInput(move_result, scacchiera, partita)
 

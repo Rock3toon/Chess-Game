@@ -1,0 +1,1 @@
+"""Pacchetto <<Entity>> per la gestione della scacchiera e delle partite di scacchi."""

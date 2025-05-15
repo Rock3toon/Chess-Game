@@ -37,12 +37,13 @@ def ConfigurazioneParser():
             "     - 'T' per Torre\n"
             "     - 'D' per Donna\n"
             "     - 'R' per Re\n"
-            "  2. La coordinata di partenza (es. e2).\n"
-            "  3. Uno spazio per separare la coordinata di partenza \
-                da quella di arrivo.\n"
-            "  4. La coordinata di arrivo (es. e4).\n"
-            "  Esempio: 'Cg1 f3' per muovere il cavallo da g1 a f3.\n"
-            "           'e2 e4' per muovere un pedone da e2 a e4.\n"
+            "  2. La coordinata di arrivo (es. e4).\n"
+            "  Esempio: Turno del bianco:\n"
+            "    Input>> 'e4'\n"
+            "          --Si muove il pedone bianco da e2 a e4--\n"
+            "           Turno del nero:\n"
+            "    Input>> 'Cf3'\n"
+            "          --Si muove il cavallo nero da g1 a\n" 
             "- Il gioco termina con scacco matto, patta o abbandono.\n"
         ),
         epilog=(
@@ -118,6 +119,11 @@ def HelpRapido():
 def gioca(Scacchiera, Partita):
     """Funzione per avviare una nuova partita di scacchi."""
     if Partita.get_stato_partita() != 0:
+        # Inizializza la scacchiera
+        for riga in range(2, 6):
+            for colonna in range(8):
+                Scacchiera.set_pezzo_scacchiera(riga, colonna, None)
+
 
         # Posizionamento pezzi neri
         Scacchiera.set_pezzo_scacchiera(0, 0, Torre(1))
@@ -226,10 +232,3 @@ def patta(partita):
         print("Nessuna partita in corso, impossibile richiedere la patta. "\
         "Usa /help per vedere l'elenco dei comandi")                   
                         
-# Avvio diretto
-if __name__ == "__main__":
-    args = ConfigurazioneParser().parse_args()
-    if args.help:
-        HelpCompleto()
-    elif args.h:
-        HelpRapido()

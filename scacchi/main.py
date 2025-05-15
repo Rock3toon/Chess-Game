@@ -25,7 +25,7 @@ def main():
             cmd = p.parseCommand(user_input)
             if cmd == -1:
                 print("Comando non riconosciuto." \
-                      "Digitare /help per altre informazioni.")
+                      " Digitare /help per altre informazioni.")
             elif cmd == 1:
                 HelpCompleto()  # mostra help completo
             elif cmd == 2:
@@ -47,7 +47,7 @@ def main():
             move_result = p.parseMove(user_input)
             if move_result == -1:
                 print("La mossa non è scritta correttamente." \
-                    "Scrivi /help per altre informazioni.")
+                    " Scrivi /help per altre informazioni.")
             else:
                 GestioneInput(move_result, scacchiera, partita)
 

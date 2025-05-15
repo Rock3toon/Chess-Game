@@ -1,6 +1,7 @@
 import re
 
 from scacchi.Entity.Pezzo import Pedone
+from scacchi.Entity.Partita import Partita
 
 """
 Modulo di tipo << Control >> per gestire l’input di una mossa.
@@ -25,23 +26,27 @@ def GestioneInput(move_result, scacchiera, partita):
     
     pedone = Pedone(colore)
 
-    if re.match("^R", move_result):
-        print("Gestione mossa Re non ancora implementata")
-        # Inserire gestore mossa Re
-    elif re.match("^D", move_result):
-        print("Gestione mossa Donna non ancora implementata")
-        # Inserire gestore mossa Donna
-    elif re.match("^C", move_result):
-        print("Gestione mossa Cavallo non ancora implementata")
-        # Inserire gestore mossa Cavallo
-    elif re.match("^A", move_result):
-        print("Gestione mossa Alfiere non ancora implementata")
-        # Inserire gestore mossa Alfiere
-    elif re.match("^T", move_result):
-        print("Gestione mossa Torre non ancora implementata")
-        # Inserire gestore mossa Torre
+    if partita.get_stato_partita() == 1:
+        print("Nessuna partita in corso." \
+            " Scrivi /gioca per avviare una partita.")
     else:
-        pedone.mossa(move_result, scacchiera, partita)
+        if re.match("^R", move_result):
+            print("Gestione mossa Re non ancora implementata")
+            # Inserire gestore mossa Re
+        elif re.match("^D", move_result):
+            print("Gestione mossa Donna non ancora implementata")
+            # Inserire gestore mossa Donna
+        elif re.match("^C", move_result):
+            print("Gestione mossa Cavallo non ancora implementata")
+            # Inserire gestore mossa Cavallo
+        elif re.match("^A", move_result):
+            print("Gestione mossa Alfiere non ancora implementata")
+            # Inserire gestore mossa Alfiere
+        elif re.match("^T", move_result):
+            print("Gestione mossa Torre non ancora implementata")
+            # Inserire gestore mossa Torre
+        else:
+            pedone.mossa(move_result, scacchiera, partita)
 
-    if partita.get_turno() != turno_partenza:
-        scacchiera.stampa_scacchiera(scacchiera)
+        if partita.get_turno() != turno_partenza:
+            scacchiera.stampa_scacchiera(scacchiera)

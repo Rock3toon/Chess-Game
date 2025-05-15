@@ -134,8 +134,8 @@ class Pedone(Pezzo):
                 print("La mossa non è valida. Il pedone non può muoversi in quella "\
                     "casella. Digita /help per altre informazioni.")
         else:   
-            print("La mossa non è valida. Il pedone non può muoversi in quella casella."\
-                " Digita /help per altre informazioni.")
+            print("La mossa non è valida. Il pedone non può muoversi in " \
+            "quella casella. Digita /help per altre informazioni.")
 
 class Torre(Pezzo):
     """Classe di tipo << Entity >> per rappresentare una torre degli scacchi."""

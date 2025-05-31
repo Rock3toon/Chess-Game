@@ -36,7 +36,7 @@ class parse_input:
             return -1
         
     def parseMove(self, input):
-        if re.match("^[RDTAC]?[a-h][1-8]$", input):
+        if re.match("^[RDTAC]?[a-h][1-8]$", input) or input in {"0-0", "0-0-0"} or re.match("^[a-h][18]=[DTAC]$", input):
             return input
         else:
             return -1

@@ -33,6 +33,9 @@ def GestioneInput(move_result, scacchiera, partita):
         if re.match("^R", move_result):
             print("Gestione mossa Re non ancora implementata")
             # Inserire gestore mossa Re
+        elif re.match("^0", move_result):
+            print("Gestione arrocco non ancora implementata")
+            # Inserire gestore arrocco
         elif re.match("^D", move_result):
             print("Gestione mossa Donna non ancora implementata")
             # Inserire gestore mossa Donna
@@ -45,6 +48,9 @@ def GestioneInput(move_result, scacchiera, partita):
         elif re.match("^T", move_result):
             print("Gestione mossa Torre non ancora implementata")
             # Inserire gestore mossa Torre
+        elif "=" in move_result:
+            print("Gestione promozione pedone non ancora implementata")
+            # Inserire gestore promozione pedone
         else:
             pedone.mossa(move_result, scacchiera, partita)
 

@@ -15,10 +15,11 @@ class Scacchiera:
       - Fornire metodi di accesso e modifica alle caselle e ai pezzi in esse contenuti.
       - Convertire i pezzi nel loro simbolo Unicode corrispondente.
       - Stampare la scacchiera formattata con colori alternati per le caselle
-    """  
+    """
 
     def __init__(self):
         self.__matrice = []  
+        self._istanze = [] # Lista dei pezzi presenti sulla scacchiera
         for riga in range(8):  # inizializza la matrice 8x8
             riga_corrente = []
             for colonna in range(8):
@@ -40,6 +41,24 @@ class Scacchiera:
 
     def set_casa(self, riga, colonna, pezzo):  # ricostruisce la casa con pezzo
         self.__matrice[riga][colonna] = Casa(riga, colonna, pezzo)
+
+    def get_istanze(self):
+        """Restituisce la lista dei pezzi presenti sulla scacchiera."""
+        return self._istanze
+    
+    def set_istanze(self, pezzo):
+        self._istanze.append(pezzo)
+
+    def discard_istanze(self, pezzo):
+        """Rimuove un pezzo dalla lista delle istanza."""
+        self._istanze.remove(pezzo)
+
+    def inizializza_istanze(self):      
+        #popola la lista delle istanze con i pezzi iniziali
+        for riga in [0, 1, 6, 7]:
+            for colonna in range(8):
+                pezzo = self.get_pezzo_scacchiera(riga, colonna)
+                self.set_istanze(pezzo)
 
     def converti_pezzo_unicode(self, pezzo):
         simboli = {

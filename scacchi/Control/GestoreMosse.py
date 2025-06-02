@@ -31,22 +31,52 @@ def GestioneInput(move_result, scacchiera, partita):
             " Scrivi /gioca per avviare una partita.")
     else:
         if re.match("^R", move_result):
-            print("Gestione mossa Re non ancora implementata")
-            # Inserire gestore mossa Re
+            if "x" in move_result:
+                print("Gestione cattura Re non ancora implementata")
+                # Inserire gestore cattura Re
+            else:
+                print("Gestione mossa Re non ancora implementata")
+                # Inserire gestore mossa Re
+        elif re.match("^0", move_result):
+            print("Gestione arrocco non ancora implementata")
+            # Inserire gestore arrocco
         elif re.match("^D", move_result):
-            print("Gestione mossa Donna non ancora implementata")
-            # Inserire gestore mossa Donna
+            if "x" in move_result:
+                print("Gestione cattura Donna non ancora implementata")
+                # Inserire gestore cattura Donna
+            else:
+                print("Gestione mossa Donna non ancora implementata")
+                # Inserire gestore mossa Donna
         elif re.match("^C", move_result):
-            print("Gestione mossa Cavallo non ancora implementata")
-            # Inserire gestore mossa Cavallo
+            if "x" in move_result:
+                print("Gestione cattura Cavallo non ancora implementata")
+                # Inserire gestore cattura Cavallo
+            else:
+                print("Gestione mossa Cavallo non ancora implementata")
+                # Inserire gestore mossa Cavallo
         elif re.match("^A", move_result):
-            print("Gestione mossa Alfiere non ancora implementata")
-            # Inserire gestore mossa Alfiere
+            if "x" in move_result:
+                print("Gestione cattura Alfiere non ancora implementata")
+                # Inserire gestore cattura Alfiere
+            else:
+                print("Gestione mossa Alfiere non ancora implementata")
+                # Inserire gestore mossa Alfiere
         elif re.match("^T", move_result):
-            print("Gestione mossa Torre non ancora implementata")
-            # Inserire gestore mossa Torre
+            if "x" in move_result:
+                print("Gestione cattura Torre non ancora implementata")
+                # Inserire gestore cattura Torre
+            else:
+                print("Gestione mossa Torre non ancora implementata")
+                # Inserire gestore mossa Torre
+        elif re.match("^[a-h][18][DTAC]$ |^[a-h][x][a-h][1-8][DTAC]", move_result):
+            print("Gestione promozione pedone non ancora implementata")
+            # Inserire gestore promozione pedone
         else:
-            pedone.mossa(move_result, scacchiera, partita)
+            if "x" in move_result:
+                print("Gestione cattura Pedone non ancora implementata")
+                # Inserire gestore cattura pedone
+            else:
+                pedone.mossa(move_result, scacchiera, partita) #Da modificare
 
         if partita.get_turno() != turno_partenza:
             scacchiera.stampa_scacchiera(scacchiera)

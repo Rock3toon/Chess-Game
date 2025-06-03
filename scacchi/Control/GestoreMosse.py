@@ -1,8 +1,7 @@
 import re
 
 from scacchi.Entity.Pezzo import Pedone
-from scacchi.Entity.Partita import Partita
-
+ 
 """
 Modulo di tipo << Control >> per gestire l’input di una mossa.
 

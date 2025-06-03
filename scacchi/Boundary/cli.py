@@ -5,7 +5,7 @@ from rich.console import Console
 from rich.text import Text
 
 from scacchi.Control.parse_input import parse_input
-from scacchi.Entity.Pezzo import Alfiere, Cavallo, Donna, Pedone, Re, Torre
+from scacchi.Entity.Pezzi import Alfiere, Cavallo, Donna, Pedone, Re, Torre
 
 """
 Modulo << Boundary >> per l'interfaccia a riga di comando (CLI) del gioco degli scacchi.
@@ -150,8 +150,10 @@ def gioca(Scacchiera, Partita):
             Scacchiera.set_pezzo_scacchiera(6, col, Pedone(0))
 
         # Imposta lo stato della partita a "in corso"
-    
+
         Partita.cambia_stato_partita()
+        Scacchiera.inizializza_istanze()  
+        # Popola la lista delle istanze con i pezzi iniziali
         text_start = "La partita è iniziata. Buona fortuna!"
         console.print(Text(text_start, style="bold yellow"), justify="center")
         text_turno = "TURNO DEL BIANCO: In attesa della mossa...\n"

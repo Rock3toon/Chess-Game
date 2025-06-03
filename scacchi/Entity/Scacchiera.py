@@ -15,10 +15,11 @@ class Scacchiera:
       - Fornire metodi di accesso e modifica alle caselle e ai pezzi in esse contenuti.
       - Convertire i pezzi nel loro simbolo Unicode corrispondente.
       - Stampare la scacchiera formattata con colori alternati per le caselle
-    """  
+    """
 
     def __init__(self):
         self.__matrice = []  
+        self._istanze = [] # Lista delle case dei presenti sulla scacchiera
         for riga in range(8):  # inizializza la matrice 8x8
             riga_corrente = []
             for colonna in range(8):
@@ -40,6 +41,46 @@ class Scacchiera:
 
     def set_casa(self, riga, colonna, pezzo):  # ricostruisce la casa con pezzo
         self.__matrice[riga][colonna] = Casa(riga, colonna, pezzo)
+
+    def get_istanze(self):
+        """Restituisce la lista dei pezzi presenti sulla scacchiera."""
+        return self._istanze
+    
+    def set_istanze(self, pezzo):
+        self._istanze.append(pezzo)
+
+    def discard_istanze(self, pezzo):
+        """Rimuove un pezzo dalla lista delle istanza."""
+        self._istanze.remove(pezzo)
+
+    def inizializza_istanze(self):      
+        #popola la lista delle istanze con i pezzi iniziali
+        for riga in [0, 1, 6, 7]:
+            for colonna in range(8):
+                pezzo = self.get_casa(riga, colonna)
+                self.set_istanze(pezzo)
+
+    def filtra_istanze(self, tipo_pezzo, colore):
+        #Tipi di pezzi: 'P' = Pedone, 'T' = Torre, 'C' = Cavallo,
+        #               'A' = Alfiere, 'D' = Donna, 'R' = Re
+        #Colore: 0 = Bianco, 1 = Nero
+        """Restituisce una lista di pezzi dello stesso tipo e colore."""
+        lista_pezzi_colore = []
+        # Lista che contiene le case che contengono i pezzi giusti
+        for istanza in self.get_istanze():
+            if istanza.get_pezzo().get_tipo() == tipo_pezzo and \
+               istanza.get_pezzo().get_colore() == colore:
+                lista_pezzi_colore.append(istanza)
+                # Aggiunge l'istanza di casa che contine il pezzo alla lista
+        return lista_pezzi_colore
+    
+    def aggiorna_lista_istanze(self, casa_partenza, casa_destinazione):
+        """Aggiorna la lista delle istanze."""
+        # Rimuove l'istanza della casa di partenza
+        self.discard_istanze(casa_partenza)
+        # Aggiunge l'istanza della casa di destinazione
+        self.set_istanze(casa_destinazione)
+
 
     def converti_pezzo_unicode(self, pezzo):
         simboli = {

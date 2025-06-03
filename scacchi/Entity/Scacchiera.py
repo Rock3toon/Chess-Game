@@ -73,6 +73,14 @@ class Scacchiera:
                 lista_pezzi_colore.append(istanza)
                 # Aggiunge l'istanza di casa che contine il pezzo alla lista
         return lista_pezzi_colore
+    
+    def aggiorna_lista_istanze(self, casa_partenza, casa_destinazione):
+        """Aggiorna la lista delle istanze."""
+        # Rimuove l'istanza della casa di partenza
+        self.discard_istanze(casa_partenza)
+        # Aggiunge l'istanza della casa di destinazione
+        self.set_istanze(casa_destinazione)
+
 
     def converti_pezzo_unicode(self, pezzo):
         simboli = {

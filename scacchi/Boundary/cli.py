@@ -41,10 +41,10 @@ def ConfigurazioneParser():
             "  2. La coordinata di arrivo (es. e4).\n"
             "  Esempio: Turno del bianco:\n"
             "    Input>> 'e4'\n"
-            "          --Si muove il pedone bianco da e2 a e4--\n"
+            "          --Si muove il pedone bianco da e2 a e4\n"
             "           Turno del nero:\n"
             "    Input>> 'Cf3'\n"
-            "          --Si muove il cavallo nero da g1 a\n" 
+            "          --Si muove il cavallo nero da g1 a f3\n"
             "- Il gioco termina con scacco matto, patta o abbandono.\n"
         ),
         epilog=(
@@ -56,7 +56,7 @@ def ConfigurazioneParser():
             "  /scacchiera    # Mostra la scacchiera attuale\n"
             "  /mosse         # Mostra le mosse effettuate\n"
             "  /esci          # Esce dal programma\n\n"
-            "Progetto sviluppato per il corso di Ingegneria del Software.\n"
+            "Progetto sviluppato per il corso di Ingegneria del Software\n"
             "Autori: Gruppo NAUR\n"
         ),
         formatter_class=argparse.RawTextHelpFormatter,
@@ -85,10 +85,10 @@ i pezzi neri.\n"
         "  2. La coordinata di arrivo (es. e4).\n"
         "  Esempio: Turno del bianco:\n"
         "    Input>> 'e4'\n"
-        "          --Si muove il pedone bianco da e2 a e4--\n"
+        "          --Si muove il pedone bianco da e2 a e4\n"
         "           Turno del nero:\n"
         "    Input>> 'Cf3'\n"
-        "          --Si muove il cavallo nero da g1 a\n" 
+        "          --Si muove il cavallo nero da g1 a f3\n" 
         "- Il gioco termina con scacco matto, patta o abbandono.\n"
     )
     console.print(Text("➤ COMANDI UTILI IN GIOCO", style="bold white on green"))
@@ -117,6 +117,7 @@ def HelpRapido():
         "  /mosse          - Mostra le mosse effettuate\n"
         "  /esci           - Esce dal programma\n"
     )
+
 def gioca(Scacchiera, Partita):
     """Funzione per avviare una nuova partita di scacchi."""
     if Partita.get_stato_partita() != 0:

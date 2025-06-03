@@ -47,7 +47,7 @@ def errore_stampa_mosse():
 
 def errore_mossa_pedone():
     """Stampa un messaggio di errore se la mossa del pedone non è valida."""
-    print("Errore, la mossa non è valida. Il pedone non può muoversi in quella \
+    print("Errore, la mossa è illegale. Il pedone non può muoversi in quella \
         casella. Digita /help per altre informazioni.")
 
 
@@ -84,10 +84,7 @@ def errore_mossa_non_valida():
 
 
 
-def errore_mossa_illegale():
-    """Stampa un messaggio di errore se la mossa è illegale."""
-    print("Errore, la mossa è illegale. \
-         Digita /help per altre informazioni.")
+
 
 
 def erroe_mossa_ambigua():

@@ -1,5 +1,3 @@
-
-
 class Casa:
     """Classe di tipo <<Entity>> per gestire una singola casella della scacchiera.
 
@@ -11,7 +9,7 @@ class Casa:
 
     def __init__(self, riga, colonna, pezzo=None):
         self._riga = riga            
-        self._colonna = colonna      
+        self._colonna = colonna
         self._pezzo = pezzo  
 
     def get_pezzo(self):

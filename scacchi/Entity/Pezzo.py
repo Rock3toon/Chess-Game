@@ -21,7 +21,7 @@ class Pezzo(ABC):
 
     def __init__(self, colore, tipo):
         self._colore = colore  
-        # 'bianco' o 'nero'
+        # 0 = 'bianco' o 1 = 'nero'
         self._tipo = tipo      
         # 'R' = Re, 'D' = Donna, 'A' = Alfiere, 'C' = Cavallo, 'T' = Torre, 'P' = Pedone
 
@@ -37,6 +37,21 @@ class Pezzo(ABC):
     def cattura(self, mossa_na, scacchiera, partita):
         pass
     
+    def riga_colonna_disambiguazione(self, mossa_na):
+        """Restituisce un array con la riga o colonna di disambiguazione, \
+        se presenti. Altrimenti, le celle contengono None.
+        """  # noqa: D205
+        provenienza = [None, None]  # [riga, colonna]
+        if "x" in mossa_na:
+            mossa_na = mossa_na.replace("x", "")
+        p = mossa_na[len(mossa_na) - 3]
+        if p.isdigit():
+            provenienza[0] = 8 - int(p) # riga
+        elif p in self.Conversione:
+            provenienza[1] = self.Conversione.get(p)  # colonna
+        
+        return provenienza
+                   
     def Algebrica_a_Matrice(self, posizione):
         colonna = self.Conversione.get(posizione[len(posizione) - 1])
         riga = 8 - int(posizione[len(posizione) - 2])

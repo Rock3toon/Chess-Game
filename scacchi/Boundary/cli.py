@@ -5,7 +5,7 @@ from rich.console import Console
 from rich.text import Text
 
 from scacchi.Control.parse_input import parse_input
-from scacchi.Entity.Pezzo import Alfiere, Cavallo, Donna, Pedone, Re, Torre
+from scacchi.Entity.Pezzi import Alfiere, Cavallo, Donna, Pedone, Re, Torre
 
 """
 Modulo << Boundary >> per l'interfaccia a riga di comando (CLI) del gioco degli scacchi.

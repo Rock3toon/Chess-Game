@@ -1,6 +1,8 @@
 from rich.console import Console
 from rich.text import Text
 
+import scacchi.Boundary.errori as errori
+
 console = Console()
 
 class Partita:
@@ -46,7 +48,7 @@ class Partita:
     
     def stampa_mosse(self):
         if len(self.__lista_mosse) == 0:
-            print("Nessuna mossa effettuata.")
+            errori.errore_stampa_mosse()
         else:   
             for i in range(len(self.__lista_mosse)):
                 if i % 2 == 0:

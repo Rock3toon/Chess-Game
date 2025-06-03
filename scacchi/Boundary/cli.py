@@ -4,6 +4,7 @@ import sys
 from rich.console import Console
 from rich.text import Text
 
+import scacchi.Boundary.errori as errori
 from scacchi.Control.parse_input import parse_input
 from scacchi.Entity.Pezzi import Alfiere, Cavallo, Donna, Pedone, Re, Torre
 
@@ -162,8 +163,7 @@ def gioca(Scacchiera, Partita):
         Scacchiera.stampa_scacchiera(Scacchiera)  # Stampa la scacchiera iniziale
         
     else:
-        print("Errore: la partita è già iniziata." \
-        " Procedi con una mossa o digita /help per assistenza.")
+        errori.errore_gioca()
         
                 
 
@@ -186,10 +186,9 @@ def abbandona(partita):
             print("Operazione annullata!")
         elif risposta == -1:
             # Errore di parsing
-            print("Risposta non valida! Riprova")
+            errori.errore_risposta()
     else:        
-        print("Nessuna partita in corso, impossibile abbandonare la partita. " \
-        "Usa /help per vedere l'elenco dei comandi")
+        errori.errore_nessuna_partita_abbandona()
 
 def esci():
     """Funzione per uscire dal programma."""
@@ -202,7 +201,7 @@ def esci():
     elif risposta == 'no':                                                   
         print("Operazione annullata!")
     elif risposta == -1:
-        print("Risposta non valida! Riprova")
+        errori.errore_risposta()  
 
 def patta(partita):
     """Funzione per richiedere la patta nella partita corrente."""
@@ -225,13 +224,11 @@ def patta(partita):
                 print("La richiesta di patta è stata rifiutata dal giocatore"\
                       f"{giocatore}.")
             elif risposta == -1:                                             
-                print("Risposta non valida, riprovare.")
+                errori.errore_risposta()
         elif risposta == 'no':                                                   
             print("Operazione annullata.")
-        elif risposta == -1:     
-            # Errore di parsing                                                  
-            print("Risposta non valida, riprovare.")
+        elif risposta == -1:                                                     
+            errori.errore_risposta()
     else:
-        print("Nessuna partita in corso, impossibile richiedere la patta. "\
-        "Usa /help per vedere l'elenco dei comandi")                   
+        errori.errore_nessuna_partita_patta()                  
                         

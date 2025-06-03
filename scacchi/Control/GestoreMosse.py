@@ -1,7 +1,8 @@
 import re
 
+import scacchi.Boundary.errori as errori
 from scacchi.Entity.Pezzo import Pedone
- 
+
 """
 Modulo di tipo << Control >> per gestire l’input di una mossa.
 
@@ -26,8 +27,7 @@ def GestioneInput(move_result, scacchiera, partita):
     pedone = Pedone(colore)
 
     if partita.get_stato_partita() == 1:
-        print("Nessuna partita in corso." \
-            " Scrivi /gioca per avviare una partita.")
+        errori.errore_nessuna_partita()
     else:
         if re.match("^R", move_result):
             if "x" in move_result:

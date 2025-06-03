@@ -1,5 +1,7 @@
 from Pezzo import Pezzo
 
+import scacchi.Boundary.errori as errori
+
 
 class Pedone(Pezzo):
     """Classe di tipo << Entity >> per rappresentare un pedone degli scacchi.
@@ -21,9 +23,7 @@ class Pedone(Pezzo):
 
 
     def set_en_passant(self, en_passant):
-        if en_passant:
-            self._en_passant = False
-        else:
+        if not en_passant:
             self._en_passant = True
 
 
@@ -72,8 +72,7 @@ class Pedone(Pezzo):
                     partita.aggiungi_mossa(posizione_arrivo) 
                     partita.cambiaturno()  # Cambia il turno dopo la mossa  
                 else:
-                    print("La mossa non è valida. Il pedone non può muoversi in quella \
-                        casella. Digita /help per altre informazioni.")         
+                    errori.errore_mossa_pedone()       
             elif scacchiera.get_casa(riga_arrivo + direzione, colonna_arrivo)\
                 .get_pezzo() is not None and scacchiera\
                     .get_casa(riga_arrivo + direzione, colonna_arrivo).get_pezzo()\
@@ -88,8 +87,6 @@ class Pedone(Pezzo):
                 partita.aggiungi_mossa(posizione_arrivo) 
                 partita.cambiaturno()  # Cambia il turno dopo la mossa
             else:   
-                print("La mossa non è valida. Il pedone non può muoversi in quella "\
-                    "casella. Digita /help per altre informazioni.")
+                errori.errore_mossa_pedone()
         else:   
-            print("La mossa non è valida. Il pedone non può muoversi in " \
-            "quella casella. Digita /help per altre informazioni.")
+            errori.errore_mossa_pedone()

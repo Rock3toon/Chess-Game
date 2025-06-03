@@ -17,3 +17,15 @@ class Casa:
 
     def set_pezzo(self, pezzo):
         self._pezzo = pezzo
+
+    def get_riga(self):
+        return self._riga
+    
+    def set_riga(self, riga):
+        self._riga = riga
+
+    def get_colonna(self):
+        return self._colonna
+    
+    def set_colonna(self, colonna):
+        self._colonna = colonna

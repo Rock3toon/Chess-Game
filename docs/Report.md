@@ -72,7 +72,6 @@ Il ***modello di dominio*** rappresenta visualmente i concetti principali del do
 - **Casa**: Questo concetto rappresenta una singola posizione sulla scacchiera, identificata dalle <ins>*coordinate*</ins> (ad esempio E4, H7, ecc.). <br/><br/> 
 - **Pezzo**: Questo concetto rappresenta ciascun pezzo degli scacchi. Ogni pezzo è caratterizzato da due attributi: il <ins>*colore*</ins> (bianco o nero) e la <ins>*posizione*</ins> attuale sulla scacchiera. I pezzi sono specializzati in sei tipi: *Re*, *Donna*, *Torre*, *Alfiere*, *Cavallo*, *Pedone*. <br/><br/>
 - **Giocatore**: Questo concetto rappresenta i due giocatori effettuano la partita. <br/><br/>
-- **Input**: Questo concetto rappresenta un’azione digitata dal giocatore, che può essere una ***mossa*** (con indicazione di <ins>*partenza*</ins> e <ins>*destinazione*</ins>) oppure un ***comando*** (es. abbandono, proposta di patta). <br/><br/>
 
 Il modello è stato rappresentato attraverso un **diagramma delle classi con prospettiva concettuale** che illustra chiaramente le entità, gli attributi e le relazioni del sistema.
 

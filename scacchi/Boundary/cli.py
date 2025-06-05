@@ -6,7 +6,12 @@ from rich.text import Text
 
 import scacchi.Boundary.errori as errori
 from scacchi.Control.parse_input import parse_input
-from scacchi.Entity.Pezzi import Alfiere, Cavallo, Donna, Pedone, Re, Torre
+from scacchi.Entity.Pezzi.Alfiere import Alfiere
+from scacchi.Entity.Pezzi.Cavallo import Cavallo
+from scacchi.Entity.Pezzi.Donna import Donna
+from scacchi.Entity.Pezzi.Pedone import Pedone
+from scacchi.Entity.Pezzi.Re import Re
+from scacchi.Entity.Pezzi.Torre import Torre
 
 """
 Modulo << Boundary >> per l'interfaccia a riga di comando (CLI) del gioco degli scacchi.

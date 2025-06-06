@@ -51,7 +51,19 @@ def errore_mossa_pedone():
         casella. Digita /help per altre informazioni.")
 
 
-
+#errori di Cavallo.py
+def errore_cavallo_mossa_illegale():
+    """Stampa un messaggio di errore se la mossa del cavallo non è valida."""
+    print("Errore, la mossa del cavallo è illegale. \
+         Digita /help per altre informazioni.")
+def errore_cavallo_mossa_ambigua():
+    """Stampa un messaggio di errore se la mossa del cavallo è ambigua."""
+    print("Errore, la mossa del cavallo è ambigua. \
+         Digita /help per altre informazioni.")
+def errore_cavallo_errore_disambiguazione():
+    """Stampa un messaggio di errore se c'è un errore di disambiguazione del cavallo."""
+    print("Errore, la disambiguazione del cavallo non è corretta. \
+         Digita /help per altre informazioni.")
 
 
 #errori di main.py

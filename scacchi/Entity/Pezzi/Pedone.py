@@ -1,6 +1,5 @@
-from Pezzo import Pezzo
-
 import scacchi.Boundary.errori as errori
+from scacchi.Entity.Pezzo import Pezzo
 
 
 class Pedone(Pezzo):
@@ -90,3 +89,9 @@ class Pedone(Pezzo):
                 errori.errore_mossa_pedone()
         else:   
             errori.errore_mossa_pedone()
+
+    def fattibilità(self, posizione_arrivo, scacchiera, partita):
+        pass
+
+    def cattura(self, posizione_arrivo, scacchiera, partita):
+        pass

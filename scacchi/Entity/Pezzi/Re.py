@@ -1,4 +1,4 @@
-from Pezzo import Pezzo
+from scacchi.Entity.Pezzo import Pezzo
 
 
 class Re(Pezzo):

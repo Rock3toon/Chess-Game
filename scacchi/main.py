@@ -38,9 +38,9 @@ def main():
             elif cmd == 4:
                 gioca(scacchiera, partita)  # /gioca
             elif cmd == 5:
-                abbandona(partita)  # /abbandona
+                abbandona(partita, scacchiera)  # /abbandona
             elif cmd == 6:
-                patta(partita)  # /patta
+                patta(partita, scacchiera)  # /patta
             elif cmd == 7:
                 partita.stampa_mosse()  # /mosse
         else:

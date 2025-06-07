@@ -13,7 +13,7 @@ class Cavallo(Pezzo):
         filtri = scacchiera.filtra_istanze('C', partita.get_turno())                                                        # lista delle istanze dei pezzi sulla scacchiera
         #Controlla tutte le istanze dei cavalli presenti sulla scacchiera
         lista = []
-
+        arrivo = scacchiera.get_casa(righe_arrivo, colonne_arrivo)             
         for istanza in filtri:
             righe_partenza = istanza.get_riga()                                
             colonne_partenza = istanza.get_colonna()                                  
@@ -42,8 +42,11 @@ class Cavallo(Pezzo):
                     errori.errore_cavallo_errore_disambiguazione() # se ci sono più cavalli con la stessa disambiguazione
                     return -1  
             else:
+                if arrivo.get_pezzo() is not None and arrivo.get_pezzo().get_colore() == partita.get_turno():
                 # Se non c'è disambiguazione, ma ci sono più cavalli, errore
-                errori.errore_cavallo_mossa_ambigua()
+                    errori.errore_cavallo_mossa_illegale()
+                else:    
+                    errori.errore_cavallo_mossa_ambigua()
                 return -1   
                        
     # Metodo che gestisce la mossa del cavallo senza cattura

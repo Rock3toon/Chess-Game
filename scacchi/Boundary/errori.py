@@ -64,8 +64,14 @@ def errore_cavallo_errore_disambiguazione():
     """Stampa un messaggio di errore se c'è un errore di disambiguazione del cavallo."""
     print("Errore, la disambiguazione del cavallo non è corretta. \
          Digita /help per altre informazioni.")
-
-
+def errore_cavallo_cattura_vuota():
+    """Stampa un messaggio di errore se si tenta di catturare una casa vuota con il cavallo."""
+    print("Errore, il cavallo non può catturare una casa vuota. \
+         Digita /help per altre informazioni.")
+def errore_cavallo_cattura_non_specificata():
+    """Stampa un messaggio di errore se la cattura del cavallo non è specificata."""
+    print("Errore, la cattura del cavallo non è specificata. \
+         Digita /help per altre informazioni.")
 #errori di main.py
 
 

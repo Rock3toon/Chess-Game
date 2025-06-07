@@ -8,7 +8,6 @@ class Casa:
     """
 
     def __init__(self, riga, colonna, pezzo=None):
-        self._riga = riga            
         self._colonna = colonna
         self._pezzo = pezzo  
 

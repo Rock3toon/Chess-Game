@@ -68,7 +68,9 @@ class Pedone(Pezzo):
                         colonna_arrivo) #cancello il pedone in partenza
                     if partenza_doppia.get_prima_mossa():
                         partenza_doppia.set_prima_mossa()
-                    scacchiera.aggiorna_lista_istanze(scacchiera.get_casa(riga_arrivo + 2*direzione, colonna_arrivo), (scacchiera.get_casa(riga_arrivo, colonna_arrivo))) 
+                    scacchiera.aggiorna_lista_istanze(scacchiera.get_casa(riga_arrivo +\
+                        2*direzione, colonna_arrivo),\
+                            (scacchiera.get_casa(riga_arrivo, colonna_arrivo))) 
                     partita.aggiungi_mossa(posizione_arrivo) 
                     partita.cambiaturno()  # Cambia il turno dopo la mossa  
                 else:
@@ -85,7 +87,9 @@ class Pedone(Pezzo):
                 if partenza_singola.get_prima_mossa():
                     partenza_singola.set_prima_mossa()
                 
-                scacchiera.aggiorna_lista_istanze(scacchiera.get_casa(riga_arrivo + direzione, colonna_arrivo), (scacchiera.get_casa(riga_arrivo, colonna_arrivo)))
+                scacchiera.aggiorna_lista_istanze(scacchiera.get_casa(riga_arrivo + \
+                    direzione, colonna_arrivo),\
+                        (scacchiera.get_casa(riga_arrivo, colonna_arrivo)))
                     
                 partita.aggiungi_mossa(posizione_arrivo) 
                 partita.cambiaturno()  # Cambia il turno dopo la mossa

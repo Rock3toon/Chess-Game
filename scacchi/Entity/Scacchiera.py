@@ -73,7 +73,8 @@ class Scacchiera:
         # Lista che contiene le case che contengono i pezzi giusti
         for istanza in self.get_istanze():
             pezzo = istanza.get_pezzo()
-            if pezzo is not None and pezzo.get_tipo() == tipo_pezzo and pezzo.get_colore() == colore:
+            if pezzo is not None and pezzo.get_tipo() ==\
+                tipo_pezzo and pezzo.get_colore() == colore:
                 lista_pezzi_colore.append(istanza)
                 # Aggiunge l'istanza di casa che contine il pezzo alla lista
         return lista_pezzi_colore

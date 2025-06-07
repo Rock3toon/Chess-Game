@@ -1,7 +1,7 @@
 import re
 
-from scacchi.Entity.Pezzi.Cavallo import Cavallo
 import scacchi.Boundary.errori as errori
+from scacchi.Entity.Pezzi.Cavallo import Cavallo
 from scacchi.Entity.Pezzi.Pedone import Pedone
 
 """

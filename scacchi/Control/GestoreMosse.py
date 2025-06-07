@@ -50,8 +50,7 @@ def GestioneInput(move_result, scacchiera, partita):
                 # Inserire gestore mossa Donna
         elif re.match("^C", move_result):
             if "x" in move_result:
-                print("Gestione cattura Cavallo non ancora implementata")
-                # Inserire gestore cattura Cavallo
+                cavallo.cattura(move_result, scacchiera, partita)  
             else:
                 cavallo.mossa(move_result, scacchiera, partita)  
         elif re.match("^A", move_result):

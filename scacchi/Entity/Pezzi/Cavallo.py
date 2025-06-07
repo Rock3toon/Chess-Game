@@ -11,8 +11,6 @@ class Cavallo(Pezzo):
     def fattibilità(self, mossa_na, scacchiera, partita):
         righe_arrivo, colonne_arrivo = self.Algebrica_a_Matrice(mossa_na)                                               #righe e colonne di arrivo
         filtri = scacchiera.filtra_istanze('C', partita.get_turno())                                                        # lista delle istanze dei pezzi sulla scacchiera
-        print(f"Lista dei cavalli: {filtri}")  # Debug: stampa le istanze dei cavalli filtrati
-        print(f"turno: {partita.get_turno()}")  # Debug: stampa il turno attuale
         #Controlla tutte le istanze dei cavalli presenti sulla scacchiera
         lista = []
 
@@ -69,7 +67,23 @@ class Cavallo(Pezzo):
                                                 
             
     def cattura(self, mossa_na, scacchiera, partita):
-        pass
+        riga_arrivo, colonna_arrivo = self.Algebrica_a_Matrice(mossa_na)
+        arrivo = scacchiera.get_casa(riga_arrivo, colonna_arrivo)             # recupera la casa di arrivo      
+        partenza = self.fattibilità(mossa_na, scacchiera, partita)
+        if  partenza != -1:               # se la mossa è valida 
+            pezzo = partenza.get_pezzo()             
+            if arrivo.get_pezzo() is not None and arrivo.get_pezzo().get_colore() != pezzo.get_colore():
+                scacchiera.discard_istanze(arrivo)
+                scacchiera.aggiorna_lista_istanze(partenza, arrivo)
+                scacchiera.set_pezzo_scacchiera(riga_arrivo, colonna_arrivo, pezzo)  # aggiorna la scacchiera
+                scacchiera.set_pezzo_scacchiera(partenza.get_riga(), partenza.get_colonna(), None)  # rimuove il pezzo dalla casa di partenza  
+                partita.aggiungi_mossa(mossa_na)                    
+                partita.cambiaturno()        
+            elif arrivo.get_pezzo() is not None and arrivo.get_pezzo().get_colore() == pezzo.get_colore():
+                # Se il pezzo nella casa di arrivo è dello stesso colore, errore
+                errori.errore_cavallo_mossa_illegale()
+            elif arrivo.get_pezzo() is None:
+                errori.errore_cavallo_cattura_vuota()
 
     # Logica di movimento del cavallo restituisce True se il movimento è valido, altrimenti False
     def movimento_cavallo(self, r_partenza, r_arrivo, c_partenza, c_arrivo):

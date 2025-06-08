@@ -53,11 +53,11 @@ class Pezzo(ABC):
         return provenienza
                    
     def Algebrica_a_Matrice(self, posizione):
-        colonna = self.Conversione.get(posizione[len(posizione) - 1])
-        riga = 8 - int(posizione[len(posizione) - 2])
+        colonna = self.Conversione.get(posizione[len(posizione) - 2])
+        riga = 8 - int(posizione[len(posizione) - 1])
         return riga, colonna    
 
-    def Matrice_a_Algebrica(self, posizione):
+    def Matrice_a_Algebrica(self, posizione):   
         colonna = chr(posizione[1] + ord('a'))  # 0 -> 'a', 1 -> 'b', ..., 7 -> 'h'
         riga = str(8 - posizione[0])  # 7 -> '1', 6 -> '2', ..., 0 -> '8'
         return colonna + riga    

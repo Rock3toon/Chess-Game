@@ -59,7 +59,11 @@ class Scacchiera:
             for colonna in range(8):
                 pezzo = self.get_casa(riga, colonna)
                 self.set_istanze(pezzo)
-
+    
+    def azzera_istanze(self):
+        """Azzera la lista delle istanze."""
+        self._istanze = []
+    
     def filtra_istanze(self, tipo_pezzo, colore):
         #Tipi di pezzi: 'P' = Pedone, 'T' = Torre, 'C' = Cavallo,
         #               'A' = Alfiere, 'D' = Donna, 'R' = Re
@@ -68,8 +72,9 @@ class Scacchiera:
         lista_pezzi_colore = []
         # Lista che contiene le case che contengono i pezzi giusti
         for istanza in self.get_istanze():
-            if istanza.get_pezzo().get_tipo() == tipo_pezzo and \
-               istanza.get_pezzo().get_colore() == colore:
+            pezzo = istanza.get_pezzo()
+            if pezzo is not None and pezzo.get_tipo() ==\
+                tipo_pezzo and pezzo.get_colore() == colore:
                 lista_pezzi_colore.append(istanza)
                 # Aggiunge l'istanza di casa che contine il pezzo alla lista
         return lista_pezzi_colore

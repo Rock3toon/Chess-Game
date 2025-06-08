@@ -32,10 +32,10 @@ class Partita:
         else:
              text_turno = "TURNO DEL BIANCO: In attesa della mossa...\n"
              console.print(Text(text_turno, style="italic grey50"), justify="center")
-
+    
+    def set_turno(self):
+         self.__turno = 0
             
-
-
     def get_stato_partita(self):
         return self.__stato_partita
     
@@ -55,3 +55,7 @@ class Partita:
                     print(f"{(i // 2) + 1}. {self.__lista_mosse[i]} ", end="")
                 else:
                     print(f"{self.__lista_mosse[i]} ", end="" "\n")
+    
+    def azzera_mosse(self):
+        """Azzera la lista delle mosse."""
+        self.__lista_mosse = []

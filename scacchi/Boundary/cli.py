@@ -172,7 +172,7 @@ def gioca(Scacchiera, Partita):
         
                 
 
-def abbandona(partita):
+def abbandona(partita, scacchiera):
     """Funzione per abbandonare la partita corrente."""
     stato = partita.get_stato_partita()
     if stato == 0:
@@ -187,6 +187,9 @@ def abbandona(partita):
             partita.cambia_stato_partita()  
             # Imposta lo stato della partita come terminato
             print("Per effettuare una nuova partita digita '/gioca'")
+            partita.azzera_mosse()  # Azzera le mosse della partita
+            scacchiera.azzera_istanze()  # Azzera le istanze della scacchiera
+            partita.set_turno()  
         elif risposta == 'no':
             print("Operazione annullata!")
         elif risposta == -1:
@@ -208,7 +211,7 @@ def esci():
     elif risposta == -1:
         errori.errore_risposta()  
 
-def patta(partita):
+def patta(partita, sccachiera):
     """Funzione per richiedere la patta nella partita corrente."""
     stato = partita.get_stato_partita()
     if stato == 0:                                                                     
@@ -223,7 +226,10 @@ def patta(partita):
             print(f"Giocatore {giocatore} vuoi accettare la patta? (si/no)")
             risposta = parse.parseConfirm(input(">>>"))                     
             if risposta == 'si':                                             
-                print("La partita è terminata in patta.")                    
+                print("La partita è terminata in patta.")                
+                partita.azzera_mosse()
+                sccachiera.azzera_istanze()
+                partita.set_turno()                                      
                 partita.cambia_stato_partita()                                                                                                     
             elif risposta == 'no':                                           
                 print("La richiesta di patta è stata rifiutata dal giocatore"\

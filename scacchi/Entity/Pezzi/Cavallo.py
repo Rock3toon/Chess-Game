@@ -22,7 +22,7 @@ class Cavallo(Pezzo):
             # verifica se il movimento è valido                                  
             valida = self.movimento_cavallo(righe_partenza, righe_arrivo, \
                                             colonne_partenza, colonne_arrivo)
-            if valida: #Pezzo che può muoversi trovato
+            if valida == 1: #Pezzo che può muoversi trovato
                 lista.append(istanza) 
         if len(lista) == 0:                                                           
             errori.errore_cavallo_mossa_illegale()
@@ -91,8 +91,8 @@ class Cavallo(Pezzo):
                 scacchiera.discard_istanze(arrivo)
                 scacchiera.aggiorna_lista_istanze(partenza, arrivo)
                 scacchiera.set_pezzo_scacchiera(riga_arrivo, colonna_arrivo, pezzo)
-                scacchiera.set_pezzo_scacchiera(partenza.get_riga(),\
-                    partenza.get_colonna(), None)
+                scacchiera.set_pezzo_scacchiera(partenza.get_riga(),
+                                                 partenza.get_colonna(), None)
                 partita.aggiungi_mossa(mossa_na)                    
                 partita.cambiaturno()        
             elif arrivo.get_pezzo() is not None and arrivo.get_pezzo().get_colore() ==\
@@ -102,13 +102,15 @@ class Cavallo(Pezzo):
             elif arrivo.get_pezzo() is None:
                 errori.errore_cavallo_cattura_vuota()
 
-# Logica di movimento del cavallo restituisce True se è valido, altrimenti False
+# Logica di movimento del cavallo restituisce 1 se è valido, altrimenti False
     def movimento_cavallo(self, r_partenza, r_arrivo, c_partenza, c_arrivo):
         if 0 <= r_arrivo < 8 and 0 <= c_arrivo < 8:
             righe = abs(r_partenza - r_arrivo)
             colonne = abs(c_partenza - c_arrivo)
-            if (righe != 2 and colonne != 1) or\
-                  (righe != 1 and colonne != 2):
+            if (righe == 2 and colonne == 1) or\
+                 (righe == 1 and colonne == 2):
+                return 1
+            else:
                 return False
         else:
             return False

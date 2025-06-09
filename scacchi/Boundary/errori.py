@@ -72,6 +72,37 @@ def errore_cavallo_cattura_non_specificata():
     """Stampa un messaggio di errore se la cattura del cavallo non è specificata."""
     print("Errore, la cattura del cavallo non è specificata. \
         \nDigita /help per altre informazioni.")
+    
+
+# errori di Alfiere.py
+
+def errore_alfiere_mossa_illegale():
+    """Stampa un messaggio di errore se la mossa dell'alfiere non è valida."""
+    print("Errore, la mossa dell'alfiere è illegale. \
+        \nDigita /help per altre informazioni.")
+
+def errore_alfiere_mossa_ambigua():
+    """Stampa un messaggio di errore se la mossa dell'alfiere è ambigua."""
+    print("Errore, la mossa dell'alfiere è ambigua. \
+        \nDigita /help per altre informazioni.")
+
+def errore_alfiere_errore_disambiguazione():
+    """Stampa un messaggio di errore in caso di disambiguazione dell'alfiere."""
+    print("Errore, la disambiguazione dell'alfiere non è corretta. \
+        \nDigita /help per altre informazioni.")
+
+def errore_alfiere_cattura_vuota():
+    """Stampa un messaggio di errore se l'alfiere tenta di catturare una casa vuota."""
+    print("Errore, l'alfiere non può catturare una casa vuota. \
+        \nDigita /help per altre informazioni.")
+
+def errore_alfiere_cattura_non_specificata():
+    """Stampa messaggio di errore se la cattura dell'alfiere non è stata specificata."""
+    print("Errore, la cattura dell'alfiere non è stata specificata. \
+        \nDigita /help per altre informazioni.")
+
+    
+
 #errori di main.py
 
 

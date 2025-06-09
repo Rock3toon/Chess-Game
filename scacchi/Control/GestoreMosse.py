@@ -1,6 +1,7 @@
 import re
 
 import scacchi.Boundary.errori as errori
+from scacchi.Entity.Pezzi.Alfiere import Alfiere
 from scacchi.Entity.Pezzi.Cavallo import Cavallo
 from scacchi.Entity.Pezzi.Pedone import Pedone
 
@@ -26,6 +27,7 @@ def GestioneInput(move_result, scacchiera, partita):
         colore = 'nero'
     
     pedone = Pedone(colore)
+    alfiere = Alfiere(colore)
     cavallo = Cavallo(colore)
 
     if partita.get_stato_partita() == 1:
@@ -55,11 +57,9 @@ def GestioneInput(move_result, scacchiera, partita):
                 cavallo.mossa(move_result, scacchiera, partita)  
         elif re.match("^A", move_result):
             if "x" in move_result:
-                print("Gestione cattura Alfiere non ancora implementata")
-                # Inserire gestore cattura Alfiere
+                alfiere.cattura(move_result, scacchiera, partita)
             else:
-                print("Gestione mossa Alfiere non ancora implementata")
-                # Inserire gestore mossa Alfiere
+                alfiere.mossa(move_result, scacchiera, partita) 
         elif re.match("^T", move_result):
             if "x" in move_result:
                 print("Gestione cattura Torre non ancora implementata")

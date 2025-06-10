@@ -72,10 +72,34 @@ def errore_cavallo_cattura_non_specificata():
     """Stampa un messaggio di errore se la cattura del cavallo non è specificata."""
     print("Errore, la cattura del cavallo non è specificata. \
         \nDigita /help per altre informazioni.")
+
+#errori di Torre.py
+def errore_torre_mossa_illegale():
+    """Stampa un messaggio di errore se la mossa della torre non è valida."""
+    print("Errore, la mossa della torre è illegale. \
+        \nDigita /help per altre informazioni.")
+
+def errore_torre_mossa_ambigua():
+    """Stampa un messaggio di errore se la mossa della torre è ambigua."""
+    print("Errore, la mossa della torre è ambigua. \
+        \nDigita /help per altre informazioni.")
+
+def errore_torre_errore_disambiguazione():
+    """Stampa un messaggio di errore se c'è un errore di disambiguazione della torre."""
+    print("Errore, la disambiguazione della torre non è corretta. \
+        \nDigita /help per altre informazioni.")
+
+def errore_torre_cattura_vuota():
+    """Stampa un messaggio d'errore se la torre cerca di catturare una casa vuota."""
+    print("Errore, la torre non può catturare una casa vuota. \
+        \nDigita /help per altre informazioni.")
+
+def errore_torre_cattura_non_specificata():
+    """Stampa un messaggio di errore se la cattura della torre non è specificata."""
+    print("Errore, la cattura della torre non è specificata. \
+        \nDigita /help per altre informazioni.")
+    
 #errori di main.py
-
-
-
 
 def errore_comando_non_riconosciuto():
     """Stampa un messaggio di errore se il comando non è riconosciuto."""

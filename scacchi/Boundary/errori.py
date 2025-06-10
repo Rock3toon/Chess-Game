@@ -1,4 +1,4 @@
-#Errori di cli.py
+# Errori di cli.py
 
 def errore_gioca():
     """Stampa un messaggio di errore se la partita è già in corso."""
@@ -22,7 +22,7 @@ def errore_nessuna_partita_patta():
 
 
 
-#errori GestoreMosse.py
+# Errori GestoreMosse.py
 
 def errore_nessuna_partita():
     """Stampa un messaggio di errore se non c'è una partita in corso."""
@@ -30,7 +30,7 @@ def errore_nessuna_partita():
          \nScrivi /gioca per avviare una partita.")
 
 
-#errori di partita.py
+# Errori di partita.py
 
 
 def errore_stampa_mosse():
@@ -40,7 +40,9 @@ def errore_stampa_mosse():
 
 
 
+
 # Errori di Pedone.py
+
 
 def errore_mossa_pedone():
     """Stampa un messaggio di errore se la mossa del pedone non è valida."""
@@ -63,7 +65,8 @@ def errore_nessuna_cattura_valida():
         \nDigita /help per altre informazioni.")
 
 
-#errori di Cavallo.py
+# Errori di Cavallo.py
+
 def errore_cavallo_mossa_illegale():
     """Stampa un messaggio di errore se la mossa del cavallo non è valida."""
     print("Errore, la mossa del cavallo è illegale. \
@@ -84,8 +87,65 @@ def errore_cavallo_cattura_non_specificata():
     """Stampa un messaggio di errore se la cattura del cavallo non è specificata."""
     print("Errore, la cattura del cavallo non è specificata. \
         \nDigita /help per altre informazioni.")
+
+   
+# Errori di Alfiere.py
+
+def errore_alfiere_mossa_illegale():
+    """Stampa un messaggio di errore se la mossa dell'alfiere non è valida."""
+    print("Errore, la mossa dell'alfiere è illegale. \
+        \nDigita /help per altre informazioni.")
+
+def errore_alfiere_mossa_ambigua():
+    """Stampa un messaggio di errore se la mossa dell'alfiere è ambigua."""
+    print("Errore, la mossa dell'alfiere è ambigua. \
+        \nDigita /help per altre informazioni.")
+
+def errore_alfiere_errore_disambiguazione():
+    """Stampa un messaggio di errore in caso di disambiguazione dell'alfiere."""
+    print("Errore, la disambiguazione dell'alfiere non è corretta. \
+        \nDigita /help per altre informazioni.")
+
+def errore_alfiere_cattura_vuota():
+    """Stampa un messaggio di errore se l'alfiere tenta di catturare una casa vuota."""
+    print("Errore, l'alfiere non può catturare una casa vuota. \
+        \nDigita /help per altre informazioni.")
+
+def errore_alfiere_cattura_non_specificata():
+    """Stampa messaggio di errore se la cattura dell'alfiere non è stata specificata."""
+    print("Errore, la cattura dell'alfiere non è stata specificata. \
+        \nDigita /help per altre informazioni.")
+
     
-#errori di main.py
+
+# Errori di Torre.py
+
+def errore_torre_mossa_illegale():
+    """Stampa un messaggio di errore se la mossa della torre non è valida."""
+    print("Errore, la mossa della torre è illegale. \
+        \nDigita /help per altre informazioni.")
+
+def errore_torre_mossa_ambigua():
+    """Stampa un messaggio di errore se la mossa della torre è ambigua."""
+    print("Errore, la mossa della torre è ambigua. \
+        \nDigita /help per altre informazioni.")
+
+def errore_torre_errore_disambiguazione():
+    """Stampa un messaggio di errore se c'è un errore di disambiguazione della torre."""
+    print("Errore, la disambiguazione della torre non è corretta. \
+        \nDigita /help per altre informazioni.")
+
+def errore_torre_cattura_vuota():
+    """Stampa un messaggio d'errore se la torre cerca di catturare una casa vuota."""
+    print("Errore, la torre non può catturare una casa vuota. \
+        \nDigita /help per altre informazioni.")
+
+def errore_torre_cattura_non_specificata():
+    """Stampa un messaggio di errore se la cattura della torre non è specificata."""
+    print("Errore, la cattura della torre non è specificata. \
+        \nDigita /help per altre informazioni.")
+    
+# Errori di main.py
 
 def errore_comando_non_riconosciuto():
     """Stampa un messaggio di errore se il comando non è riconosciuto."""
@@ -101,7 +161,7 @@ def errore_mossa_non_valida():
     print("Errore, la mossa non è scritta correttamente. \
         Scrivi /help per altre informazioni.")
 
-#errori per le mosse
+# Errori per le mosse
 
 def erroe_mossa_ambigua():
     """Stampa un messaggio di errore se la mossa è ambigua."""
@@ -109,7 +169,7 @@ def erroe_mossa_ambigua():
         Digita /help per altre informazioni.")
     
 
-# errori per le catture
+# Errori per le catture
 
 def errore_cattura_vuota():
     """Stampa un messaggio di errore se si tenta di catturare una casa vuota."""

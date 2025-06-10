@@ -1,8 +1,10 @@
 import re
 
 import scacchi.Boundary.errori as errori
+from scacchi.Entity.Pezzi.Alfiere import Alfiere
 from scacchi.Entity.Pezzi.Cavallo import Cavallo
 from scacchi.Entity.Pezzi.Pedone import Pedone
+from scacchi.Entity.Pezzi.Torre import Torre
 
 """
 Modulo di tipo << Control >> per gestire l’input di una mossa.
@@ -26,7 +28,9 @@ def GestioneInput(move_result, scacchiera, partita):
         colore = 'nero'
     
     pedone = Pedone(colore)
+    alfiere = Alfiere(colore)
     cavallo = Cavallo(colore)
+    torre = Torre(colore)
 
     if partita.get_stato_partita() == 1:
         errori.errore_nessuna_partita()
@@ -55,18 +59,15 @@ def GestioneInput(move_result, scacchiera, partita):
                 cavallo.mossa(move_result, scacchiera, partita)  
         elif re.match("^A", move_result):
             if "x" in move_result:
-                print("Gestione cattura Alfiere non ancora implementata")
-                # Inserire gestore cattura Alfiere
+                alfiere.cattura(move_result, scacchiera, partita)
             else:
-                print("Gestione mossa Alfiere non ancora implementata")
-                # Inserire gestore mossa Alfiere
+                alfiere.mossa(move_result, scacchiera, partita) 
         elif re.match("^T", move_result):
             if "x" in move_result:
-                print("Gestione cattura Torre non ancora implementata")
-                # Inserire gestore cattura Torre
+                torre.cattura(move_result, scacchiera, partita)  
             else:
-                print("Gestione mossa Torre non ancora implementata")
-                # Inserire gestore mossa Torre
+                torre.mossa(move_result, scacchiera, partita)  
+                # Inserire gestore cattura Torre
         elif re.match("^[a-h][18][DTAC]$ |^[a-h][x][a-h][1-8][DTAC]", move_result):
             print("Gestione promozione pedone non ancora implementata")
             # Inserire gestore promozione pedone

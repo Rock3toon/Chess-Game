@@ -33,12 +33,12 @@ class Torre(Pezzo):
         lista_filtrata = scacchiera.filtra_istanze('T', partita.get_turno())
         riga_arrivo, colonna_arrivo = self.Algebrica_a_Matrice(mossa_na)
         lista = []
-        arrivo = scacchiera.get_casa(riga_arrivo, colonna_arrivo)
         for istanza in lista_filtrata:
             righe_partenza = istanza.get_riga()                                
             colonne_partenza = istanza.get_colonna()
             # verifica se il movimento è valido                                  
-            valida = self.movimento_Torre(righe_partenza, riga_arrivo,colonne_partenza, colonna_arrivo, scacchiera)  # noqa: E501
+            valida = self.movimento_Torre(righe_partenza, riga_arrivo,colonne_partenza,\
+                                        colonna_arrivo, scacchiera)
             if valida == 1: #Pezzo che può muoversi trovato
                 lista.append(istanza) 
         
@@ -59,21 +59,18 @@ class Torre(Pezzo):
                 for istanza in lista:
                     r = istanza.get_riga()
                     c = istanza.get_colonna()
-                    if ((disamb[0] is not None and r == disamb[0]) or (disamb[1] is not None and c == disamb[1])):  # noqa: E501
+                    if ((disamb[0] is not None and r == disamb[0]) or\
+                        (disamb[1] is not None and c == disamb[1])):
                        lista_disambiguazione.append(istanza)
                     
                 if len(lista_disambiguazione) == 1:
                     return lista_disambiguazione[0]
-                elif len(lista_disambiguazione) > 1:
+                elif len(lista_disambiguazione) > 1 or len(lista_disambiguazione) == 0:
                     errori.errore_torre_errore_disambiguazione()
                     return -1
-            else:
-                if arrivo.get_pezzo() is not None and arrivo.get_pezzo().get_colore() == partita.get_turno():  # noqa: E501
-                # Se non c'è disambiguazione, ma ci sono più torri, errore
-                    errori.errore_torre_mossa_illegale()
-                else:    
+            else:   
                     errori.errore_torre_mossa_ambigua()
-                return -1  
+                    return -1  
     
     def mossa(self, mossa_na, scacchiera, partita):
         riga_arrivo, colonna_arrivo = self.Algebrica_a_Matrice(mossa_na)
@@ -110,7 +107,8 @@ class Torre(Pezzo):
                 scacchiera.discard_istanze(arrivo)
                 scacchiera.aggiorna_lista_istanze(casa_partenza, arrivo)
                 scacchiera.set_pezzo_scacchiera(riga_arrivo, colonna_arrivo, pezzo)
-                scacchiera.set_pezzo_scacchiera(casa_partenza.get_riga(), casa_partenza.get_colonna(), None)  # noqa: E501
+                scacchiera.set_pezzo_scacchiera(casa_partenza.get_riga(),\
+                    casa_partenza.get_colonna(), None)
                 partita.aggiungi_mossa(mossa_na)                    
                 partita.cambiaturno()        
             elif arrivo.get_pezzo() is not None and arrivo.get_pezzo().get_colore() ==\
@@ -119,6 +117,3 @@ class Torre(Pezzo):
                 errori.errore_torre_mossa_illegale()
             elif arrivo.get_pezzo() is None:
                 errori.errore_torre_cattura_vuota()
-
-
-    

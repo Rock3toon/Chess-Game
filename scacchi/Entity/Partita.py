@@ -1,6 +1,7 @@
 from rich.console import Console
 from rich.text import Text
 
+import scacchi.Boundary.cli as cli
 import scacchi.Boundary.errori as errori
 
 console = Console()
@@ -59,3 +60,26 @@ class Partita:
     def azzera_mosse(self):
         """Azzera la lista delle mosse."""
         self.__lista_mosse = []
+
+    def out_of_bounds(self, riga, colonna):
+        return riga < 0 or riga >= 8 or colonna < 0 or colonna >= 8
+
+    def scacco_matto(self, scacchiera, partita):
+        lista_re = scacchiera.filtra_istanze("R",partita.get_turno)
+        for re in lista_re:
+            riga = re.get_riga()
+            colonna = re.get_colonna()
+            if re.sotto_scacco(scacchiera, partita):
+                if (not self.out_of_bounds(riga - 1, colonna) and scacchiera.get_pezzo_scacchiera(riga - 1, colonna)) and\
+                (not self.out_of_bounds(riga - 1, colonna) and scacchiera.get_pezzo_scacchiera(riga - 1, colonna)) and\
+                (not self.out_of_bounds(riga - 1, colonna) and scacchiera.get_pezzo_scacchiera(riga - 1, colonna)) and\
+                (not self.out_of_bounds(riga - 1, colonna) and scacchiera.get_pezzo_scacchiera(riga - 1, colonna)) and\
+                (not self.out_of_bounds(riga - 1, colonna) and scacchiera.get_pezzo_scacchiera(riga - 1, colonna)) and\
+                (not self.out_of_bounds(riga - 1, colonna) and scacchiera.get_pezzo_scacchiera(riga - 1, colonna)) and\
+                (not self.out_of_bounds(riga - 1, colonna) and scacchiera.get_pezzo_scacchiera(riga - 1, colonna)) and\
+                (not self.out_of_bounds(riga - 1, colonna) and scacchiera.get_pezzo_scacchiera(riga - 1, colonna)):
+                    cli.partita_in_scacco_matto()
+                    return True
+    
+    def stallo():
+        pass

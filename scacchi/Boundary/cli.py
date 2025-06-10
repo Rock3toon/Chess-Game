@@ -243,3 +243,8 @@ def patta(partita, sccachiera):
     else:
         errori.errore_nessuna_partita_patta()                  
                         
+def partita_in_scacco_matto(self, partita):
+    """Funzione per terminare la partita in caso di scacco matto."""
+    turno_attuale = partita.get_turno()  # 0 = giocatore 1, 1 = giocatore 2
+    vincitore = "NERO" if turno_attuale == 0 else "BIANCO"
+    print(f"Partita finita per scacco matto... GIOCATORE {vincitore} ha vinto!")

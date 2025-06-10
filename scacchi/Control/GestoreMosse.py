@@ -2,9 +2,8 @@ import re
 
 import scacchi.Boundary.errori as errori
 from scacchi.Entity.Pezzi.Cavallo import Cavallo
-from scacchi.Entity.Pezzi.Pedone import Pedone
-
 from scacchi.Entity.Pezzi.Donna import Donna
+from scacchi.Entity.Pezzi.Pedone import Pedone
 
 """
 Modulo di tipo << Control >> per gestire l’input di una mossa.

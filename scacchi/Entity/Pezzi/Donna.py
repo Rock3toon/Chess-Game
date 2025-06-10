@@ -36,7 +36,8 @@ class Donna(Pezzo):
             for i in range(1, delta_righe):
                 riga_intermedia = r_partenza + (i * direzione_riga)
                 colonna_intermedia = c_partenza + (i * direzione_colonna)
-                casa_intermedia = scacchiera.get_casa(riga_intermedia, colonna_intermedia)
+                casa_intermedia = scacchiera.get_casa(riga_intermedia,\
+                     colonna_intermedia)
                 if casa_intermedia.get_pezzo() is not None:
                     return 0  # Il percorso è bloccato
             return 1

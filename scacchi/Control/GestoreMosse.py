@@ -4,6 +4,8 @@ import scacchi.Boundary.errori as errori
 from scacchi.Entity.Pezzi.Cavallo import Cavallo
 from scacchi.Entity.Pezzi.Pedone import Pedone
 
+from scacchi.Entity.Pezzi.Donna import Donna
+
 """
 Modulo di tipo << Control >> per gestire l’input di una mossa.
 
@@ -28,6 +30,8 @@ def GestioneInput(move_result, scacchiera, partita):
     pedone = Pedone(colore)
     cavallo = Cavallo(colore)
 
+    donna = Donna(colore)
+
     if partita.get_stato_partita() == 1:
         errori.errore_nessuna_partita()
     else:
@@ -43,11 +47,9 @@ def GestioneInput(move_result, scacchiera, partita):
             # Inserire gestore arrocco
         elif re.match("^D", move_result):
             if "x" in move_result:
-                print("Gestione cattura Donna non ancora implementata")
-                # Inserire gestore cattura Donna
+                donna.cattura(move_result, scacchiera, partita)  
             else:
-                print("Gestione mossa Donna non ancora implementata")
-                # Inserire gestore mossa Donna
+                donna.mossa(move_result, scacchiera, partita)  
         elif re.match("^C", move_result):
             if "x" in move_result:
                 cavallo.cattura(move_result, scacchiera, partita)  

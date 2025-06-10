@@ -21,8 +21,8 @@ class Pedone(Pezzo):
                                             #catturato in en passant
 
 
-    def set_en_passant(self, en_passant):
-        if not en_passant:
+    def set_en_passant(self):
+        if not self._en_passant:
             self._en_passant = True
 
 
@@ -38,68 +38,129 @@ class Pedone(Pezzo):
     def out_of_bounds(self, riga, colonna):
         return riga < 0 or riga >= 8 or colonna < 0 or colonna >= 8
     
-    def mossa(self, posizione_arrivo, scacchiera, partita):
-        # Converte la posizione di arrivo in coordinate della matrice
-        riga_arrivo, colonna_arrivo = self.Algebrica_a_Matrice(posizione_arrivo)
+    def fattibilità(self, mossa_na, scacchiera, partita):
+        riga_arrivo, colonna_arrivo = self.Algebrica_a_Matrice(mossa_na)
+
+        direzione = -1 if partita.get_turno() == 0 else 1
+
+        posizioni_candidate = scacchiera.filtra_istanze('P', partita.get_turno())
+
+        if "x" not in mossa_na:
+            # Mossa semplice (non cattura)
+            for pedone in posizioni_candidate:
+                riga_pedone = pedone.get_riga()
+                colonna_pedone = pedone.get_colonna()
+                # Mossa singola
+                if (riga_arrivo == riga_pedone + direzione and colonna_arrivo == \
+                     colonna_pedone and
+                    scacchiera.get_pezzo_scacchiera(riga_arrivo, colonna_arrivo) \
+                        is None):
+                    return scacchiera.get_casa(riga_pedone, colonna_pedone)
+                # Doppia mossa dalla posizione iniziale
+                if (self.get_prima_mossa() and
+                    riga_arrivo == riga_pedone + 2 * direzione and
+                    colonna_arrivo == colonna_pedone and
+                    scacchiera.get_pezzo_scacchiera \
+                        (riga_pedone + direzione, colonna_pedone) is None and
+                    scacchiera.get_pezzo_scacchiera(riga_arrivo, colonna_arrivo) \
+                        is None):
+                    return scacchiera.get_casa(riga_pedone, colonna_pedone)
+
+        elif "x" in mossa_na:
+            # Cattura (normale o en passant)
+            temp = self.riga_colonna_disambiguazione(mossa_na)
+            colonna_partenza_cattura = temp[1]
+
+            for pedone in posizioni_candidate:
+                riga_pedone = pedone.get_riga()
+                colonna_pedone = pedone.get_colonna()
+                if (riga_arrivo == riga_pedone + direzione and
+                (colonna_arrivo == colonna_pedone - 1 or \
+                colonna_arrivo == colonna_pedone + 1) and
+                (colonna_partenza_cattura is None or colonna_pedone == \
+                 colonna_partenza_cattura)):
+                    return scacchiera.get_casa(riga_pedone, colonna_pedone)
+
+        return -1
+
+    def mossa(self, mossa_na, scacchiera, partita):
+        partenza = self.fattibilità(mossa_na, scacchiera, partita)
+        if partenza != -1:
+            riga_partenza = partenza.get_riga()
+            colonna_partenza = partenza.get_colonna()
+            riga_arrivo, colonna_arrivo = self.Algebrica_a_Matrice(mossa_na)
+
+            pedone = partenza.get_pezzo()
+
+            # Spostamento del pedone
+            scacchiera.set_pezzo_scacchiera(riga_arrivo, colonna_arrivo, pedone)
+            scacchiera.set_pezzo_scacchiera \
+                (riga_partenza, colonna_partenza, None)
         
-        direzione = 1 if partita.get_turno() == 0 else -1 
+            # Aggiorna la lista delle istanze
+            scacchiera.aggiorna_lista_istanze(partenza, scacchiera.get_casa \
+                    (riga_arrivo, colonna_arrivo))
+            # Aggiunge la mossa alla lista delle mosse e cambia il turno
+            partita.aggiungi_mossa(mossa_na)
+            partita.cambiaturno()
 
-        if not self.out_of_bounds(riga_arrivo + 2*direzione, colonna_arrivo) \
-            and not self.out_of_bounds(riga_arrivo + direzione, colonna_arrivo) \
-                and scacchiera.get_pezzo_scacchiera(riga_arrivo, colonna_arrivo) \
-                    is None:
-            # Determina la direzione del movimento in base al colore del pedone
-
-            partenza_singola = \
-                scacchiera.get_pezzo_scacchiera(riga_arrivo + direzione, colonna_arrivo)
-            partenza_doppia = \
-                scacchiera.get_pezzo_scacchiera(riga_arrivo + 2*direzione, \
-                                                colonna_arrivo)
-            
-            if scacchiera.get_casa(riga_arrivo + 2*direzione, colonna_arrivo)\
-                .get_pezzo() is not None and scacchiera.get_casa\
-                    (riga_arrivo + 2*direzione, colonna_arrivo).get_pezzo()\
-                        .get_tipo() == "P" and partenza_doppia.get_prima_mossa():
-                if scacchiera.get_casa(riga_arrivo + direzione, colonna_arrivo)\
-                    .get_pezzo() is None:
-                    scacchiera.set_pezzo_scacchiera(riga_arrivo, colonna_arrivo,\
-                        partenza_doppia) #sposto il pedone con doppia mossa
-                    scacchiera.set_pezzo_scacchiera(riga_arrivo + 2*direzione,\
-                        colonna_arrivo) #cancello il pedone in partenza
-                    if partenza_doppia.get_prima_mossa():
-                        partenza_doppia.set_prima_mossa()
-                    scacchiera.aggiorna_lista_istanze(scacchiera.get_casa(riga_arrivo +\
-                        2*direzione, colonna_arrivo),\
-                            (scacchiera.get_casa(riga_arrivo, colonna_arrivo))) 
-                    partita.aggiungi_mossa(posizione_arrivo) 
-                    partita.cambiaturno()  # Cambia il turno dopo la mossa  
-                else:
-                    errori.errore_mossa_pedone()       
-            elif scacchiera.get_casa(riga_arrivo + direzione, colonna_arrivo)\
-                .get_pezzo() is not None and scacchiera\
-                    .get_casa(riga_arrivo + direzione, colonna_arrivo).get_pezzo()\
-                        .get_tipo() == "P":    
-                scacchiera.set_pezzo_scacchiera(riga_arrivo, colonna_arrivo, \
-                                                partenza_singola)
-                #sposto il pedona
-                scacchiera.set_pezzo_scacchiera(riga_arrivo + direzione, colonna_arrivo)
-                #cancello il pedone in partenza
-                if partenza_singola.get_prima_mossa():
-                    partenza_singola.set_prima_mossa()
-                
-                scacchiera.aggiorna_lista_istanze(scacchiera.get_casa(riga_arrivo + \
-                    direzione, colonna_arrivo),\
-                        (scacchiera.get_casa(riga_arrivo, colonna_arrivo)))
-                    
-                partita.aggiungi_mossa(posizione_arrivo) 
-                partita.cambiaturno()  # Cambia il turno dopo la mossa
-            else:   
-                errori.errore_mossa_pedone()
-        else:   
+            pedone.set_prima_mossa()
+            if abs(riga_arrivo - partenza.get_riga()) == 2:
+                pedone.set_en_passant()
+        else:
             errori.errore_mossa_pedone()
 
-    def fattibilità(self, posizione_arrivo, scacchiera, partita):
-        pass
+    def cattura(self, mossa_na, scacchiera, partita):
+        partenza = self.fattibilità(mossa_na, scacchiera, partita)
+        if partenza == -1:
+            errori.errore_cattura_non_valida()
+            return
 
-    def cattura(self, posizione_arrivo, scacchiera, partita):
-        pass
+        riga_partenza = partenza.get_riga()
+        colonna_partenza = partenza.get_colonna()
+        riga_arrivo, colonna_arrivo = self.Algebrica_a_Matrice(mossa_na)
+
+        casa_arrivo = scacchiera.get_casa(riga_arrivo, colonna_arrivo)
+        pezzo_arrivo = casa_arrivo.get_pezzo()
+        pedone = partenza.get_pezzo()
+
+        # Cattura normale
+        if pezzo_arrivo is not None and pezzo_arrivo.get_colore() != \
+            partita.get_turno():
+            # Rimossa istanza della casa di partenza
+            scacchiera.discard_istanze(scacchiera.get_casa(riga_arrivo, colonna_arrivo))
+            # Sposta il pedone (cattura)
+            scacchiera.set_pezzo_scacchiera(riga_arrivo, colonna_arrivo, pedone)
+            scacchiera.set_pezzo_scacchiera(riga_partenza, colonna_partenza, None)
+            # Aggiunge la mossa alla lista delle mosse e cambia il turno
+            partita.aggiungi_mossa(mossa_na)
+            partita.cambiaturno()
+            return
+
+        # Cattura en passant
+        riga_enpassant = 3 if partita.get_turno() == 0 else 4
+
+        casa_pedone_catturato = scacchiera.get_casa(riga_enpassant, colonna_arrivo)
+        pedone_catturato = casa_pedone_catturato.get_pezzo()
+
+        if (pezzo_arrivo is None and pedone_catturato is not None and
+            pedone_catturato.get_tipo() == "P" and
+            pedone_catturato.get_colore() != partita.get_turno() and
+            pedone_catturato.get_en_passant()):
+            # Sposta il pedone (cattura)
+            scacchiera.set_pezzo_scacchiera(riga_arrivo, colonna_arrivo, pedone)
+            scacchiera.set_pezzo_scacchiera(riga_partenza, colonna_partenza, None)
+            # Rimuovi il pedone catturato
+            scacchiera.set_pezzo_scacchiera(riga_enpassant, colonna_arrivo, None)
+            # Aggiorna le istanze
+            scacchiera.discard_istanze(casa_pedone_catturato)
+            scacchiera.aggiorna_lista_istanze(partenza, scacchiera.get_casa \
+                (riga_arrivo, colonna_arrivo))
+            partita.cambiaturno()
+            partita.aggiungi_mossa(mossa_na + " e.p.")
+            return
+
+        if casa_arrivo is None:
+            errori.errore_cattura_vuota()
+        else:
+            errori.errore_cattura_non_valida()

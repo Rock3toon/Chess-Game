@@ -72,10 +72,9 @@ def GestioneInput(move_result, scacchiera, partita):
             # Inserire gestore promozione pedone
         else:
             if "x" in move_result:
-                print("Gestione cattura Pedone non ancora implementata")
-                # Inserire gestore cattura pedone
+                pedone.cattura(move_result, scacchiera, partita)
             else:
-                pedone.mossa(move_result, scacchiera, partita) #Da modificare
+                pedone.mossa(move_result, scacchiera, partita)
 
         if partita.get_turno() != turno_partenza:
             scacchiera.stampa_scacchiera(scacchiera)

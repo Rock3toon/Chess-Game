@@ -40,14 +40,26 @@ def errore_stampa_mosse():
 
 
 
-#errori di Pedone.py
-
-
-
+# Errori di Pedone.py
 
 def errore_mossa_pedone():
     """Stampa un messaggio di errore se la mossa del pedone non è valida."""
     print("Errore, la mossa è illegale. Il pedone non può muoversi in quella casella. \
+        \nDigita /help per altre informazioni.")
+
+def errore_cattura_non_valida():
+    """Stampa un messaggio di errore se la cattura non è valida."""
+    print("Errore, la cattura non è valida. \
+        \nDigita /help per altre informazioni.")
+
+def errore_cattura_enpassant_non_valida():
+    """Stampa un messaggio di errore se la cattura in en passant non è valida."""
+    print("Errore, la cattura in en passant non è valida. \
+        \nDigita /help per altre informazioni.")
+
+def errore_nessuna_cattura_valida():
+    """Stampa un messaggio di errore se non ci sono catture valide."""
+    print("Errore, nessuna cattura valida. \
         \nDigita /help per altre informazioni.")
 
 
@@ -72,26 +84,17 @@ def errore_cavallo_cattura_non_specificata():
     """Stampa un messaggio di errore se la cattura del cavallo non è specificata."""
     print("Errore, la cattura del cavallo non è specificata. \
         \nDigita /help per altre informazioni.")
+    
 #errori di main.py
-
-
-
 
 def errore_comando_non_riconosciuto():
     """Stampa un messaggio di errore se il comando non è riconosciuto."""
     print("Comando non riconosciuto. \
         Digitare /help per altre informazioni.")
-    
-
-
-
 
 def errore_nessuna_partita_scacchiera():
     """Stampa un messaggio di errore se non c'è una partita in corso."""
     print("Errore, la partita non è iniziata, impossibile mostrare la scacchiera")
-
-
-
 
 def errore_mossa_non_valida():
     """Stampa un messaggio di errore se la mossa non è valida."""
@@ -100,16 +103,14 @@ def errore_mossa_non_valida():
 
 #errori per le mosse
 
-
-
-
-
-
 def erroe_mossa_ambigua():
     """Stampa un messaggio di errore se la mossa è ambigua."""
     print("Errore, la mossa è ambigua. \
         Digita /help per altre informazioni.")
     
+
+# errori per le catture
+
 def errore_cattura_vuota():
     """Stampa un messaggio di errore se si tenta di catturare una casa vuota."""
     print("Errore, la casa è vuota. \

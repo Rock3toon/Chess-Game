@@ -142,6 +142,11 @@ def errore_re_cattura_casa_vuota():
     """Stampa un messaggio di errore se il re tenta di catturare una casa vuota."""
     print("Errore, il re non può catturare una casa vuota. \
         \nDigita /help per altre informazioni.")
+
+def errore_re_cattura_non_specificata():
+    """Prova a muoversi in una casa occupata da un pezzo di diverso colore."""
+    print("Errore, la cattura del re non è specificata. \
+        \nDigita /help per altre informazioni.")
     
 #errori di main.py
 

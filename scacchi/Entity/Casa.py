@@ -74,12 +74,12 @@ class Casa:
                 if scacchiera.get_pezzo_scacchiera(riga, colonna).get_colore()\
                     == colore_nemico\
                     and scacchiera.get_pezzo_scacchiera(riga, colonna)\
-                    .get_pezzo() in ("A", "D"):
+                    .get_tipo() in ("A", "D"):
                         return True
                 if not flag_re and scacchiera.get_pezzo_scacchiera(riga, colonna)\
                     .get_colore() == colore_nemico\
                     and scacchiera.get_pezzo_scacchiera(riga, colonna)\
-                    .get_pezzo() == "R":
+                    .get_tipo() == "R":
                     return True     
             flag_re=True
             # Flag utile a fermersi a controllare il re nemico solo alla case adiacenti
@@ -97,12 +97,12 @@ class Casa:
                 if scacchiera.get_pezzo_scacchiera(riga, colonna).get_colore()\
                     == colore_nemico\
                     and scacchiera.get_pezzo_scacchiera(riga, colonna)\
-                    .get_pezzo() in ("A", "D"):
+                    .get_tipo() in ("A", "D"):
                         return True
                 if not flag_re and scacchiera.get_pezzo_scacchiera(riga, colonna)\
                     .get_colore()== colore_nemico\
                     and scacchiera.get_pezzo_scacchiera(riga, colonna)\
-                    .get_pezzo() == "R":
+                    .get_tipo() == "R":
                     return True
             flag_re=True
 
@@ -119,12 +119,12 @@ class Casa:
                 if scacchiera.get_pezzo_scacchiera(riga, colonna).get_colore()\
                     == colore_nemico\
                     and scacchiera.get_pezzo_scacchiera(riga, colonna)\
-                    .get_pezzo() in ("A", "D"):
+                    .get_tipo() in ("A", "D"):
                         return True
                 if not flag_re and scacchiera.get_pezzo_scacchiera(riga, colonna)\
                     .get_colore()== colore_nemico\
                     and scacchiera.get_pezzo_scacchiera(riga, colonna)\
-                    .get_pezzo() == "R":
+                    .get_tipo() == "R":
                     return True
             flag_re=True    
 
@@ -140,12 +140,12 @@ class Casa:
                 ramo_bloccato = True
                 if scacchiera.get_pezzo_scacchiera(riga, colonna).get_colore()\
                     == colore_nemico and scacchiera.get_pezzo_scacchiera(riga, colonna)\
-                    .get_pezzo() in ("A", "D"):
+                    .get_tipo() in ("A", "D"):
                         return True
                 if not flag_re and scacchiera.get_pezzo_scacchiera(riga, colonna)\
                     .get_colore()== colore_nemico\
                     and scacchiera.get_pezzo_scacchiera(riga, colonna)\
-                    .get_pezzo() == "R":
+                    .get_tipo() == "R":
                     return True
             flag_re=True
         return False
@@ -164,12 +164,12 @@ class Casa:
                 ramo_bloccato = True
                 if scacchiera.get_pezzo_scacchiera(riga, colonna).get_colore()\
                     == colore_nemico and scacchiera.get_pezzo_scacchiera(riga, colonna)\
-                    .get_pezzo() in ("T", "D"):
+                    .get_tipo() in ("T", "D"):
                         return True
                 if not flag_re and scacchiera.get_pezzo_scacchiera(riga, colonna)\
                     .get_colore()== colore_nemico\
                     and scacchiera.get_pezzo_scacchiera(riga, colonna)\
-                    .get_pezzo() == "R":
+                    .get_tipo() == "R":
                     return True
             flag_re=True
 
@@ -184,12 +184,12 @@ class Casa:
                 ramo_bloccato = True
                 if scacchiera.get_pezzo_scacchiera(riga, colonna).get_colore()\
                     == colore_nemico and scacchiera.get_pezzo_scacchiera(riga, colonna)\
-                    .get_pezzo() in ("T", "D"):
+                    .get_tipo() in ("T", "D"):
                         return True
                 if not flag_re and scacchiera.get_pezzo_scacchiera(riga, colonna)\
                     .get_colore()== colore_nemico\
                     and scacchiera.get_pezzo_scacchiera(riga, colonna)\
-                    .get_pezzo() == "R":
+                    .get_tipo() == "R":
                     return True
             flag_re=True
 
@@ -204,12 +204,12 @@ class Casa:
                 ramo_bloccato = True
                 if scacchiera.get_pezzo_scacchiera(riga, colonna).get_colore()\
                     == colore_nemico and scacchiera.get_pezzo_scacchiera(riga, colonna)\
-                    .get_pezzo() in ("T", "D"):
+                    .get_tipo() in ("T", "D"):
                         return True
                 if not flag_re and scacchiera.get_pezzo_scacchiera(riga, colonna)\
                     .get_colore()== colore_nemico\
                     and scacchiera.get_pezzo_scacchiera(riga, colonna)\
-                    .get_pezzo() == "R":      
+                    .get_tipo() == "R":      
                     return True
             flag_re=True
 
@@ -224,12 +224,12 @@ class Casa:
                 ramo_bloccato = True
                 if scacchiera.get_pezzo_scacchiera(riga, colonna).get_colore()\
                     == colore_nemico and scacchiera.get_pezzo_scacchiera(riga, colonna)\
-                    .get_pezzo() in ("T", "D"):
+                    .get_tipo() in ("T", "D"):
                         return True
                 if not flag_re and scacchiera.get_pezzo_scacchiera(riga, colonna)\
                     .get_colore()== colore_nemico\
                     and scacchiera.get_pezzo_scacchiera(riga, colonna)\
-                    .get_pezzo() == "R":
+                    .get_tipo() == "R":
                     return True
             flag_re=True    
         return False
@@ -250,10 +250,10 @@ class Casa:
 
             # Controlla se è dentro la scacchiera
             if 0 <= riga_arrivo < 8 and 0 <= colonna_arrivo < 8:
-                casa = scacchiera.get_casa(riga, colonna)
-                pezzo = casa.get_pezzo()
-                if pezzo is not None and pezzo.get_tipo() == 'C' and \
-                pezzo.get_colore() == colore_nemico:
+                casa_arrivo = scacchiera.get_casa(riga_arrivo, colonna_arrivo)
+                pezzo_arrivo = casa_arrivo.get_pezzo()
+                if pezzo_arrivo is not None and pezzo_arrivo.get_tipo() == 'C' and \
+                pezzo_arrivo.get_colore() == colore_nemico:
                     return True
 
         return False

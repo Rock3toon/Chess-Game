@@ -216,10 +216,14 @@ class Scacchiera:
         riga_re = casa_re.get_riga()
         colonna_torre = casa_torre.get_colonna()
         
-        if colonna_torre == 0:  # Torre di sinistra - Arrocco lungo
+        if colonna_torre == 0 and \
+        not self.get_casa(riga_re, 2).sotto_scacco(self, partita) and\
+        not self.get_casa(riga_re, 3).sotto_scacco(self, partita):
             casa_re_arrivo = self.get_casa(riga_re, 2)
             casa_torre_arrivo = self.get_casa(riga_re, 3)
-        else:  # Torre di destra - Arrocco corto (colonna 7)
+        elif colonna_torre == 7 and \
+        not self.get_casa(riga_re, 6).sotto_scacco(self, partita) and\
+        not self.get_casa(riga_re, 5).sotto_scacco(self, partita):
             casa_re_arrivo = self.get_casa(riga_re, 6)
             casa_torre_arrivo = self.get_casa(riga_re, 5)
         

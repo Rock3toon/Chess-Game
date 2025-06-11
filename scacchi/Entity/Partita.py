@@ -112,7 +112,6 @@ class Partita:
             partenza = pedone
             arrivo = scacchiera.get_casa(pedone.get_riga() + direzione,\
                                         pedone.get_colonna())
-            riga_en_passant = 3 if pedone.get_pezzo().get_colore() == 0 else 4
             if scacchiera.get_pezzo_scacchiera(arrivo.get_riga(), arrivo.get_colonna())\
                 is None and not scacchiera.simula(partenza, arrivo, self):
                 return True
@@ -128,6 +127,7 @@ class Partita:
                         return True
             # Controllo cattura
             for dxsx in (-1, 1):
+                riga_en_passant = 3 if pedone.get_pezzo().get_colore() == 0 else 4
                 if not self.out_of_bounds(pedone.get_riga() + direzione,\
                                         pedone.get_colonna() + dxsx):
                     arrivo = scacchiera.get_casa(pedone.get_riga() + direzione,\
@@ -238,7 +238,7 @@ class Partita:
         re_lista = scacchiera.filtra_istanze("R", self.get_turno())
         re = re_lista[0]
         if not re.sotto_scacco(scacchiera, self) and \
-        not re.get_pezzo().get_prima_mossa():
+        re.get_pezzo().get_prima_mossa():
             
             #Simulazione arrocco corto
             torre_corto = scacchiera.get_casa(re.get_riga(), 7)

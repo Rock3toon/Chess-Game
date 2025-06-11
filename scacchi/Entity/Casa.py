@@ -63,7 +63,7 @@ class Casa:
                 ):
                     return True
 
-# Controlla la diagonale in alto a dx
+        # Controlla la diagonale in alto a dx
         ramo_bloccato = False 
         flag_re=False               
         while (riga > 0 and colonna < 7) and not ramo_bloccato:
@@ -77,13 +77,14 @@ class Casa:
                     .get_pezzo() in ("A", "D"):
                         return True
                 if not flag_re and scacchiera.get_pezzo_scacchiera(riga, colonna)\
-                    .get_colore()== colore_nemico\
+                    .get_colore() == colore_nemico\
                     and scacchiera.get_pezzo_scacchiera(riga, colonna)\
                     .get_pezzo() == "R":
                     return True     
             flag_re=True
+            # Flag utile a fermersi a controllare il re nemico solo alla case adiacenti
         
-# Controlla la diagonale in basso a dx
+        # Controlla la diagonale in basso a dx
         riga = self.get_riga()
         colonna = self.get_colonna()
         flag_re=False
@@ -105,7 +106,7 @@ class Casa:
                     return True
             flag_re=True
 
-# Controlla la diagonale in basso a sx
+        # Controlla la diagonale in basso a sx
         riga = self.get_riga()
         colonna = self.get_colonna()
         ramo_bloccato = False 
@@ -127,7 +128,7 @@ class Casa:
                     return True
             flag_re=True    
 
-# Controlla la diagonale in alto a sx
+        # Controlla la diagonale in alto a sx
         ramo_bloccato = False
         riga = self.get_riga()
         colonna = self.get_colonna()

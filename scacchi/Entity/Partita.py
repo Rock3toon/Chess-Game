@@ -106,6 +106,7 @@ class Partita:
     def scaccomatto_evitabile(self, scacchiera):
         pedoni = scacchiera.filtra_istanze("P", self.get_turno())
         direzione = -1 if self.get_turno() == 0 else 1 
+        colore_nemico = 1 if self.get_turno() == 0 else 0
         for pedone in pedoni:
             # Controllo mossa in avanti di 1
             partenza = pedone
@@ -116,31 +117,34 @@ class Partita:
                 is None and not scacchiera.simula(partenza, arrivo, self):
                 return True
             # Controllo mossa in avanti di 2
-            if not pedone.get_pezzo().get_prima_mossa():
-                arrivo = scacchiera.get_casa(pedone.get_riga() + direzione * 2, \
-                                            pedone.get_colonna())
-                if scacchiera.get_pezzo_scacchiera(arrivo.get_riga(), \
-                    arrivo.get_colonna()) is None \
-                    and not scacchiera.simula(partenza, arrivo, self):
-                    return True
+            if not pedone.get_pezzo().get_prima_mossa() and \
+                scacchiera.get_pezzo_scacchiera(pedone.get_riga() + direzione,\
+                pedone.get_colonna()) is None:
+                    arrivo = scacchiera.get_casa(pedone.get_riga() + direzione * 2, \
+                        pedone.get_colonna())
+                    if scacchiera.get_pezzo_scacchiera(arrivo.get_riga(), \
+                        arrivo.get_colonna()) is None \
+                        and not scacchiera.simula(partenza, arrivo, self):
+                        return True
             # Controllo cattura
             for dxsx in (-1, 1):
                 if not self.out_of_bounds(pedone.get_riga() + direzione,\
                                         pedone.get_colonna() + dxsx):
                     arrivo = scacchiera.get_casa(pedone.get_riga() + direzione,\
                                                 pedone.get_colonna() + dxsx)
-                    if scacchiera.get_pezzo_scacchiera(arrivo.get_riga(),\
-                            arrivo.get_colonna()) is not None \
-                            and not scacchiera.simula(partenza, arrivo, self):
-                        return True
+                    if arrivo.get_pezzo() is not None:
+                        if arrivo.get_pezzo().get_colore() != self.get_turno() and\
+                             not scacchiera.simula(partenza, arrivo, self):
+                            return True
                     # Controllo en-passant
                     elif pedone.get_riga() == riga_en_passant:
                         pedone_catturato = scacchiera.get_casa(pedone.get_riga(),\
                                         pedone.get_colonna() + dxsx)
                         if pedone_catturato.get_pezzo() is not None:  # noqa: SIM102
                             if pedone_catturato.get_pezzo().get_tipo()\
-                            == "P" and not scacchiera.simula_en_passant\
-                                (partenza, arrivo, pedone_catturato, self):
+                            == "P" and pedone_catturato.get_pezzo().get_colore() !=\
+                            self.get_turno() and not scacchiera.simula_en_passant\
+                            (partenza, arrivo, pedone_catturato, self):
                                 return True      
         #Simulazioni cavallo
         cavalli = scacchiera.filtra_istanze("C", self.get_turno()) 
@@ -154,12 +158,17 @@ class Partita:
                 colonna_arrivo = colonna + dc
                 if not self.out_of_bounds(riga_arrivo, colonna_arrivo):
                     arrivo = scacchiera.get_casa(riga_arrivo, colonna_arrivo)
-                    if not scacchiera.simula(partenza_cavallo, arrivo, self):
-                        return True
+                    if arrivo.get_pezzo() is None:
+                        if not scacchiera.simula(partenza_cavallo, arrivo, self):
+                            return True
+                    elif arrivo.get_pezzo() is not None:  # noqa: SIM102
+                        if arrivo.get_pezzo().get_colore() != self.get_turno() and \
+                        not scacchiera.simula(partenza_cavallo, arrivo, self):
+                            return True
         #Simulazioni Torre - Donna
         torre = scacchiera.filtra_istanze("T", self.get_turno())
         donna = scacchiera.filtra_istanze("D", self.get_turno())
-        torre_donna = torre.append(donna)
+        torre_donna = torre + donna
         mosse_torre = [(-1, 0), (1, 0), (0, -1), (0, 1)]
         for partenza_torre in torre_donna:
             riga = partenza_torre.get_riga()
@@ -167,15 +176,25 @@ class Partita:
             for dr, dc in mosse_torre:
                 riga_arrivo = riga + dr
                 colonna_arrivo = colonna + dc
-                while not self.out_of_bounds(riga_arrivo, colonna_arrivo):
+                ramo_bloccato = False
+                while not self.out_of_bounds(riga_arrivo, colonna_arrivo) and\
+                not ramo_bloccato:
                     arrivo = scacchiera.get_casa(riga_arrivo, colonna_arrivo)
-                    if not scacchiera.simula(partenza_torre, arrivo, self):
+                    if arrivo.get_pezzo() is not None:
+                        ramo_bloccato = True
+                        if arrivo.get_pezzo().get_colore() == colore_nemico and\
+                        not scacchiera.simula(partenza_torre, arrivo, self):
+                            return True
+                    elif arrivo.get_pezzo() is None and \
+                    not scacchiera.simula(partenza_torre, arrivo, self):
                         return True
+
                     riga_arrivo = riga_arrivo + dr
                     colonna_arrivo = colonna_arrivo + dc
+                    
         #Simulazioni Alfiere - Donna
         alfiere = scacchiera.filtra_istanze("A", self.get_turno())
-        alfiere_donna = alfiere.append(donna)
+        alfiere_donna = alfiere + donna
         mosse_alfiere = [(-1, 1), (1, 1), (1, -1), (-1, -1)]
         for partenza_alfiere in alfiere_donna:
             riga = partenza_alfiere.get_riga()
@@ -183,9 +202,17 @@ class Partita:
             for dr, dc in mosse_alfiere:
                 riga_arrivo = riga + dr
                 colonna_arrivo = colonna + dc
-                while not self.out_of_bounds(riga_arrivo, colonna_arrivo):
+                ramo_bloccato = False
+                while not self.out_of_bounds(riga_arrivo, colonna_arrivo) and\
+                not ramo_bloccato:
                     arrivo = scacchiera.get_casa(riga_arrivo, colonna_arrivo)
-                    if not scacchiera.simula(partenza_alfiere, arrivo, self):
+                    if arrivo.get_pezzo() is not None:
+                        ramo_bloccato = True
+                        if arrivo.get_pezzo().get_colore() == colore_nemico and\
+                        not scacchiera.simula(partenza_alfiere, arrivo, self):
+                            return True
+                    elif arrivo.get_pezzo() is None and \
+                    not scacchiera.simula(partenza_alfiere, arrivo, self):
                         return True
                     riga_arrivo = riga_arrivo + dr
                     colonna_arrivo = colonna_arrivo + dc
@@ -200,8 +227,43 @@ class Partita:
                 colonna_arrivo = colonna + dc
                 if not self.out_of_bounds(riga_arrivo, colonna_arrivo):
                     arrivo = scacchiera.get_casa(riga_arrivo, colonna_arrivo)
-                    if not scacchiera.simula(partenza_re, arrivo, self):
-                        return True
+                    if arrivo.get_pezzo() is not None:
+                        if arrivo.get_pezzo().get_colore() != self.get_turno() and \
+                        not scacchiera.simula(partenza_re, arrivo, self):
+                            return True
+                    elif arrivo.get_pezzo() is None and\
+                    not scacchiera.simula(partenza_re, arrivo, self):
+                            return True
+        #Simulazioni Arrocco
+        re_lista = scacchiera.filtra_istanze("R", self.get_turno())
+        re = re_lista[0]
+        if not re.sotto_scacco(scacchiera, self) and \
+        not re.get_pezzo().get_prima_mossa():
+            
+            #Simulazione arrocco corto
+            torre_corto = scacchiera.get_casa(re.get_riga(), 7)
+            if (torre_corto.get_pezzo() is not None and 
+            torre_corto.get_pezzo().get_tipo() == "T" and
+            torre_corto.get_pezzo().get_colore() == self.get_turno() and
+            not torre_corto.get_pezzo().get_prima_mossa() and \
+            scacchiera.get_casa(re.get_riga(), 5).get_pezzo() is not None and\
+            scacchiera.get_casa(re.get_riga(), 6).get_pezzo() is not None) and\
+            scacchiera.simula_arrocco(re, torre_corto, self):
+                return True
+            
+            #Simulazione arrocco lungo
+            torre_lungo = scacchiera.get_casa(re.get_riga(), 0)
+            if (torre_lungo.get_pezzo() is not None and 
+            torre_lungo.get_pezzo().get_tipo() == "T" and
+            torre_lungo.get_pezzo().get_colore() == self.get_turno() and
+            not torre_lungo.get_pezzo().get_prima_mossa() and \
+            scacchiera.get_casa(re.get_riga(), 1).get_pezzo() is not None and\
+            scacchiera.get_casa(re.get_riga(), 2).get_pezzo() is not None and\
+            scacchiera.get_casa(re.get_riga(), 3).get_pezzo() is not None) and\
+            scacchiera.simula_arrocco(re, torre_lungo, self):
+                return True
+    
+        #se tutti i controlli non arrivano mai a ritornare True    
         return False
 
     def almeno_una_legale(self, scacchiera):

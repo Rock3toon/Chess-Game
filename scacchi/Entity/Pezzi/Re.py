@@ -31,6 +31,7 @@ class Re(Pezzo):
                     (riga_destinazione, colonna_destinazione, partenza.get_pezzo())
                     scacchiera.set_pezzo_scacchiera(partenza.get_riga(), partenza\
                     .get_colonna(), None)
+                    partenza.get_pezzo().set_prima_mossa()
                     partita.aggiungi_mossa(mossa_na)
                     partita.cambiaturno()
             else:
@@ -64,7 +65,7 @@ class Re(Pezzo):
                     (riga_destinazione, colonna_destinazione, partenza.get_pezzo())
                     scacchiera.set_pezzo_scacchiera(partenza.get_riga(), partenza\
                     .get_colonna(), None)
-
+                    partenza.get_pezzo().set_prima_mossa()
                     partita.aggiungi_mossa(mossa_na)
                     partita.cambiaturno()
                 else:  

@@ -68,7 +68,7 @@ class Torre(Pezzo):
                 elif len(lista_disambiguazione) > 1 or len(lista_disambiguazione) == 0:
                     errori.errore_torre_errore_disambiguazione()
                     return -1
-            else:   
+                else:   
                     errori.errore_torre_mossa_ambigua()
                     return -1  
     

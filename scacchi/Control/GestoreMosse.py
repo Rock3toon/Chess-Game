@@ -80,5 +80,5 @@ def GestioneInput(move_result, scacchiera, partita):
 
         if partita.get_turno() != turno_partenza:
             scacchiera.stampa_scacchiera(scacchiera)
-            if partita.scacco_matto() or partita.stallo():
+            if partita.scacco_matto(scacchiera) or partita.stallo(scacchiera):
                 partita.cambia_stato_partita()

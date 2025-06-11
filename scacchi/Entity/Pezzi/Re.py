@@ -1,3 +1,4 @@
+import scacchi.Boundary.errori as errori
 from scacchi.Entity.Pezzo import Pezzo
 
 
@@ -33,11 +34,10 @@ class Re(Pezzo):
                     partita.aggiungi_mossa(mossa_na)
                     partita.cambiaturno()
             else:
-                print("Mossa non valida: il re non può \
-                muoversi in una casa sotto scacco.")
+                errori.errore_re_mossa_sotto_scacco()
                     
         else: 
-            print("Mossa illegale.")  
+            errori.errore_re_mossa_illegale()  
 
 
     def fattibilità(self, mossa_na, scacchiera, partita):
@@ -68,11 +68,9 @@ class Re(Pezzo):
                     partita.aggiungi_mossa(mossa_na)
                     partita.cambiaturno()
                 else:  
-                    print("Errore, il Re non può catturare in una \
-                    casa vuota.\nDigita /help per altre informazioni.")
+                    errori.errore_re_cattura_casa_vuota()
             else:
-                print("Mossa non valida: il re non può \
-                muoversi in una casa sotto scacco.")
+                errori.errore_re_mossa_sotto_scacco()
                     
         else: 
-            print("Mossa illegale.")
+            errori.errore_re_mossa_illegale()

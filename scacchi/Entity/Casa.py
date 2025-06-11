@@ -39,9 +39,7 @@ class Casa:
             or self.controlla_T(scacchiera, colore_nemico)
             or self.controlla_L(scacchiera, colore_nemico)
         )
-        
-        
-            
+          
     def controlla_X(self, scacchiera, colore_nemico):
         # True = minacciata, False = non minacciata
         
@@ -49,7 +47,7 @@ class Casa:
         colonna = self.get_colonna()
         
         lista_P = []  
-        lista_P.append(scacchiera.filtra_istanze("P", colore_nemico))
+        lista_P = scacchiera.filtra_istanze("P", colore_nemico)
 
         for pedone in lista_P:
             if colore_nemico == 0:
@@ -154,7 +152,7 @@ class Casa:
     def controlla_T(self, scacchiera, colore_nemico):
         # True = minacciata, False = non minacciata
 
-#controllo colonna verso l' alto
+    #controllo colonna verso l' alto
         ramo_bloccato=False
         flag_re=False
         riga= self.get_riga()
@@ -174,7 +172,7 @@ class Casa:
                     return True
             flag_re=True
 
-#controllo riga a destra
+    #controllo riga a destra
         ramo_bloccato=False
         riga= self.get_riga()
         colonna = self.get_colonna()
@@ -194,7 +192,7 @@ class Casa:
                     return True
             flag_re=True
 
-#controllo colonna verso il basso
+    #controllo colonna verso il basso
         ramo_bloccato=False
         riga= self.get_riga()
         colonna = self.get_colonna()
@@ -214,7 +212,7 @@ class Casa:
                     return True
             flag_re=True
 
-#controllo riga a sinistra        
+    #controllo riga a sinistra        
         ramo_bloccato=False
         riga= self.get_riga()
         colonna = self.get_colonna()

@@ -126,6 +126,23 @@ def errore_torre_cattura_non_specificata():
     print("Errore, la cattura della torre non è specificata. \
         \nDigita /help per altre informazioni.")
     
+#errori di Re.py
+
+def errore_re_mossa_illegale():
+    """Stampa un messaggio di errore se la mossa del re nonè valida."""
+    print("Errore, la mossa del re è illegale. \
+        \nDigita /help per altre informazioni.")
+
+def errore_re_mossa_sotto_scacco():
+    """Stampa un messaggio di errore se la mossa del re non risolve il scacco."""
+    print("Mossa non valida: il re non può muoversi in una casa sotto scacco.\
+        \nDigita /help per altre informazioni.")
+
+def errore_re_cattura_casa_vuota():
+    """Stampa un messaggio di errore se il re tenta di catturare una casa vuota."""
+    print("Errore, il re non può catturare una casa vuota. \
+        \nDigita /help per altre informazioni.")
+    
 #errori di main.py
 
 def errore_comando_non_riconosciuto():

@@ -57,7 +57,7 @@ class Pedone(Pezzo):
                         is None):
                     return scacchiera.get_casa(riga_pedone, colonna_pedone)
                 # Doppia mossa dalla posizione iniziale
-                if (self.get_prima_mossa() and
+                if (pedone.get_pezzo().get_prima_mossa() and
                     riga_arrivo == riga_pedone + 2 * direzione and
                     colonna_arrivo == colonna_pedone and
                     scacchiera.get_pezzo_scacchiera \
@@ -132,6 +132,7 @@ class Pedone(Pezzo):
             # Sposta il pedone (cattura)
             scacchiera.set_pezzo_scacchiera(riga_arrivo, colonna_arrivo, pedone)
             scacchiera.set_pezzo_scacchiera(riga_partenza, colonna_partenza, None)
+            scacchiera.aggiorna_lista_istanze(partenza, casa_arrivo)
             # Aggiunge la mossa alla lista delle mosse e cambia il turno
             partita.aggiungi_mossa(mossa_na)
             partita.cambiaturno()
@@ -154,8 +155,7 @@ class Pedone(Pezzo):
             scacchiera.set_pezzo_scacchiera(riga_enpassant, colonna_arrivo, None)
             # Aggiorna le istanze
             scacchiera.discard_istanze(casa_pedone_catturato)
-            scacchiera.aggiorna_lista_istanze(partenza, scacchiera.get_casa \
-                (riga_arrivo, colonna_arrivo))
+            scacchiera.aggiorna_lista_istanze(partenza, casa_arrivo)
             partita.cambiaturno()
             partita.aggiungi_mossa(mossa_na + " e.p.")
             return

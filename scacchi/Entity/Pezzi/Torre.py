@@ -6,11 +6,16 @@ class Torre(Pezzo):
     """Classe di tipo << Entity >> per rappresentare una torre degli scacchi."""
 
     def __init__(self, colore):  # inizializza la torre
-         
+        self._prima_mossa = True 
         #utile per l' arrocco, garantisce che la torre non sia stata ancora mossa
         super().__init__(colore, "T")
         
+    def set_prima_mossa(self):
+        self._prima_mossa = False
 
+    def get_prima_mossa(self):
+        return self._prima_mossa
+    
     def movimento_Torre(self, r_partenza, r_arrivo, c_partenza, c_arrivo, scacchiera):
         if c_partenza == c_arrivo:
             direzione = 1 if r_arrivo > r_partenza else -1

@@ -3,6 +3,7 @@ import re
 import scacchi.Boundary.errori as errori
 from scacchi.Entity.Pezzi.Alfiere import Alfiere
 from scacchi.Entity.Pezzi.Cavallo import Cavallo
+from scacchi.Entity.Pezzi.Donna import Donna
 from scacchi.Entity.Pezzi.Pedone import Pedone
 from scacchi.Entity.Pezzi.Re import Re
 from scacchi.Entity.Pezzi.Torre import Torre
@@ -34,6 +35,8 @@ def GestioneInput(move_result, scacchiera, partita):
     torre = Torre(colore)
     king = Re(colore)
 
+    donna = Donna(colore)
+
     if partita.get_stato_partita() == 1:
         errori.errore_nessuna_partita()
     else:
@@ -47,11 +50,9 @@ def GestioneInput(move_result, scacchiera, partita):
             # Inserire gestore arrocco
         elif re.match("^D", move_result):
             if "x" in move_result:
-                print("Gestione cattura Donna non ancora implementata")
-                # Inserire gestore cattura Donna
+                donna.cattura(move_result, scacchiera, partita)  
             else:
-                print("Gestione mossa Donna non ancora implementata")
-                # Inserire gestore mossa Donna
+                donna.mossa(move_result, scacchiera, partita)  
         elif re.match("^C", move_result):
             if "x" in move_result:
                 cavallo.cattura(move_result, scacchiera, partita)  
@@ -73,10 +74,9 @@ def GestioneInput(move_result, scacchiera, partita):
             # Inserire gestore promozione pedone
         else:
             if "x" in move_result:
-                print("Gestione cattura Pedone non ancora implementata")
-                # Inserire gestore cattura pedone
+                pedone.cattura(move_result, scacchiera, partita)
             else:
-                pedone.mossa(move_result, scacchiera, partita) #Da modificare
+                pedone.mossa(move_result, scacchiera, partita)
 
         if partita.get_turno() != turno_partenza:
             scacchiera.stampa_scacchiera(scacchiera)

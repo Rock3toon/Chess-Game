@@ -45,34 +45,34 @@ class Pedone(Pezzo):
         casa_arrivo = scacchiera.get_casa(riga_arrivo, colonna_arrivo)
         mossa = mossa_na[:-1]
         casa_partenza = self.fattibilità(mossa, scacchiera, partita)
-        # Controlla l' ultima riga per la promozione
-        if (partita.get_turno() == 0 and riga_arrivo != 0) or \
-           (partita.get_turno() == 1 and riga_arrivo != 7):
-            errori.errore_promozione_non_valida()
-            return
-        # Controlla il colore del pezzo nuovo
-        colore = 0 if partita.get_turno() == 0 else 1
-        if mossa_na[-1] == "D":
-            nuovo_pezzo = Donna(colore)
-        elif mossa_na[-1] == "T":
-            print("T")
-            nuovo_pezzo = Torre(colore)
-        elif mossa_na[-1] == "A":
-            print("A")
-            nuovo_pezzo = Alfiere(colore)
-        elif mossa_na[-1] == "C":
-            print("C")
-            nuovo_pezzo = Cavallo(colore)
+        if casa_partenza != -1:
+            # Controlla l' ultima riga per la promozione
+            if (partita.get_turno() == 0 and riga_arrivo != 0) or \
+            (partita.get_turno() == 1 and riga_arrivo != 7):
+                errori.errore_promozione_non_valida()
+                return
+            # Controlla il colore del pezzo nuovo
+            colore = 0 if partita.get_turno() == 0 else 1
+            if mossa_na[-1] == "D":
+                nuovo_pezzo = Donna(colore)
+            elif mossa_na[-1] == "T":
+                nuovo_pezzo = Torre(colore)
+            elif mossa_na[-1] == "A":
+                nuovo_pezzo = Alfiere(colore)
+            elif mossa_na[-1] == "C":
+                nuovo_pezzo = Cavallo(colore)
+            else:
+                errori.errore_promozione_non_valida()
+                return
+            # Aggiorna le istanze
+            scacchiera.discard_istanze(casa_partenza)
+            casa_arrivo.set_pezzo(nuovo_pezzo)
+            casa_partenza.set_pezzo(None)
+            # Aggiunge la mossa alla lista delle mosse e cambia il turno
+            partita.aggiungi_mossa(mossa_na)
+            partita.cambiaturno()
         else:
             errori.errore_promozione_non_valida()
-            return
-        # Aggiorna le istanze
-        scacchiera.discard_istanze(casa_partenza)
-        casa_arrivo.set_pezzo(nuovo_pezzo)
-        casa_partenza.set_pezzo(None)
-        # Aggiunge la mossa alla lista delle mosse e cambia il turno
-        partita.aggiungi_mossa(mossa_na)
-        partita.cambiaturno()
 
     def fattibilità(self, mossa_na, scacchiera, partita):
         riga_arrivo, colonna_arrivo = self.Algebrica_a_Matrice(mossa_na)

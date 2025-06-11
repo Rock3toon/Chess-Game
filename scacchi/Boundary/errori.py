@@ -165,3 +165,33 @@ def errore_cattura_vuota():
     """Stampa un messaggio di errore se si tenta di catturare una casa vuota."""
     print("Errore, la casa è vuota. \
         Digita /help per altre informazioni.")
+    
+
+
+
+
+#errori di donna.py
+def errore_donna_mossa_illegale():
+    """Stampa un messaggio di errore se la mossa della donna non è valida."""
+    print("Errore, la mossa della donna è illegale. \
+        \nDigita /help per altre informazioni.")
+
+def errore_donna_mossa_ambigua():
+    """Stampa un messaggio di errore se la mossa della donna è ambigua."""
+    print("Errore, la mossa della donna è ambigua. \
+        \nDigita /help per altre informazioni.")
+
+def errore_donna_errore_disambiguazione():
+    """Stampa un messaggio di errore se c'è un errore di disambiguazione della donna."""
+    print("Errore, la disambiguazione della donna non è corretta. \
+        \nDigita /help per altre informazioni.")
+
+def errore_donna_cattura_vuota():
+    """Stampa un messaggio d'errore se la donna cerca di catturare una casa vuota."""
+    print("Errore, la donna non può catturare una casa vuota. \
+        \nDigita /help per altre informazioni.")
+
+def errore_donna_cattura_non_specificata():
+    """Stampa un messaggio di errore se la cattura della donna non è specificata."""
+    print("Errore, la cattura della donna non è specificata. \
+        \nDigita /help per altre informazioni.")

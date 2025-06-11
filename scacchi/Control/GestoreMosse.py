@@ -24,9 +24,9 @@ def GestioneInput(move_result, scacchiera, partita):
     turno_partenza = partita.get_turno()
 
     if turno_partenza == 0:
-        colore = 'bianco'
+        colore = 0
     elif turno_partenza == 1:
-        colore = 'nero'
+        colore = 1
     
     pedone = Pedone(colore)
     alfiere = Alfiere(colore)
@@ -70,8 +70,7 @@ def GestioneInput(move_result, scacchiera, partita):
                 torre.mossa(move_result, scacchiera, partita)  
                 # Inserire gestore cattura Torre
         elif re.match("^[a-h][18][DTAC]$ |^[a-h][x][a-h][1-8][DTAC]", move_result):
-            print("Gestione promozione pedone non ancora implementata")
-            # Inserire gestore promozione pedone
+                pedone.promozione_pedone(move_result, scacchiera, partita)
         else:
             if "x" in move_result:
                 pedone.cattura(move_result, scacchiera, partita)

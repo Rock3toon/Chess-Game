@@ -55,7 +55,12 @@ class Pezzo(ABC):
     def Algebrica_a_Matrice(self, posizione):
         colonna = self.Conversione.get(posizione[len(posizione) - 2])
         riga = 8 - int(posizione[len(posizione) - 1])
-        return riga, colonna    
+        return riga, colonna
+
+    def Algebrica_a_Matrice_promozione(self, posizione):
+        colonna = self.Conversione.get(posizione[len(posizione) - 3])
+        riga = 8 - int(posizione[len(posizione) - 2])
+        return riga, colonna     
 
     def Matrice_a_Algebrica(self, posizione):   
         colonna = chr(posizione[1] + ord('a'))  # 0 -> 'a', 1 -> 'b', ..., 7 -> 'h'

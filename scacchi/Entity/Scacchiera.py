@@ -79,6 +79,17 @@ class Scacchiera:
                 # Aggiunge l'istanza di casa che contine il pezzo alla lista
         return lista_pezzi_colore
     
+    def filtra_istanze_tipo(self, tipo_pezzo):
+        """Restituisce una lista di pezzi dello stesso tipo."""
+        lista_tipo = []
+        # Lista che contiene le case che contengono i pezzi giusti
+        for istanza in self.get_istanze():
+            pezzo = istanza.get_pezzo()
+            if pezzo is not None and pezzo.get_tipo() == tipo_pezzo:
+                lista_tipo.append(istanza)
+                # Aggiunge l'istanza di casa che contine il pezzo alla lista
+        return lista_tipo
+    
     def aggiorna_lista_istanze(self, casa_partenza, casa_destinazione):
         """Aggiorna la lista delle istanze."""
         # Rimuove l'istanza della casa di partenza
@@ -136,3 +147,122 @@ class Scacchiera:
 
         # Piè di pagina colonne identico all'intestazione
         console.print(Text(lettere_colonne), justify="center")
+
+    def simula(self, casa_partenza, casa_arrivo, partita):
+        """Simula il movimento di un pezzo sulla scacchiera."""
+        salva_pezzo = casa_arrivo.get_pezzo()
+        if salva_pezzo is None:
+            # Simula movimento
+            self.aggiorna_lista_istanze(casa_partenza, casa_arrivo)
+            self.set_pezzo_scacchiera(casa_arrivo.get_riga(), \
+                                casa_arrivo.get_colonna(), casa_partenza.get_pezzo())
+            self.set_pezzo_scacchiera(casa_partenza.get_riga(), \
+                                    casa_partenza.get_colonna(), None)
+        elif salva_pezzo is not None:
+            # Simula cattura
+            self.discard_istanze(casa_partenza)
+            self.set_pezzo_scacchiera(casa_arrivo.get_riga(),\
+                                casa_arrivo.get_colonna(), casa_partenza.get_pezzo())
+            self.set_pezzo_scacchiera(casa_partenza.get_riga(), \
+                                    casa_partenza.get_colonna(), None)
+        for re in self.filtra_istanze("R", partita.get_turno()):
+            #Controllo lo scacco
+            f = re.sotto_scacco(self, partita)
+        # Ripristina stato precedente
+        self.set_pezzo_scacchiera(casa_partenza.get_riga(), \
+                                casa_partenza.get_colonna(), casa_arrivo.get_pezzo())
+        self.set_pezzo_scacchiera(casa_arrivo.get_riga(), \
+                                casa_arrivo.get_colonna(), salva_pezzo)
+        self.set_istanze(casa_partenza)
+        if casa_arrivo.get_pezzo() is None:
+            self.discard_istanze(casa_arrivo)
+
+        # True se causa scacco, False altrimenti
+        return f
+    
+    def simula_en_passant(self, casa_partenza, casa_arrivo,\
+                    cattura_aggiuntiva, partita):
+        """Simula il movimento di un pezzo sulla scacchiera e cattura aggiuntiva."""
+        salva_pezzo = cattura_aggiuntiva.get_pezzo()
+        # Simula movimento
+        self.discard_istanze(cattura_aggiuntiva)
+        self.aggiorna_lista_istanze(casa_partenza, casa_arrivo)
+        self.set_pezzo_scacchiera(casa_arrivo.get_riga(), \
+                casa_arrivo.get_colonna(), casa_partenza.get_pezzo())
+        self.set_pezzo_scacchiera(casa_partenza.get_riga(), \
+                casa_partenza.get_colonna(), None)
+        self.set_pezzo_scacchiera(cattura_aggiuntiva.get_riga(), \
+                cattura_aggiuntiva.get_colonna(), None)
+        for re in self.filtra_istanze("R", partita.get_turno()):
+            #Controllo lo scacco
+            f = re.sotto_scacco(self, partita)
+        # Ripristina stato precedente
+        self.set_pezzo_scacchiera(casa_partenza.get_riga(), \
+                casa_partenza.get_colonna(), casa_arrivo.get_pezzo())
+        self.set_pezzo_scacchiera(casa_arrivo.get_riga(), \
+                casa_arrivo.get_colonna(), None)
+        self.set_pezzo_scacchiera(cattura_aggiuntiva.get_riga(), \
+                cattura_aggiuntiva.get_colonna(), salva_pezzo)
+        self.set_istanze(cattura_aggiuntiva)
+        self.set_istanze(casa_partenza)
+        self.discard_istanze(casa_arrivo)
+
+        # True se causa scacco, False altrimenti
+        return f
+    
+    def simula_arrocco(self, casa_re, casa_torre, partita):
+        """Simula l'arrocco sulla scacchiera."""
+        # Determina il tipo di arrocco in base alla posizione della torre
+        riga_re = casa_re.get_riga()
+        colonna_torre = casa_torre.get_colonna()
+        
+        if colonna_torre == 0 and \
+        not self.get_casa(riga_re, 2).sotto_scacco(self, partita) and\
+        not self.get_casa(riga_re, 3).sotto_scacco(self, partita):
+            casa_re_arrivo = self.get_casa(riga_re, 2)
+            casa_torre_arrivo = self.get_casa(riga_re, 3)
+        elif colonna_torre == 7 and \
+        not self.get_casa(riga_re, 6).sotto_scacco(self, partita) and\
+        not self.get_casa(riga_re, 5).sotto_scacco(self, partita):
+            casa_re_arrivo = self.get_casa(riga_re, 6)
+            casa_torre_arrivo = self.get_casa(riga_re, 5)
+        
+        # Simula movimento del re
+        self.aggiorna_lista_istanze(casa_re, casa_re_arrivo)
+        self.set_pezzo_scacchiera(casa_re_arrivo.get_riga(), 
+                                casa_re_arrivo.get_colonna(), casa_re.get_pezzo())
+        self.set_pezzo_scacchiera(casa_re.get_riga(), 
+                                casa_re.get_colonna(), None)
+        
+        # Simula movimento della torre
+        self.aggiorna_lista_istanze(casa_torre, casa_torre_arrivo)
+        self.set_pezzo_scacchiera(casa_torre_arrivo.get_riga(), 
+                                casa_torre_arrivo.get_colonna(), casa_torre.get_pezzo())
+        self.set_pezzo_scacchiera(casa_torre.get_riga(), 
+                                casa_torre.get_colonna(), None)
+        
+        # Controlla se il re è sotto scacco dopo l'arrocco
+        for re in self.filtra_istanze("R", partita.get_turno()):
+            f = re.sotto_scacco(self, partita)
+        
+        # Ripristina stato precedente
+        # Ripristina il re
+        self.set_pezzo_scacchiera(casa_re.get_riga(), 
+                                casa_re.get_colonna(), casa_re_arrivo.get_pezzo())
+        self.set_pezzo_scacchiera(casa_re_arrivo.get_riga(), 
+                                casa_re_arrivo.get_colonna(), None)
+        
+        # Ripristina la torre
+        self.set_pezzo_scacchiera(casa_torre.get_riga(), 
+                                casa_torre.get_colonna(), casa_torre_arrivo.get_pezzo())
+        self.set_pezzo_scacchiera(casa_torre_arrivo.get_riga(), 
+                                casa_torre_arrivo.get_colonna(), None)
+        
+        # Ripristina le istanze
+        self.set_istanze(casa_re)
+        self.set_istanze(casa_torre)
+        self.discard_istanze(casa_re_arrivo)
+        self.discard_istanze(casa_torre_arrivo)
+        
+        # True se causa scacco, False altrimenti
+        return f

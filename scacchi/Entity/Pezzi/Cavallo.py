@@ -88,11 +88,10 @@ class Cavallo(Pezzo):
             pezzo = partenza.get_pezzo()             
             if arrivo.get_pezzo() is not None and arrivo.get_pezzo().get_colore()\
                     != pezzo.get_colore():
-                scacchiera.discard_istanze(arrivo)
-                scacchiera.aggiorna_lista_istanze(partenza, arrivo)
+                scacchiera.discard_istanze(partenza)
                 scacchiera.set_pezzo_scacchiera(riga_arrivo, colonna_arrivo, pezzo)
                 scacchiera.set_pezzo_scacchiera(partenza.get_riga(),
-                                                 partenza.get_colonna(), None)
+                                                partenza.get_colonna(), None)
                 partita.aggiungi_mossa(mossa_na)                    
                 partita.cambiaturno()        
             elif arrivo.get_pezzo() is not None and arrivo.get_pezzo().get_colore() ==\

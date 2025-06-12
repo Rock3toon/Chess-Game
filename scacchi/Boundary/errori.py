@@ -237,3 +237,14 @@ def errore_donna_cattura_non_specificata():
     """Stampa un messaggio di errore se la cattura della donna non è specificata."""
     print("Errore, la cattura della donna non è specificata. \
         \nDigita /help per altre informazioni.")
+    
+# Errori di arrocco
+def errore_arrocco_illegale():
+    """Stampa un messaggio di errore se l'arrocco non è valido."""
+    print("Errore, arrocco illegale. \
+        \nDigita /help per altre informazioni.")
+
+def errore_arrocco_attacco():
+    """Stampa un messaggio di errore se l'arrocco è sotto attacco."""
+    print("Errore, l'arrocco non può essere eseguito. Una delle case è sotto attacco. \
+        \nDigita /help per altre informazioni.")

@@ -211,7 +211,7 @@ def esci():
     elif risposta == -1:
         errori.errore_risposta()  
 
-def patta(partita, sccachiera):
+def patta(partita, scacchiera):
     """Funzione per richiedere la patta nella partita corrente."""
     stato = partita.get_stato_partita()
     if stato == 0:                                                                     
@@ -228,7 +228,7 @@ def patta(partita, sccachiera):
             if risposta == 'si':                                             
                 print("La partita è terminata in patta.")                
                 partita.azzera_mosse()
-                sccachiera.azzera_istanze()
+                scacchiera.azzera_istanze()
                 partita.set_turno()                                      
                 partita.cambia_stato_partita()                                                                                                     
             elif risposta == 'no':                                           

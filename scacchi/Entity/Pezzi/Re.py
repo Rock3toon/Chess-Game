@@ -92,3 +92,88 @@ class Re(Pezzo):
                     
         else: 
             errori.errore_re_mossa_illegale()
+
+    def arrocco(self, mossa_na, scacchiera, partita):
+        turno = partita.get_turno()
+        re_lista = scacchiera.filtra_istanze("R", turno)
+        re = re_lista[0]        
+        #prende la riga di riferimento per l'arrocco 0 per il bianco, 7 per il nero
+        riga = 0 if turno == 1 else 7
+        #controlla se il re non è sotto scacco e se non ha ancora mosso
+        if  re.get_pezzo().get_prima_mossa() and \
+             not re.sotto_scacco(scacchiera, partita):
+            if mossa_na == "0-0": #arrocco corto
+                torre = scacchiera.get_casa(riga, 7)
+                if (torre.get_pezzo() is not None and
+                     torre.get_pezzo().get_tipo() == "T"):
+                    re_arrivo = scacchiera.get_casa(riga, 6)
+                    torre_arrivo = scacchiera.get_casa(riga, 5)
+                    #controlla se la torre non è stata mossa
+                    if torre.get_pezzo().get_prima_mossa():
+                        #controlla se le case sono vuote
+                        if scacchiera.get_casa(riga, 5).get_pezzo() is None and \
+                         scacchiera.get_casa(riga, 6).get_pezzo() is None:     
+                            #controlla se le case non sono sotto scacco
+                            if not scacchiera.get_casa(riga, 5).\
+                             sotto_scacco(scacchiera, partita) and \
+                              not scacchiera.get_casa(riga, 6).\
+                               sotto_scacco(scacchiera, partita):
+                                # esegue l'arrocco corto
+                                # Sposta il Re
+                                scacchiera.set_pezzo_scacchiera(riga, 6, re.get_pezzo())
+                                scacchiera.aggiorna_lista_istanze(re, re_arrivo)
+                                re.get_pezzo().set_prima_mossa()
+                                scacchiera.set_pezzo_scacchiera(riga, 4, None)
+                                # Sposta la Torre
+                                scacchiera.\
+                                    set_pezzo_scacchiera(riga, 5, torre.get_pezzo())
+                                scacchiera.aggiorna_lista_istanze(torre, torre_arrivo)
+                                torre.get_pezzo().set_prima_mossa()
+                                scacchiera.set_pezzo_scacchiera(riga, 7, None)
+                                partita.aggiungi_mossa(mossa_na)
+                                partita.cambiaturno()
+                            else:
+                                errori.errore_arrocco_attacco()
+                        else:
+                            errori.errore_arrocco_illegale()
+                    else:
+                        errori.errore_arrocco_illegale()
+            elif mossa_na == "0-0-0": #arrocco lungo
+                torre = scacchiera.get_casa(riga, 0)
+                if (torre.get_pezzo() is not None and
+                     torre.get_pezzo().get_tipo() == "T"):
+                    re_arrivo = scacchiera.get_casa(riga, 2)
+                    torre_arrivo = scacchiera.get_casa(riga, 3)
+                    #controlla se la torre non è stata mossa
+                    if torre.get_pezzo().get_prima_mossa():
+                        #controlla se le case sono vuote
+                        if scacchiera.get_casa(riga, 3).get_pezzo() is None and \
+                         scacchiera.get_casa(riga, 2).get_pezzo() is None and \
+                          scacchiera.get_casa(riga, 1).get_pezzo() is None:
+                            #controlla se le case non sono sotto scacco
+                            if not scacchiera.get_casa(riga, 3).\
+                             sotto_scacco(scacchiera, partita) and \
+                              not scacchiera.get_casa(riga, 2).\
+                                sotto_scacco(scacchiera, partita):
+                                # esegue l'arrocco lungo
+                                # Sposta il Re
+                                scacchiera.set_pezzo_scacchiera(riga, 2, re.get_pezzo())
+                                scacchiera.aggiorna_lista_istanze(re, re_arrivo)  
+                                re.get_pezzo().set_prima_mossa()
+                                scacchiera.set_pezzo_scacchiera(riga, 4, None)
+                                # Sposta la Torre
+                                scacchiera.\
+                                    set_pezzo_scacchiera(riga, 3, torre.get_pezzo())
+                                scacchiera.aggiorna_lista_istanze(torre, torre_arrivo)
+                                torre.get_pezzo().set_prima_mossa()
+                                scacchiera.set_pezzo_scacchiera(riga, 0, None)
+                                partita.aggiungi_mossa(mossa_na)
+                                partita.cambiaturno()
+                            else:
+                                errori.errore_arrocco_attacco()
+                        else:
+                            errori.errore_arrocco_illegale()
+                    else:
+                        errori.errore_arrocco_illegale()
+        else:
+            errori.errore_arrocco_illegale()

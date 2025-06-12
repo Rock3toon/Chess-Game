@@ -33,7 +33,7 @@ def ConfigurazioneParser():
     parser = argparse.ArgumentParser(
         usage="Nome del programma [--help] | [-h]",
         description=(
-            "➤ Regole principali:\n"
+            "➤ Regole principali:\n" # MODIFICARE PER INDICARE CATTURA E PROMOZIONE
             "- Inizia il giocatore con i pezzi bianchi, seguito dal giocatore con i \
             pezzi neri.\n"
             "- Durante il proprio turno, il giocatore deve specificare:\n"
@@ -50,7 +50,7 @@ def ConfigurazioneParser():
             "           Turno del nero:\n"
             "    Input>> 'Cf3'\n"
             "          --Si muove il cavallo nero da g1 a f3\n"
-            "- Il gioco termina con scacco matto, patta o abbandono.\n"
+            "- Il gioco termina con scacco matto, patta o abbandono.\n" # STALLO ANCHE
         ),
         epilog=(
             "➤ Comandi in gioco:\n"

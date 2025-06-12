@@ -34,6 +34,7 @@ class Re(Pezzo):
                     .get_colonna(), None)
                     partita.aggiungi_mossa(mossa_na)
                     partita.cambiaturno()
+                    self.reset_en_passant(scacchiera, partita)
                 elif scacchiera.get_pezzo_scacchiera(riga_destinazione, \
                 colonna_destinazione) is not None and scacchiera.get_pezzo_scacchiera\
                 (riga_destinazione, colonna_destinazione).get_colore() \
@@ -77,6 +78,7 @@ class Re(Pezzo):
                     .get_colonna(), None)
                     partita.aggiungi_mossa(mossa_na)
                     partita.cambiaturno()
+                    self.reset_en_passant(scacchiera, partita)
                 elif scacchiera.get_casa(riga_destinazione, colonna_destinazione)\
                 .get_pezzo() is not None and scacchiera.\
                 get_casa(riga_destinazione, colonna_destinazione)\

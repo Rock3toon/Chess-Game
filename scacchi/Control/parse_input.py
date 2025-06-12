@@ -39,7 +39,8 @@ class parse_input:
         if re.match("^[RDTAC]?[a-h][1-8]$", input) or\
             re.match("^[DTAC][a-h][a-h][1-8]$", input) or \
             re.match("^[DTAC][1-8][a-h][1-8]$", input) or input in {"0-0", "0-0-0"} or \
-            re.match("^[a-h][18][DTAC]$ |^[a-h][x][a-h][1-8][DTAC]", input) or \
+            re.match("^[a-h][18][DTAC]$", input) or\
+            re.match("^[a-h][x][a-h][18][DTAC]$", input) or \
             re.match("^[RDTAC][x][a-h][1-8]$", input) or\
             re.match("^[a-h][x][a-h][1-8]$", input) or \
             re.match("^[DTAC][a-h][x][a-h][1-8]$", input) or\

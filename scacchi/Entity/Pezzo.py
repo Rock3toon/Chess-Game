@@ -36,6 +36,10 @@ class Pezzo(ABC):
     @abstractmethod
     def cattura(self, mossa_na, scacchiera, partita):
         pass
+
+    def reset_en_passant(self, scacchiera, partita):
+        for pezzo in scacchiera.filtra_istanze("P", partita.get_turno()):
+            pezzo.get_pezzo()._en_passant = False
     
     def riga_colonna_disambiguazione(self, mossa_na):
         """Restituisce un array con la riga o colonna di disambiguazione, \

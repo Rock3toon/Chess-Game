@@ -68,7 +68,8 @@ def GestioneInput(move_result, scacchiera, partita):
                 torre.cattura(move_result, scacchiera, partita)  
             else:
                 torre.mossa(move_result, scacchiera, partita)  
-        elif re.match("^[a-h][18][DTAC]$ |^[a-h][x][a-h][1-8][DTAC]", move_result):
+        elif re.match("^[a-h][18][DTAC]$" , move_result) or\
+             re.match("^[a-h][x][a-h][18][DTAC]$", move_result):
                 pedone.promozione_pedone(move_result, scacchiera, partita)
         else:
             if "x" in move_result:

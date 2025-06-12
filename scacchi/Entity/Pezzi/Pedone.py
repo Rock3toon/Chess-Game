@@ -39,10 +39,6 @@ class Pedone(Pezzo):
 
     def out_of_bounds(self, riga, colonna):
         return riga < 0 or riga >= 8 or colonna < 0 or colonna >= 8
-    
-    def reset_en_passant(self, scacchiera, partita):
-        for pedone in scacchiera.filtra_istanze("P", partita.get_turno()):
-            pedone.get_pezzo()._en_passant = False
 
     def promozione_pedone(self, mossa_na, scacchiera, partita):
         riga_arrivo, colonna_arrivo = self.Algebrica_a_Matrice_promozione(mossa_na)
@@ -52,7 +48,7 @@ class Pedone(Pezzo):
         if casa_partenza != -1:
             # Controlla l' ultima riga per la promozione
             if (partita.get_turno() == 0 and riga_arrivo != 0) or \
-            (partita.get_turno() == 1 and riga_arrivo != 7):
+               (partita.get_turno() == 1 and riga_arrivo != 7):
                 errori.errore_promozione_non_valida()
                 return
             # Controlla il colore del pezzo nuovo
@@ -114,7 +110,8 @@ class Pedone(Pezzo):
             for pedone in posizioni_candidate:
                 riga_pedone = pedone.get_riga()
                 colonna_pedone = pedone.get_colonna()
-                if (
+                if (scacchiera.get_casa \
+                    (riga_arrivo, colonna_arrivo).get_pezzo() is not None and \
                     riga_arrivo == riga_pedone + direzione and \
                     (colonna_arrivo == colonna_pedone - 1 or \
                     colonna_arrivo == colonna_pedone + 1) and \
@@ -150,7 +147,6 @@ class Pedone(Pezzo):
             partita.cambiaturno()
             # Reset di en passant in base al turno
             self.reset_en_passant(scacchiera, partita)
-
             pedone.set_prima_mossa()
             if abs(riga_arrivo - partenza.get_riga()) == 2:
                 pedone.set_en_passant()
@@ -212,6 +208,7 @@ class Pedone(Pezzo):
             # Aggiorna le istanze
             scacchiera.aggiorna_lista_istanze(partenza, casa_arrivo)
             partita.cambiaturno()
+            # Reset di en passant in base al turno
             self.reset_en_passant(scacchiera, partita)
             partita.aggiungi_mossa(mossa_na + " e.p.")
             return

@@ -155,7 +155,6 @@ class Re(Pezzo):
                              sotto_scacco(scacchiera, partita) and \
                               not scacchiera.get_casa(riga, 2).\
                                 sotto_scacco(scacchiera, partita):
-                                print("re", re.get_pezzo())
                                 # esegue l'arrocco lungo
                                 # Sposta il Re
                                 scacchiera.set_pezzo_scacchiera(riga, 2, re.get_pezzo())

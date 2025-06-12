@@ -148,6 +148,7 @@ class Pedone(Pezzo):
             # Aggiunge la mossa alla lista delle mosse e cambia il turno
             partita.aggiungi_mossa(mossa_na)
             partita.cambiaturno()
+            # Reset di en passant in base al turno
             self.reset_en_passant(scacchiera, partita)
 
             pedone.set_prima_mossa()
@@ -186,6 +187,8 @@ class Pedone(Pezzo):
             # Aggiunge la mossa alla lista delle mosse e cambia il turno
             partita.aggiungi_mossa(mossa_na)
             partita.cambiaturno()
+            # Reset di en passant in base al turno
+            self.reset_en_passant(scacchiera, partita)
             return
 
         # Cattura en passant
@@ -209,6 +212,7 @@ class Pedone(Pezzo):
             # Aggiorna le istanze
             scacchiera.aggiorna_lista_istanze(partenza, casa_arrivo)
             partita.cambiaturno()
+            self.reset_en_passant(scacchiera, partita)
             partita.aggiungi_mossa(mossa_na + " e.p.")
             return
 

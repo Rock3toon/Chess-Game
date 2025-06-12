@@ -39,6 +39,10 @@ class Pedone(Pezzo):
 
     def out_of_bounds(self, riga, colonna):
         return riga < 0 or riga >= 8 or colonna < 0 or colonna >= 8
+    
+    def reset_en_passant(self, scacchiera, partita):
+        for pedone in scacchiera.filtra_istanze("P", partita.get_turno()):
+            pedone.get_pezzo()._en_passant = False
 
     def promozione_pedone(self, mossa_na, scacchiera, partita):
         riga_arrivo, colonna_arrivo = self.Algebrica_a_Matrice_promozione(mossa_na)
@@ -144,6 +148,7 @@ class Pedone(Pezzo):
             # Aggiunge la mossa alla lista delle mosse e cambia il turno
             partita.aggiungi_mossa(mossa_na)
             partita.cambiaturno()
+            self.reset_en_passant(scacchiera, partita)
 
             pedone.set_prima_mossa()
             if abs(riga_arrivo - partenza.get_riga()) == 2:

@@ -46,8 +46,7 @@ def GestioneInput(move_result, scacchiera, partita):
             else:
                 king.mossa(move_result, scacchiera, partita)
         elif re.match("^0", move_result):
-            print("Gestione arrocco non ancora implementata")
-            # Inserire gestore arrocco
+            king.arrocco(move_result, scacchiera, partita)
         elif re.match("^D", move_result):
             if "x" in move_result:
                 donna.cattura(move_result, scacchiera, partita)  
@@ -68,7 +67,7 @@ def GestioneInput(move_result, scacchiera, partita):
                 torre.cattura(move_result, scacchiera, partita)  
             else:
                 torre.mossa(move_result, scacchiera, partita)  
-                # Inserire gestore cattura Torre
+
         elif re.match("^[a-h][18][DTAC]$ |^[a-h][x][a-h][18][DTAC]", move_result):
             print("Gestione promozione pedone non ancora implementata")
             # Inserire gestore promozione pedone
@@ -81,4 +80,7 @@ def GestioneInput(move_result, scacchiera, partita):
         if partita.get_turno() != turno_partenza:
             scacchiera.stampa_scacchiera(scacchiera)
             if partita.scacco_matto(scacchiera) or partita.stallo(scacchiera):
+                partita.azzera_mosse()
+                scacchiera.azzera_istanze()
+                partita.set_turno()                                      
                 partita.cambia_stato_partita()

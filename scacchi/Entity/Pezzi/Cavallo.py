@@ -69,8 +69,8 @@ class Cavallo(Pezzo):
                 scacchiera.set_pezzo_scacchiera(riga_arrivo, colonna_arrivo, pezzo) 
                 scacchiera.set_pezzo_scacchiera(partenza.get_riga(),\
                                                  partenza.get_colonna(), None)
-                partita.aggiungi_mossa(mossa_na)                    
                 partita.cambiaturno()
+                partita.aggiungi_mossa(mossa_na, scacchiera)                    
                 self.reset_en_passant(scacchiera, partita)
             elif arrivo.get_pezzo() is not None and arrivo.get_pezzo().get_colore() ==\
                   pezzo.get_colore():
@@ -93,8 +93,8 @@ class Cavallo(Pezzo):
                 scacchiera.set_pezzo_scacchiera(riga_arrivo, colonna_arrivo, pezzo)
                 scacchiera.set_pezzo_scacchiera(partenza.get_riga(),
                                                 partenza.get_colonna(), None)
-                partita.aggiungi_mossa(mossa_na)                    
                 partita.cambiaturno()
+                partita.aggiungi_mossa(mossa_na, scacchiera)                    
                 self.reset_en_passant(scacchiera, partita)        
             elif arrivo.get_pezzo() is not None and arrivo.get_pezzo().get_colore() ==\
                   pezzo.get_colore():

@@ -33,7 +33,7 @@ class Partita:
         else:
              text_turno = "TURNO DEL BIANCO: In attesa della mossa...\n"
              console.print(Text(text_turno, style="italic grey50"), justify="center")
-    
+
     def set_turno(self):
          self.__turno = 0
             
@@ -44,8 +44,17 @@ class Partita:
             # cambia lo stato della partita
             self.__stato_partita =1-self.__stato_partita
 
-    def aggiungi_mossa(self, mossa):  
-        self.__lista_mosse.append(mossa) 
+    def aggiungi_mossa(self, mossa, scacchiera):
+        #colore = 1 if self.get_turno() == 0 else 0 e
+        listare = scacchiera.filtra_istanze("R", self.get_turno())
+        
+        if listare[0].sotto_scacco(scacchiera, self):
+            self.__lista_mosse.append(mossa + "+")
+        else:
+            self.__lista_mosse.append(mossa)
+         
+        
+
     
     def stampa_mosse(self):
         if len(self.__lista_mosse) == 0:
@@ -55,7 +64,8 @@ class Partita:
                 if i % 2 == 0:
                     print(f"{(i // 2) + 1}. {self.__lista_mosse[i]} ", end="")
                 else:
-                    print(f"{self.__lista_mosse[i]} ", end="" "\n")
+                    print(f"{self.__lista_mosse[i]} ", end="\n")
+            print("\n")  # Aggiunge una riga vuota dopo la stampa delle mosse
     
     def azzera_mosse(self):
         """Azzera la lista delle mosse."""
@@ -69,6 +79,7 @@ class Partita:
         for re in lista_re:
             if re.sotto_scacco(scacchiera, self) and \
                 not self.scaccomatto_evitabile(scacchiera):
+                self.__lista_mosse[-1] = self.__lista_mosse[-1].replace("+", "#")
                 cli.partita_in_scacco_matto(self)
                 return True
         return False

@@ -126,6 +126,9 @@ def HelpRapido():
 def gioca(Scacchiera, Partita):
     """Funzione per avviare una nuova partita di scacchi."""
     if Partita.get_stato_partita() != 0:
+        Partita.azzera_mosse()  # Azzera le mosse della partita
+        Partita.set_turno()  # Imposta il turno iniziale
+        Scacchiera.azzera_istanze()  # Azzera le istanze della scacchiera
         # Inizializza la scacchiera
         for riga in range(2, 6):
             for colonna in range(8):
@@ -186,10 +189,7 @@ def abbandona(partita, scacchiera):
             print(f"Partita abbandonata... GIOCATORE {vincitore} ha vinto!")
             partita.cambia_stato_partita()  
             # Imposta lo stato della partita come terminato
-            print("Per effettuare una nuova partita digita '/gioca'")
-            partita.azzera_mosse()  # Azzera le mosse della partita
-            scacchiera.azzera_istanze()  # Azzera le istanze della scacchiera
-            partita.set_turno()  
+            print("Per effettuare una nuova partita digita '/gioca'") 
         elif risposta == 'no':
             print("Operazione annullata!")
         elif risposta == -1:
@@ -226,10 +226,7 @@ def patta(partita, sccachiera):
             print(f"Giocatore {giocatore} vuoi accettare la patta? (si/no)")
             risposta = parse.parseConfirm(input(">>>"))                     
             if risposta == 'si':                                             
-                print("La partita è terminata in patta.")                
-                partita.azzera_mosse()
-                sccachiera.azzera_istanze()
-                partita.set_turno()                                      
+                print("La partita è terminata in patta.")                                                      
                 partita.cambia_stato_partita()                                                                                                     
             elif risposta == 'no':                                           
                 print("La richiesta di patta è stata rifiutata dal giocatore"\

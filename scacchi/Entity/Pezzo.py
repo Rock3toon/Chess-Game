@@ -36,6 +36,10 @@ class Pezzo(ABC):
     @abstractmethod
     def cattura(self, mossa_na, scacchiera, partita):
         pass
+
+    def reset_en_passant(self, scacchiera, partita):
+        for pezzo in scacchiera.filtra_istanze("P", partita.get_turno()):
+            pezzo.get_pezzo()._en_passant = False
     
     def riga_colonna_disambiguazione(self, mossa_na):
         """Restituisce un array con la riga o colonna di disambiguazione, \
@@ -55,7 +59,12 @@ class Pezzo(ABC):
     def Algebrica_a_Matrice(self, posizione):
         colonna = self.Conversione.get(posizione[len(posizione) - 2])
         riga = 8 - int(posizione[len(posizione) - 1])
-        return riga, colonna    
+        return riga, colonna
+
+    def Algebrica_a_Matrice_promozione(self, posizione):
+        colonna = self.Conversione.get(posizione[len(posizione) - 3])
+        riga = 8 - int(posizione[len(posizione) - 2])
+        return riga, colonna     
 
     def Matrice_a_Algebrica(self, posizione):   
         colonna = chr(posizione[1] + ord('a'))  # 0 -> 'a', 1 -> 'b', ..., 7 -> 'h'

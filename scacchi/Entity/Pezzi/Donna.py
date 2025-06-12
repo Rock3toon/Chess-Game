@@ -101,7 +101,8 @@ class Donna(Pezzo):
                 scacchiera.set_pezzo_scacchiera(casa_partenza.get_riga(),\
                                                  casa_partenza.get_colonna(), None)
                 partita.aggiungi_mossa(mossa_na)                    
-                partita.cambiaturno()                                          
+                partita.cambiaturno()
+                self.reset_en_passant(scacchiera, partita)
             elif arrivo.get_pezzo() is not None and arrivo.get_pezzo().get_colore() ==\
                   pezzo.get_colore():
                 errori.errore_donna_mossa_illegale()
@@ -126,7 +127,8 @@ class Donna(Pezzo):
                 scacchiera.set_pezzo_scacchiera(casa_partenza.get_riga(), \
                                                 casa_partenza.get_colonna(), None)  
                 partita.aggiungi_mossa(mossa_na)                    
-                partita.cambiaturno()        
+                partita.cambiaturno()
+                self.reset_en_passant(scacchiera, partita)        
             elif arrivo.get_pezzo() is not None and arrivo.get_pezzo().get_colore() ==\
                 pezzo.get_colore():
             # Se il pezzo nella casa di arrivo è dello stesso colore, errore

@@ -64,6 +64,16 @@ def errore_nessuna_cattura_valida():
     print("Errore, nessuna cattura valida. \
         \nDigita /help per altre informazioni.")
 
+def errore_promozione_non_valida():
+    """Stampa un messaggio di errore se il pezzo da promuovere non è valido."""
+    print("Errore, promozione non valida. Inserire un pezzo corretto tra quelli " \
+    "proposti. \nDigita /help per altre informazioni.")
+
+def errore_pedone_mancata_promozione():
+    """Stampa un messaggio di errore se non viene specificata la promozione."""
+    print("Errore, mossa non valida. Specificare la promozione. \
+        \nDigita /help per altre informazioni.")
+
 
 # Errori di Cavallo.py
 

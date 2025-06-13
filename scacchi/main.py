@@ -2,7 +2,7 @@ import argparse
 
 import scacchi.Boundary.errori as errori
 from scacchi.Boundary.cli import HelpCompleto, HelpRapido, abbandona, esci, gioca, patta
-from scacchi.Boundary.welcome import visualizza_benvenuto
+from scacchi.Boundary.scacchi_ui import print_benvenuto
 from scacchi.Control.GestoreMosse import GestioneInput
 from scacchi.Control.parse_input import parse_input
 from scacchi.Entity.Partita import Partita
@@ -17,7 +17,7 @@ def main():
     partita = Partita()
     
     # Show welcome screen
-    visualizza_benvenuto()
+    print_benvenuto()
 
     # Main loop
     while True:

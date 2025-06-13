@@ -29,8 +29,16 @@ class Alfiere(Pezzo):
             errori.errore_alfiere_mossa_illegale()
             return -1   
              
-        elif len(lista) == 1:                                                         
-            return lista[0]  
+        elif len(lista) == 1:
+            if not scacchiera.simula\
+            (scacchiera.get_casa(righe_partenza, colonne_partenza), \
+            scacchiera.get_casa(righe_arrivo, colonne_arrivo), partita):
+                return lista[0]
+            elif scacchiera.simula\
+            (scacchiera.get_casa(righe_partenza, colonne_partenza), \
+            scacchiera.get_casa(righe_arrivo, colonne_arrivo), partita):
+                errori.errore_alfiere_mossa_illegale_simulazione()
+                return -1
 
         elif len(lista) > 1:
             # restituisce array con riga e colonna di disambiguazione
@@ -43,9 +51,18 @@ class Alfiere(Pezzo):
                         or (disambiguazione[1] is not None and istanza.get_colonna() ==
                             disambiguazione[1])):
                    
-                        lista_disambiguazione.append(istanza)                 
+                        lista_disambiguazione.append(istanza)    
+
                 if len(lista_disambiguazione) == 1:
-                    return lista_disambiguazione[0]
+                    if not scacchiera.simula\
+                    (scacchiera.get_casa(righe_partenza, colonne_partenza), \
+                    scacchiera.get_casa(righe_arrivo, colonne_arrivo), partita):
+                        return lista_disambiguazione[0]
+                    elif scacchiera.simula\
+                    (scacchiera.get_casa(righe_partenza, colonne_partenza), \
+                    scacchiera.get_casa(righe_arrivo, colonne_arrivo), partita):
+                        errori.errore_alfiere_mossa_illegale_simulazione()
+                        return -1
                 elif len(lista_disambiguazione) > 1:
                     errori.errore_alfiere_errore_disambiguazione()
                     return -1  

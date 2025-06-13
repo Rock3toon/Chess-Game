@@ -49,8 +49,8 @@ def ConfigurazioneParser():
             "    Input>> 'e4'\n"
             "          --Si muove il pedone bianco da e2 a e4\n"
             "           Turno del nero:\n"
-            "    Input>> 'Cf3'\n"
-            "          --Si muove il cavallo nero da g1 a f3\n\n"
+            "    Input>> 'Ca6'\n"
+            "          --Si muove il cavallo nero da b8 a a6\n\n"
             "- Durante il proprio turno per effettuare una cattura," \
             " il giocatore deve specificare:\n"
             "  1. Se intende effettuare una cattura con un pezzo diverso dal pedone," \
@@ -79,6 +79,16 @@ def ConfigurazioneParser():
             "   Esempio:\n"
             "   'e8D' per effettuare la mossa e promuovere a Donna\n"
             "   'bxa1T' per effettuare la cattura e promuovere a Torre\n"
+            "- Per effettuare l'arrocco, il giocatore deve specificare:\n"
+            "  1. '0-0' per l'arrocco corto (Re si sposta di due case verso la Torre in"
+            " colonna h)\n"
+            "  2. '0-0-0' per l'arrocco lungo (Re si sposta di due case verso la Torre"
+            " in colonna a)\n"
+            "  Attenzione! L'arrocco è possibile solo se:\n"
+            "     i.   Il Re non è sotto scacco\n"
+            "     ii.  Il Re e la Torre non sono stati mai mossi.\n"
+            "     iii. Le case tra il Re e la Torre sono vuote e non sono sotto scacco."
+            "\n"
             "- Il gioco termina con scacco matto, patta, abbandono o stallo.\n"
         ),
         epilog=(
@@ -107,53 +117,64 @@ def HelpCompleto():
     console.print()
     console.print(Text("➤ REGOLE PRINCIPALI", style="bold white on blue"))
     print(
-        "- Inizia il giocatore con i pezzi bianchi, seguito dal giocatore con i" \
-        " pezzi neri.\n\n"
-        "- Durante il proprio turno per effettuare una mossa," \
-        " il giocatore deve specificare:\n"
-        "  1. Se intende muovere un pezzo diverso dal pedone, indicarlo con:\n"
-        "     - 'C' per Cavallo (es: 'Cf3')\n"
-        "     - 'A' per Alfiere (es: 'Ac4')\n"
-        "     - 'T' per Torre (es: 'Td1')\n"
-        "     - 'D' per Donna (es: 'Dd3')\n"
-        "     - 'R' per Re (es: 'Re2')\n"
-        "  2. La coordinata di arrivo (es. e4).\n"
-        "  Esempio pratico: Turno del bianco:\n"
-        "    Input>> 'e4'\n"
-        "          --Si muove il pedone bianco da e2 a e4\n"
-        "           Turno del nero:\n"
-        "    Input>> 'Cf3'\n"
-        "          --Si muove il cavallo nero da g1 a f3\n\n"
-        "- Durante il proprio turno per effettuare una cattura," \
-        " il giocatore deve specificare:\n"
-        "  1. Se intende effettuare una cattura con un pezzo diverso dal pedone," \
-        " indicarlo con:\n"
-        "     - 'C' per Cavallo\n"
-        "     - 'A' per Alfiere\n"
-        "     - 'T' per Torre\n"
-        "     - 'D' per Donna\n"
-        "     - 'R' per Re\n"
-        "  [Per il pedone, deve specificare direttamente la colonna di partenza" \
-        " del pedone da utilizzare per la cattura]\n"
-        "  2. Deve inserire 'x' tra il pezzo (o colonna per il pedone)" \
-        " e la casa di arrivo.\n"
-        "   Esempio:\n"
-        "     - Pedone: 'exd5' (il pedone sulla colonna e cattura in d5)\n"
-        "     - Cavallo: 'Cxf3' (il cavallo cattura in f3)\n\n"
-        "- Se con la mossa o cattura vi è una situazione" \
-        " che permetta la promozione del pedone, il giocatore deve specificare:\n"
-        "  1. La notazione di mossa o cattura del pedone (es: 'a1' | 'exd8').\n"
-        "  2. Come carattere finale (escluso il Re, secondo le regole)" \
-        " rispettivamente:\n"
-        "     - 'D' per promuovere a Donna\n"
-        "     - 'T' per promuovere a Torre\n"
-        "     - 'A' per promuovere ad Alfiere\n"
-        "     - 'C' per promuovere a Cavallo\n"
-        "   Esempio:\n"
-        "   'e8D' per effettuare la mossa e promuovere a Donna\n"
-        "   'bxa1T' per effettuare la cattura e promuovere a Torre\n"
-        "- Il gioco termina con scacco matto, patta, abbandono o stallo.\n"
-    )
+            "➤ Regole principali:\n"
+            "- Inizia il giocatore con i pezzi bianchi, seguito dal giocatore con i" \
+            " pezzi neri.\n\n"
+            "- Durante il proprio turno per effettuare una mossa," \
+            " il giocatore deve specificare:\n"
+            "  1. Se intende muovere un pezzo diverso dal pedone, indicarlo con:\n"
+            "     - 'C' per Cavallo (es: 'Cf3')\n"
+            "     - 'A' per Alfiere (es: 'Ac4')\n"
+            "     - 'T' per Torre (es: 'Td1')\n"
+            "     - 'D' per Donna (es: 'Dd3')\n"
+            "     - 'R' per Re (es: 'Re2')\n"
+            "  2. La coordinata di arrivo (es. e4).\n"
+            "  Esempio pratico: Turno del bianco:\n"
+            "    Input>> 'e4'\n"
+            "          --Si muove il pedone bianco da e2 a e4\n"
+            "           Turno del nero:\n"
+            "    Input>> 'Ca6'\n"
+            "          --Si muove il cavallo nero da b8 a a6\n\n"
+            "- Durante il proprio turno per effettuare una cattura," \
+            " il giocatore deve specificare:\n"
+            "  1. Se intende effettuare una cattura con un pezzo diverso dal pedone," \
+            " indicarlo con:\n"
+            "     - 'C' per Cavallo\n"
+            "     - 'A' per Alfiere\n"
+            "     - 'T' per Torre\n"
+            "     - 'D' per Donna\n"
+            "     - 'R' per Re\n"
+            "  [Per il pedone, deve specificare direttamente la colonna di partenza" \
+            " del pedone da utilizzare per la cattura]\n"
+            "  2. Deve inserire 'x' tra il pezzo (o colonna per il pedone)" \
+            " e la casa di arrivo.\n"
+            "   Esempio:\n"
+            "     - Pedone: 'exd5' (il pedone sulla colonna 'e' cattura in d5)\n"
+            "     - Cavallo: 'Cxf3' (il cavallo cattura in f3)\n\n"
+            "- Se con la mossa o cattura vi è una situazione" \
+            " che permetta la promozione del pedone, il giocatore deve specificare:\n"
+            "  1. La notazione di mossa o cattura del pedone (es: 'a1' | 'exd8').\n"
+            "  2. Come carattere finale (escluso il Re, secondo le regole)" \
+            " rispettivamente:\n"
+            "     - 'D' per promuovere a Donna\n"
+            "     - 'T' per promuovere a Torre\n"
+            "     - 'A' per promuovere ad Alfiere\n"
+            "     - 'C' per promuovere a Cavallo\n"
+            "   Esempio:\n"
+            "   'e8D' per effettuare la mossa e promuovere a Donna\n"
+            "   'bxa1T' per effettuare la cattura e promuovere a Torre\n"
+            "- Per effettuare l'arrocco, il giocatore deve specificare:\n"
+            "  1. '0-0' per l'arrocco corto (Re si sposta di due case verso la Torre in"
+            " colonna h)\n"
+            "  2. '0-0-0' per l'arrocco lungo (Re si sposta di due case verso la Torre"
+            " in colonna a)\n"
+            "  Attenzione! L'arrocco è possibile solo se:\n"
+            "     i.   Il Re non è sotto scacco\n"
+            "     ii.  Il Re e la Torre non sono stati mai mossi.\n"
+            "     iii. Le case tra il Re e la Torre sono vuote e non sono sotto scacco."
+            "\n"
+            "- Il gioco termina con scacco matto, patta, abbandono o stallo.\n"
+        )
     console.print(Text("➤ COMANDI UTILI IN GIOCO", style="bold white on green"))
     print(
         "  /gioca          - Avvia una nuova partita\n"
@@ -284,7 +305,7 @@ def patta(partita, sccachiera):
             print(f"Giocatore {giocatore} vuoi accettare la patta? (si/no)")
             risposta = parse.parseConfirm(input(">>>"))                     
             if risposta == 'si':                                             
-                print("La partita è terminata in patta.")                                                      
+                print("La partita è terminata in patta.")
                 partita.cambia_stato_partita()                                                                                                     
             elif risposta == 'no':                                           
                 print("La richiesta di patta è stata rifiutata dal giocatore"\

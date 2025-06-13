@@ -63,7 +63,15 @@ class Donna(Pezzo):
             return -1
         
         elif len(lista) == 1:
-            return lista[0]
+            if not scacchiera.simula\
+            (scacchiera.get_casa(righe_partenza, colonne_partenza), \
+            scacchiera.get_casa(riga_arrivo, colonna_arrivo), partita):
+                return lista[0]
+            elif scacchiera.simula\
+            (scacchiera.get_casa(righe_partenza, colonne_partenza), \
+            scacchiera.get_casa(riga_arrivo, colonna_arrivo), partita):
+                errori.errore_donna_mossa_illegale_simulazione()
+            return -1
                         
         elif len(lista) > 1:
             # Estrai la disambiguazione [riga, colonna]
@@ -80,7 +88,15 @@ class Donna(Pezzo):
                        lista_disambiguazione.append(istanza)
                     
                 if len(lista_disambiguazione) == 1:
-                    return lista_disambiguazione[0]
+                    if not scacchiera.simula\
+                    (scacchiera.get_casa(righe_partenza, colonne_partenza), \
+                    scacchiera.get_casa(riga_arrivo, colonna_arrivo), partita):
+                        return lista_disambiguazione[0]
+                    elif scacchiera.simula\
+                    (scacchiera.get_casa(righe_partenza, colonne_partenza), \
+                    scacchiera.get_casa(riga_arrivo, colonna_arrivo), partita):
+                        errori.errore_donna_mossa_illegale_simulazione()
+                        return -1
                 elif len(lista_disambiguazione) > 1 or len(lista_disambiguazione) == 0:
                     errori.errore_donna_errore_disambiguazione()
                     return -1

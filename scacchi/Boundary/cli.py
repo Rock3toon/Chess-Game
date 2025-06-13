@@ -49,8 +49,8 @@ def ConfigurazioneParser():
             "    Input>> 'e4'\n"
             "          --Si muove il pedone bianco da e2 a e4\n"
             "           Turno del nero:\n"
-            "    Input>> 'Cf3'\n"
-            "          --Si muove il cavallo bianco da g1 a f3\n\n"
+            "    Input>> 'Ca6'\n"
+            "          --Si muove il cavallo nero da b8 a a6\n\n"
             "- Durante il proprio turno per effettuare una cattura," \
             " il giocatore deve specificare:\n"
             "  1. Se intende effettuare una cattura con un pezzo diverso dal pedone," \
@@ -133,8 +133,8 @@ def HelpCompleto():
             "    Input>> 'e4'\n"
             "          --Si muove il pedone bianco da e2 a e4\n"
             "           Turno del nero:\n"
-            "    Input>> 'Cf3'\n"
-            "          --Si muove il cavallo bianco da g1 a f3\n\n"
+            "    Input>> 'Ca6'\n"
+            "          --Si muove il cavallo nero da b8 a a6\n\n"
             "- Durante il proprio turno per effettuare una cattura," \
             " il giocatore deve specificare:\n"
             "  1. Se intende effettuare una cattura con un pezzo diverso dal pedone," \

@@ -3,6 +3,7 @@ from rich.text import Text
 
 import scacchi.Boundary.cli as cli
 import scacchi.Boundary.errori as errori
+import scacchi.Boundary.scacchi_ui as ui
 
 console = Console()
 
@@ -108,7 +109,7 @@ class Partita:
                 return True
         elif not re.sotto_scacco(scacchiera, self) and \
             not self.almeno_una_legale(scacchiera): 
-                cli.partita_in_stallo(self)
+                ui.print_stallo_partita()
                 return True      
         else:
             return False

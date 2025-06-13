@@ -1,7 +1,7 @@
 class Casa:
     """Classe di tipo <<Entity>> per gestire una singola casella della scacchiera.
 
-    Responsabilità:
+    ResponsabilitÃ :
         - Memorizzare la posizione (riga, colonna) della casella.
         - Contenere (o meno) il pezzo attualmente presente.
         - Fornire metodi di accesso e modifica del pezzo in essa posizionato.
@@ -35,37 +35,21 @@ class Casa:
         colore_nemico = 0 if partita.get_turno() == 1 else 1
         
         return (
-            self.controlla_X(scacchiera, colore_nemico)
-            or self.controlla_T(scacchiera, colore_nemico)
-            or self.controlla_L(scacchiera, colore_nemico)
+            self.controlla_X(scacchiera, colore_nemico, partita)
+            or self.controlla_T(scacchiera, colore_nemico, partita)
+            or self.controlla_L(scacchiera, colore_nemico, partita)
         )
           
-    def controlla_X(self, scacchiera, colore_nemico):
+    def controlla_X(self, scacchiera, colore_nemico, partita):
         # True = minacciata, False = non minacciata
         
         riga = self.get_riga()
         colonna = self.get_colonna()
-        
-        lista_P = []  
-        lista_P = scacchiera.filtra_istanze("P", colore_nemico)
-
-        for pedone in lista_P:
-            if colore_nemico == 0:
-                if pedone.get_riga() == riga + 1 and (
-                    pedone.get_colonna() == colonna - 1
-                    or pedone.get_colonna() == colonna + 1
-                ):
-                    return True
-            else:
-                if pedone.get_riga() == riga - 1 and (
-                    pedone.get_colonna() == colonna - 1
-                    or pedone.get_colonna() == colonna + 1
-                ):
-                    return True
+        ramo_bloccato = False
 
         # Controlla la diagonale in alto a dx
-        ramo_bloccato = False 
-        flag_re=False               
+        
+        flag_re=False         
         while (riga > 0 and colonna < 7) and not ramo_bloccato:
             riga = riga - 1
             colonna = colonna + 1
@@ -79,7 +63,7 @@ class Casa:
                 if not flag_re and scacchiera.get_pezzo_scacchiera(riga, colonna)\
                     .get_colore() == colore_nemico\
                     and scacchiera.get_pezzo_scacchiera(riga, colonna)\
-                    .get_tipo() == "R":
+                    .get_tipo() in ("R", "P"):
                     return True     
             flag_re=True
             # Flag utile a fermersi a controllare il re nemico solo alla case adiacenti
@@ -102,7 +86,7 @@ class Casa:
                 if not flag_re and scacchiera.get_pezzo_scacchiera(riga, colonna)\
                     .get_colore()== colore_nemico\
                     and scacchiera.get_pezzo_scacchiera(riga, colonna)\
-                    .get_tipo() == "R":
+                    .get_tipo() in ("R", "P"):
                     return True
             flag_re=True
 
@@ -124,7 +108,7 @@ class Casa:
                 if not flag_re and scacchiera.get_pezzo_scacchiera(riga, colonna)\
                     .get_colore()== colore_nemico\
                     and scacchiera.get_pezzo_scacchiera(riga, colonna)\
-                    .get_tipo() == "R":
+                    .get_tipo() in ("R", "P"):
                     return True
             flag_re=True    
 
@@ -145,12 +129,13 @@ class Casa:
                 if not flag_re and scacchiera.get_pezzo_scacchiera(riga, colonna)\
                     .get_colore()== colore_nemico\
                     and scacchiera.get_pezzo_scacchiera(riga, colonna)\
-                    .get_tipo() == "R":
+                    .get_tipo() in ("R", "P"):
                     return True
             flag_re=True
         return False
 
-    def controlla_T(self, scacchiera, colore_nemico):
+    def controlla_T(self, scacchiera, colore_nemico, partita):
+        """Controlla se la casa è minacciata da una torre o da una regina."""
         # True = minacciata, False = non minacciata
 
     #controllo colonna verso l' alto
@@ -235,7 +220,8 @@ class Casa:
         return False
         
 
-    def controlla_L(self, scacchiera, colore_nemico):
+    def controlla_L(self, scacchiera, colore_nemico, partita):
+        """Controlla se la casa è minacciata da un cavallo."""
         # True = minacciata, False = non minacciata
         # Posizioni relative del cavallo
         mosse_cavallo = [(-2, -1), (-2, 1), (-1, -2), (-1, 2),
@@ -249,7 +235,7 @@ class Casa:
             colonna_arrivo = colonna + dc
 
             # Controlla se è dentro la scacchiera
-            if 0 <= riga_arrivo < 8 and 0 <= colonna_arrivo < 8:
+            if not partita.out_of_bounds(riga_arrivo, colonna_arrivo):
                 casa_arrivo = scacchiera.get_casa(riga_arrivo, colonna_arrivo)
                 pezzo_arrivo = casa_arrivo.get_pezzo()
                 if pezzo_arrivo is not None and pezzo_arrivo.get_tipo() == 'C' and \

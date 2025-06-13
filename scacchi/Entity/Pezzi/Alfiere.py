@@ -66,13 +66,13 @@ class Alfiere(Pezzo):
                 elif len(lista_disambiguazione) > 1:
                     errori.errore_alfiere_errore_disambiguazione()
                     return -1  
-            else:
-                if arrivo.get_pezzo() is not None \
-                    and arrivo.get_pezzo().get_colore() == partita.get_turno():
-                    # Se non c'è disambiguazione, ma ci sono più alfieri, errore
-                    errori.errore_alfiere_mossa_illegale()
-                else:    
-                    errori.errore_alfiere_mossa_ambigua()
+            elif arrivo.get_pezzo() is not None \
+                and arrivo.get_pezzo().get_colore() == partita.get_turno():
+                # Se non c'è disambiguazione, ma ci sono più alfieri, errore
+                errori.errore_alfiere_mossa_illegale()
+                return -1
+            else:    
+                errori.errore_alfiere_mossa_ambigua()
                 return -1   
                        
     # Metodo che gestisce la mossa dell'alfiere senza cattura

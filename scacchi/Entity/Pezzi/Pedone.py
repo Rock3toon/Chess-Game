@@ -73,7 +73,7 @@ class Pedone(Pezzo):
             casa_arrivo.set_pezzo(nuovo_pezzo)
             casa_partenza.set_pezzo(None)
             # Aggiunge la mossa alla lista delle mosse e cambia il turno
-            partita.aggiungi_mossa(mossa_na)
+            partita.aggiungi_mossa(mossa_na, scacchiera)
             partita.cambiaturno()
             
 
@@ -218,7 +218,7 @@ class Pedone(Pezzo):
             elif (pezzo_arrivo is not None and \
                 pezzo_arrivo.get_colore() != partita.get_turno()):
                     if not scacchiera\
-                    .simula(pedone, scacchiera.get_casa\
+                    .simula(partenza, scacchiera.get_casa\
                     (riga_arrivo, colonna_arrivo), partita):
                         # Cattura normale
                         # Rimossa istanza della casa di partenza
@@ -232,7 +232,7 @@ class Pedone(Pezzo):
                         partita.aggiungi_mossa(mossa_na, scacchiera)
                         # Reset di en passant in base al turno
                         self.reset_en_passant(scacchiera, partita)
-                    elif scacchiera.simula(pedone, scacchiera.get_casa\
+                    elif scacchiera.simula(partenza, scacchiera.get_casa\
                         (riga_arrivo, colonna_arrivo), partita):
                         errori.errore_mossa_pedone_simulazione()
         elif partenza == -2:

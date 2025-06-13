@@ -65,8 +65,8 @@ class Re(Pezzo):
         riga_destinazione,colonna_destinazione=self.Algebrica_a_Matrice(mossa_na)
         partenza = self.fattibilità(mossa_na, scacchiera, partita)
         if partenza != -1:
-            if not scacchiera.get_casa(riga_destinazione, colonna_destinazione)\
-                .sotto_scacco(scacchiera, partita):
+            if not scacchiera.simula(partenza, scacchiera.get_casa(riga_destinazione,\
+                                                     colonna_destinazione), partita):
                 if scacchiera.get_casa(riga_destinazione, colonna_destinazione)\
                 .get_pezzo() is not None and scacchiera.get_casa(riga_destinazione,\
                 colonna_destinazione).get_pezzo().get_colore() != partita.get_turno():
@@ -130,7 +130,7 @@ class Re(Pezzo):
                                 scacchiera.aggiorna_lista_istanze(torre, torre_arrivo)
                                 torre.get_pezzo().set_prima_mossa()
                                 scacchiera.set_pezzo_scacchiera(riga, 7, None)
-                                partita.aggiungi_mossa(mossa_na)
+                                partita.aggiungi_mossa(mossa_na, scacchiera)
                                 partita.cambiaturno()
                             else:
                                 errori.errore_arrocco_attacco()
@@ -167,7 +167,7 @@ class Re(Pezzo):
                                 scacchiera.aggiorna_lista_istanze(torre, torre_arrivo)
                                 torre.get_pezzo().set_prima_mossa()
                                 scacchiera.set_pezzo_scacchiera(riga, 0, None)
-                                partita.aggiungi_mossa(mossa_na)
+                                partita.aggiungi_mossa(mossa_na, scacchiera)
                                 partita.cambiaturno()
                             else:
                                 errori.errore_arrocco_attacco()

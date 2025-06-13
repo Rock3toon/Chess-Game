@@ -89,9 +89,9 @@ class Torre(Pezzo):
                 elif len(lista_disambiguazione) > 1 or len(lista_disambiguazione) == 0:
                     errori.errore_torre_errore_disambiguazione()
                     return -1
-                else:   
-                    errori.errore_torre_mossa_ambigua()
-                    return -1  
+            else:   
+                errori.errore_torre_mossa_ambigua()
+                return -1  
     
     def mossa(self, mossa_na, scacchiera, partita):
         riga_arrivo, colonna_arrivo = self.Algebrica_a_Matrice(mossa_na)

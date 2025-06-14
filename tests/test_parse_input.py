@@ -72,7 +72,7 @@ class TestParseInput(unittest.TestCase):
 
     def test_parse_confirm_positive(self):
         """Verifica che tutte le varianti di 'sì' restituiscano 'si'."""
-        # MODIFICA: Rimossi i casi con spazi (" SI ", "Yes") perché parseConfirm non usa .strip()
+        # Rimossi i casi con spazi (" SI ", "Yes") perché parseConfirm non usa .strip()
         risposte_positive = ["s", "si", "y", "ys", "yes", "Si", "YES"]
         for risposta in risposte_positive:
             with self.subTest(risposta=risposta):
@@ -80,7 +80,7 @@ class TestParseInput(unittest.TestCase):
 
     def test_parse_confirm_negative(self):
         """Verifica che tutte le varianti di 'no' restituiscano 'no'."""
-        # MODIFICA: Rimosso il caso con spazi (" No ") perché parseConfirm non usa .strip()
+        # Rimosso il caso con spazi (" No ") perché parseConfirm non usa .strip()
         risposte_negative = ["n", "no", "nop", "nope", "No", "N"]
         for risposta in risposte_negative:
             with self.subTest(risposta=risposta):
@@ -88,7 +88,8 @@ class TestParseInput(unittest.TestCase):
 
     def test_parse_confirm_invalide(self):
         """Verifica che risposte non chiare restituiscano -1."""
-        risposte_invalide = ["forse", "ok", "certo", "sisi", "nono", "yess", "", " si ", " no "]
+        risposte_invalide = \
+        ["forse", "ok", "certo", "sisi", "nono", "yess", "", " si ", " no "]
         for risposta in risposte_invalide:
             with self.subTest(risposta=risposta):
                 self.assertEqual(self.parser.parseConfirm(risposta), -1)

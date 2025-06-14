@@ -2,46 +2,94 @@
 
 import os
 import sys
+from unittest.mock import patch
 
-import pytest  # type: ignore
+import pytest
 
-# Add the project root directory to the Python path
+# Aggiungi la root del progetto al path di Python per permettere l'import
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from scacchi.main import UI
+# Importa il modulo main da testare. Usiamo un alias per chiarezza.
+from scacchi import main as scacchi_main  # noqa: E402
 
 
-def test_ui_default_accent_color():
-    """Test that the default accent color is 'red'."""
-    ui = UI()
-    assert ui.get_accent_color() == "red"
+def test_main_loop_calls_gioca(monkeypatch):
+    """Verifica che il comando /gioca chiami la funzione gioca."""
+    user_inputs = ["/gioca", "/esci"]
+    monkeypatch.setattr("builtins.input", lambda _: user_inputs.pop(0))
+
+    with (
+        patch("scacchi.main.gioca") as mock_gioca,
+        patch("scacchi.main.esci", side_effect=SystemExit),
+        patch("scacchi.main.parse_input") as mock_parse_class,
+    ):
+        mock_parser_instance = mock_parse_class.return_value
+        mock_parser_instance.parseCommand.side_effect = [4, 2]
+
+        with pytest.raises(SystemExit):
+            scacchi_main.main()
+
+        mock_gioca.assert_called_once()
 
 
-def test_ui_set_valid_accent_color():
-    """Test setting a valid accent color."""
-    ui = UI()
-    ui.set_accent_color("blue")
-    assert ui.get_accent_color() == "blue"
+def test_main_loop_handles_invalid_command(monkeypatch):
+    """Verifica la corretta gestione di un comando non valido."""
+    user_inputs = ["/comando_inesistente", "/esci"]
+    monkeypatch.setattr("builtins.input", lambda _: user_inputs.pop(0))
 
-    # Test another valid color
-    ui.set_accent_color("bright_green")
-    assert ui.get_accent_color() == "bright_green"
+    with (
+        patch("scacchi.main.errori.errore_comando_non_riconosciuto") as mock_errore_cmd,
+        patch("scacchi.main.esci", side_effect=SystemExit),
+        patch("scacchi.main.parse_input") as mock_parse_class,
+    ):
+        mock_parser_instance = mock_parse_class.return_value
+        mock_parser_instance.parseCommand.side_effect = [-1, 2]
 
+        with pytest.raises(SystemExit):
+            scacchi_main.main()
 
-def test_ui_set_invalid_accent_color():
-    """Test that setting an invalid accent color raises a ValueError."""
-    ui = UI()
-    with pytest.raises(ValueError):
-        ui.set_accent_color("invalid_color")
-
-    # The accent color should remain unchanged
-    assert ui.get_accent_color() == "red"
+        mock_errore_cmd.assert_called_once()
 
 
-def test_ui_get_accent_color():
-    """Test that get_accent_color returns the current accent color."""
-    ui = UI()
-    assert ui.get_accent_color() == "red"
+def test_main_loop_handles_valid_move(monkeypatch):
+    """Verifica che una mossa valida venga passata a GestioneInput."""
+    user_inputs = ["e2e4", "/esci"]
+    monkeypatch.setattr("builtins.input", lambda _: user_inputs.pop(0))
 
-    ui.set_accent_color("cyan")
-    assert ui.get_accent_color() == "cyan"
+    with (
+        patch("scacchi.main.parse_input") as mock_parse_class,
+        patch("scacchi.main.GestioneInput") as mock_gestione_input,
+        patch("scacchi.main.esci", side_effect=SystemExit),
+    ):
+        mock_parser_instance = mock_parse_class.return_value
+        mock_parser_instance.parseMove.return_value = ("e2", "e4")
+        # Simula che l'input non sia un comando ma una mossa
+        mock_parser_instance.parseCommand.return_value = 2
+
+        with pytest.raises(SystemExit):
+            scacchi_main.main()
+
+        mock_parser_instance.parseMove.assert_called_once_with("e2e4")
+        mock_gestione_input.assert_called_once()
+
+
+def test_main_loop_handles_invalid_move(monkeypatch):
+    """Verifica la corretta gestione di una mossa non valida."""
+    user_inputs = ["mossa-errata", "/esci"]
+    monkeypatch.setattr("builtins.input", lambda _: user_inputs.pop(0))
+
+    with (
+        patch("scacchi.main.parse_input") as mock_parse_class,
+        patch("scacchi.main.errori.errore_mossa_non_valida") as mock_errore_mossa,
+        patch("scacchi.main.esci", side_effect=SystemExit),
+    ):
+        mock_parser_instance = mock_parse_class.return_value
+        mock_parser_instance.parseMove.return_value = -1
+        # Simula che l'input non sia un comando ma una mossa (invalida)
+        mock_parser_instance.parseCommand.return_value = 2
+
+        with pytest.raises(SystemExit):
+            scacchi_main.main()
+
+        mock_parser_instance.parseMove.assert_called_once_with("mossa-errata")
+        mock_errore_mossa.assert_called_once()

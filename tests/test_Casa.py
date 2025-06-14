@@ -1,8 +1,8 @@
-"""Tests for the Casa entity."""
+"""Suite di test per la classe Entity Casa, per garantirne la correttezza."""
 
 import os
 import sys
-from unittest.mock import MagicMock, patch  # <-- MODIFICA: Aggiunto 'patch' all'import
+from unittest.mock import MagicMock, patch  # Aggiunto 'patch' all'import
 
 import pytest
 

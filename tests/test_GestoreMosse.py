@@ -1,3 +1,5 @@
+"""Suite di test per il modulo GestioneInput."""
+
 import unittest
 from unittest.mock import Mock, patch
 

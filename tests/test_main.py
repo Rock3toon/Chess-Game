@@ -1,4 +1,4 @@
-"""Tests for the main module."""
+"""Suite di test per il modulo main di scacchi."""
 
 import os
 import sys

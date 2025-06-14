@@ -1,4 +1,4 @@
-"""Tests for the Scacchiera entity."""
+"""Suite di test per la classe Entity Pezzo, per garantirne la correttezza."""
 
 import os
 import sys

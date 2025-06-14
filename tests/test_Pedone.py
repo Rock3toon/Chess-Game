@@ -1,4 +1,4 @@
-"""Tests for the Pedone entity."""
+"""Suite di test per la classe Entity Pedone, per garantirne la correttezza."""
 
 import os
 import sys

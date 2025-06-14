@@ -1,4 +1,4 @@
-# File: tests/test_cli.py
+"""Tests per il modulo CLI di Scacchi."""
 
 import unittest
 from unittest.mock import Mock, patch
@@ -11,26 +11,34 @@ class TestCliScacchi(unittest.TestCase):
 
     def setUp(self):
         """Prepara i mock per Scacchiera e Partita prima di ogni test."""
+        # Creiamo oggetti 'Mock' che simulano il comportamento di Scacchiera e Partita.
         self.mock_scacchiera = Mock()
         self.mock_partita = Mock()
 
+    #Sostituiamo 'errori', 'ui' e l'oggetto 'console' per controllarne le chiamate.
     @patch('scacchi.Boundary.cli.errori')
     @patch('scacchi.Boundary.cli.ui')
     @patch('scacchi.Boundary.cli.console')
     def test_gioca_starts_new_game(self, mock_console, mock_ui, mock_errori):
         """Verifica l'avvio corretto di una nuova partita tramite la funzione gioca."""
+        # Simuliamo che la partita non sia in corso (stato = 1)
         self.mock_partita.get_stato_partita.return_value = 1
         
+         # Chiamiamo la funzione che vogliamo testare.
         cli.gioca(self.mock_scacchiera, self.mock_partita)
 
+         # Verifa che i metodi per inizializzare nuova partita siano chiamati 1 volta.
         self.mock_partita.azzera_mosse.assert_called_once()
         self.mock_partita.set_turno.assert_called_once()
         self.mock_scacchiera.azzera_istanze.assert_called_once()
+        # Verifichiamo che la scacchiera sia stata popolata (64 caselle).
         self.assertEqual(self.mock_scacchiera.set_pezzo_scacchiera.call_count, 64)
         self.mock_partita.cambia_stato_partita.assert_called_once()
         self.mock_scacchiera.inizializza_istanze.assert_called_once()
+        # Verifichiamo che la scacchiera sia stata stampata a schermo.
         self.mock_scacchiera.stampa_scacchiera.assert_called_once()
         mock_console.print.assert_called()
+        # Ci assicuriamo che non sia stata sollevata nessuna condizione di errore.
         mock_errori.errore_gioca.assert_not_called()
 
     @patch('scacchi.Boundary.cli.errori')

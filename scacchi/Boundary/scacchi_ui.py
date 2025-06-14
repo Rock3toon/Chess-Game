@@ -21,7 +21,7 @@ def print_benvenuto():
     console = Console()
     
     # Titolo ASCII art con colori personalizzati
-    title_art = Text("""
+    title_art = Text(r"""
            ____     ____      _       ____    ____   _   _   ___             
 ░▒▓█▓▒░   / ___|   / ___|    / \     / ___|  / ___| | | | | |_ _|  ░▒▓█▓▒░ 
 ░▒▓█▓▒░   \___ \  | |       / _ \   | |     | |     | |_| |  | |   ░▒▓█▓▒░ 

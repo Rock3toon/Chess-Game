@@ -305,7 +305,7 @@ def patta(partita, scacchiera):
             print(f"Giocatore {giocatore} vuoi accettare la patta? (si/no)")
             risposta = parse.parseConfirm(input(">>>"))                     
             if risposta == 'si':                                             
-                print("La partita è terminata in patta.")
+                ui.print_patta_accettata()
                 partita.cambia_stato_partita()                                                                                                     
 
             elif risposta == 'no':                                           

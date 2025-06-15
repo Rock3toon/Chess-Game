@@ -41,7 +41,7 @@ La posizione iniziale vede i pezzi disposti nelle due traverse più vicine al gi
 </div><br/>
 
 ### 🔀 2.1) Movimenti dei pezzi
-***Re***: Può muoversi di una posizione dalla casa in cui si trova in qualsiasi direzione. Purchè non sia sotto scacco o la posizione di arrivo sia sotto attacco.<br>
+***Re***: Può muoversi di una posizione dalla casa in cui si trova in qualsiasi direzione. Purchè non sia sotto scacco o la posizione di arrivo non sia sotto attacco.<br>
 <div align="left">  
   <img src="img/Movimento_Re.png" width="550">
 </div><br/>
@@ -91,7 +91,7 @@ Il pedone **non può** muoversi all'indietro.
 ### 📖 2.2) Regole speciali
 #### Arrocco: 
 L'arrocco coinvolge il Re e una delle sue due Torri e può essere di due tipi Lungo (0-0-0) o Corto (0-0). L'arrocco si può eseguire solo a determinate condizioni: <br>
-Re e Torre **non si sono mai mossi**, le case su cui si muoverà il Re non devono essere occupate e non devono essere sotto attacco e il Re nella sua casa di partenza non deve essere sotto scacco. L'arrocco è una particolare mossa che permette di mettere al sicuro il proprio Re, solo in questo caso il re ha la facoltà di spostarsi di due case e saltare la propria Torre.<br>
+Re e Torre **non si sono mai mossi**, le case su cui si muoverà il Re non devono essere occupate, non devono essere sotto attacco e il Re nella sua casa di partenza non deve essere sotto scacco. L'arrocco è una particolare mossa che permette di mettere al sicuro il proprio Re, solo in questo caso il re ha la facoltà di spostarsi di due case e saltare la propria Torre.<br>
 <ins>**Arrocco Lungo (0-0-0)**</ins>
 <div align="left">  
   <img src="img/Arrocco1.png" width="550">
@@ -161,19 +161,19 @@ La notazione algebrica è un sistema di annotazione delle mosse degli scacchi ch
 <br/>
 
 - **Cattura**: La cattura è indicata con una "x" tra il pezzo e la casa di arrivo. Ad esempio, se un Alfiere cattura un pezzo in c4, la notazione sarà: **Axc4**.
- Nel caso in cui si tenti di eseguire una cattura senza inserire la x l'applicazione restituirà un messaggio di errore.
+ Nel caso in cui si tenti di eseguire una cattura senza inserire la x l'applicazione restituirà un messaggio di errore. Per quanto riguarda la cattura del pedone va specificata prima la colonna di partenza e dopo la x la colonna e la riga di arrivo. Ad esempio se un Pedone in b4 cattura un pezzo in c5, la notazione sarà: **bxc5**.
 <br/>
 
-- **Promozione**: La promozione di un pedone è indicata con un segno di uguale (=) seguito dal pezzo con cui si promuove. Ad esempio, se un pedone si promuove a Donna in e8, la notazione sarà: **e8=D**.
+- **Promozione**: La promozione di un pedone è indicata apponendo alla fine della mossa il pezzo con cui si promuove. Ad esempio, se un pedone si promuove a Donna in e8, la notazione sarà: **e8D**.
 <br/>
 
-- **Mossa ambigua**: Se due pezzi dello stesso tipo possono muoversi o catturare nella stessa casa, si deve specificare la colonna o la riga di partenza del pezzo. Ad esempio, se un Cavallo in c3 e uno in g1 possono entrambi muoversi a e2, la notazione sarà: **Ccf3/C3f3** o **Cgf3/C1f3**.
+- **Mossa ambigua**: Se due pezzi dello stesso tipo possono muoversi o catturare nella stessa casa, si deve specificare la colonna o la riga di partenza del pezzo. Ad esempio, se abbiamo un Cavallo in c3 e uno in g1 e possono entrambi muoversi in e2, la notazione sarà: **Cce2/C3e2** o **Cge2/C1e2**.
 
 <div align="center">  
   <img src="img/Ambiguità1.png" width="550">
 </div><br/>
 
-Nel caso in cui due pezzi dello stesso tipo si trovino nella stessa riga e possano muoversi o catturare nella stessa casa, si specifica la riga di partenza del pezzo o viceversa nel caso in cui si trovino sulla stessa colonna. Ad esempio, se un Cavallo in c3 e uno in g3 possono entrambi muoversi o catturare e4, la notazione sarà **Cce5/Ccxe5** o **Cgc5/Cgxc5**.
+Nel caso in cui due pezzi dello stesso tipo si trovino nella stessa riga e possano muoversi o catturare nella stessa casa, si deve specificare la colonna di partenza del pezzo, viceversa, nel caso in cui si trovino sulla stessa colonna va specificata la riga. Ad esempio, se abbiamo un Cavallo in c3 e uno in g3 e possono entrambi muoversi o catturare in e4, la notazione sarà **Cce4/Ccxe4** oppure **Cgc4/Cgxc4**.
 
 <div align="center">  
   <img src="img/Ambiguità2.png" width="550">

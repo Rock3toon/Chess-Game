@@ -498,7 +498,7 @@ La scacchiera viene aggiornata con la nuova posizione della Torre; Se è avvenut
 
 <p>
 
-### RF12 - Come giocatore voglio abbandonare la partita
+### RF12 - Come giocatore voglio muovere un alfiere
 
 </p>
 <p>
@@ -876,16 +876,98 @@ Esempio: l’introduzione di un’interfaccia grafica o nuove modalità di input
 In questo paragrafo vengono riportati i diagrammi UML delle classi e di sequenza relativi alle User Story più significative.
 NOTA IMPORTANTE:
 Ciò che viene rappresentato nei seguenti diagrammi non è la mappatura 1:1 delle classi nel codice, infatti le classi potrebbero risultare incoerenti le loro versioni in diagrammi diversi, questo perché in ogni diagramma vengono riportati gli attributi e metodi rilevanti al fine della user story protagonista del diagramma, per rendere il tutto il più leggibile e comprensibile possibile.
-RF1: Come giocatore voglio...
-Diagramma delle classi
+<h2>RF2 - Come giocatore voglio iniziare una nuova partita</h2>
+<h3>Diagramma delle classi</h3>
 <div align="center">
-<img src="img/diagrammaDeiPackage.png">
+<img src="img/CLASSI_gioca.drawio.png">
 </div><br/>
-- Diagramma di sequenza
+<h3>Diagramma di sequenza</h3>
 <div align="center">
-<img src="img/diagrammaDeiPackage.png">
+<img src="img/SEQUENZA_gioca.drawio.png">
+</div>
+</br>
+<h2>RF5 - RF4 - Come giocatore voglio iniziare una nuova partita - Come giocatore voglio abbandonare la partita</h2>
+<h3>Diagramma delle classi</h3>
+<div align="center">
+<img src="img/CLASSI_patta.drawio.png">
 </div><br/>
-<br/>
+<h3>Diagramma di sequenza</h3>
+<div align="center">
+<img src="img/SEQUENZA_patta.drawio.png">
+</div>
+
+La scelta di realizzare un singolo schema delle classi per i comandi "patta" e "abbandona" è motivata dal fatto che seguono la stessa logica: entrambi devono analizzare il comando inserito, chiedere conferma all'utente e poi eseguire l'azione solo se confermata.
+
+
+<h2>RF8 - Come giocatore voglio mostrare le mosse giocate</h2>
+<h3>Diagramma delle classi</h3>
+<div align="center">
+<img src="img/CLASSI_mosse.drawio.png">
+</div><br/>
+<h3>Diagramma di sequenza</h3>
+<div align="center">
+<img src="img/SEQUENZA_mosse.drawio.png">
+</div>
+
+</br>
+<h2>RF10 - RF11 - RF12 - RF13 - Come giocatore voglio muovere la Donna - Torre - Alfiere - Cavallo</h2>
+<h3>Diagramma delle classi</h3>
+<div align="center">
+<img src="img/CLASSI_Muovere la Donna.drawio.png">
+</div><br/>
+<h3>Diagramma di sequenza</h3>
+<div align="center">
+<img src="img/SEQUENZA_Muovere la Donna.drawio.png">
+</div>
+
+Il diagramma mostra che abbiamo scelto di rappresentare alcuni pezzi degli scacchi insieme in un'unica sequenza per evidenziare le somiglianze comportamentali nella loro logica di movimento e validazione delle mosse.
+
+Questa decisione progettuale permette di identificare pattern comuni (come la gestione delle coordinate, il controllo dei limiti della scacchiera, e la validazione delle posizioni) che possono essere astratti in classi base o interfacce condivise.
+
+L'approccio facilita la manutenibilità del codice e riduce la duplicazione, permettendo di implementare una gerarchia di classi dove ogni pezzo eredita comportamenti comuni e specializza solo le proprie regole di movimento specifiche.
+
+<h2>RF14 - Come giocatore voglio muovere il re senza arrocco</h2>
+<h3>Diagramma delle classi</h3>
+<div align="center">
+<img src="img/CLASSI_Muovere il Re.drawio.png">
+</div><br/>
+<h3>Diagramma di sequenza</h3>
+<div align="center">
+<img src="img/SEQUENZA_Muovere il Re.drawio.png">
+</div>
+
+</br>
+<h2>RF15 - Come giocatore voglio giocare un arrocco</h2>
+<h3>Diagramma delle classi</h3>
+<div align="center">
+<img src="img/CLASSI_Arrocco.drawio.png">
+</div><br/>
+<h3>Diagramma di sequenza</h3>
+<div align="center">
+<img src="img/SEQUENZA_Arrocco.drawio.png">
+</div>
+
+</br>
+<h2>RF16 - Come giocatore voglio promuovere un pedone</h2>
+<h3>Diagramma delle classi</h3>
+<div align="center">
+<img src="img/CLASSI_Promozione.drawio.png">
+</div><br/>
+<h3>Diagramma di sequenza</h3>
+<div align="center">
+<img src="img/SEQUENZA_Promozione.drawio.png">
+</div>
+
+</br>
+<h2>RF17 - Come giocatore voglio mettere un re sotto scacco</h2>
+<h3>Diagramma delle classi</h3>
+<div align="center">
+<img src="img/CLASSI_Scacco Matto.drawio.png">
+</div><br/>
+<h3>Diagramma di sequenza</h3>
+<div align="center">
+<img src="img/SEQUENZA_Scacco Matto.drawio.png">
+</div>
 
 # 5.2 Design Pattern
 

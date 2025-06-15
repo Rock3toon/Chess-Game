@@ -987,41 +987,55 @@ L'organizzazione dei file è stata mantenuta logica e pulita: tutti i test sono 
 
 ## 6.4 Esiti della fase di test
 Sono stati implementati un totale di 136 casi di test per verificare il corretto funzionamento dei metodi di main.py, cli.py e delle classi Control e Entity.
+
 Le classi testate sono le seguenti:
-<div align="center">
-<img src="img/diagrammaDeiPackage.png">
-</div><br/>
+scacchi/Boundary/cli.py       
+scacchi/Control/GestoreMosse.py
+scacchi/Control/parse_input.py    
+scacchi/Entity/Casa.py           
+scacchi/Entity/Partita.py          
+scacchi/Entity/Pezzi/Alfiere.py   
+scacchi/Entity/Pezzi/Cavallo.py  
+scacchi/Entity/Pezzi/Donna.py       
+scacchi/Entity/Pezzi/Pedone.py  
+scacchi/Entity/Pezzi/Re.py         
+scacchi/Entity/Pezzi/Torre.py    
+scacchi/Entity/Pezzo.py         
+scacchi/Entity/Scacchiera.py   
+scacchi/Error/errori.py       
+scacchi/main.py  
+
 Di seguito vengono mostrati gli esiti della fase di test.
 RUFF
 Esito Ruff Generale
 <div align="center">
-<img src="img/diagrammaDeiPackage.png">
+<img src="img/esitoTestRuff.png">
 </div><br/>
 UNIT TEST
 Esito Pytest main
 <div align="center">
-<img src="img/diagrammaDeiPackage.png">
+<img src="img/esitoTestmain.png">
 </div><br/>
 Esito Pytest cli.py
 <div align="center">
-<img src="img/diagrammaDeiPackage.png">
+<img src="img/esitoTestcli.png">
 </div><br/>
 Esito Pytest classi Control
 <div align="center">
-<img src="img/diagrammaDeiPackage.png">
+<img src="img/esitoTestControl.png">
 </div><br/>
 Esito Pytest classi Entity
 <div align="center">
-<img src="img/diagrammaDeiPackage.png">
+<img src="img/esitoTestEntity.png">
 </div><br/>
 TEST DI INTEGRAZIONE E DI SISTEMA
 Esito test di integrazione
 <div align="center">
-<img src="img/diagrammaDeiPackage.png">
+<img src="img/esitoTestIntegrazione.png">
 </div><br/>
 Esito test di sistema
 <div align="center">
-<img src="img/diagrammaDeiPackage.png">
+<img src="img/esitoTestSistema.png">
 </div><br/>
 <br/>
 
@@ -1136,19 +1150,19 @@ Strumento impiegato per la creazione dei diagrammi presenti nella documentazione
 ## 7.7 Comunicazione interna
 ScreenShot Whatsapp
 <div align="center">  
-  <img src="img/diagrammaDeiPackage.png">
+  <img src="img/screenWA.png">
 </div><br/>
 
 
 ScreenShot Documento condiviso
 <div align="center">  
-  <img src="img/diagrammaDeiPackage.png">
+  <img src="img/screenGDoc.png">
 </div><br/>
 
 
 ScreenShot Discord
 <div align="center">  
-  <img src="img/diagrammaDeiPackage.png">
+  <img src="img/screenDS.png">
 </div><br/>
 
 
@@ -1258,6 +1272,11 @@ Il meeting di retrospettiva ci ha offerto l’occasione di riflettere sulle meto
 <p>
 Anche per lo Sprint 1, il team ha utilizzato la lavagna Arrabbiato-Triste-Contento per raccogliere feedback immediati, riflettere sull’andamento del lavoro e identificare aree di miglioramento.
 </p>
+
+<div align="center">  
+  <img src="img/lavagnaRetrospettiva2.png">
+</div><br/>
+
 <p>
 Dalla lavagna sono emerse le seguenti considerazioni:
 <ul>

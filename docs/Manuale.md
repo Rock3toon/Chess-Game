@@ -276,6 +276,14 @@ docker run --rm -it ghcr.io/softeng2425-inf-uniba/scacchi-naur:latest
 ```
 Questo comando avvierà il gioco **Scacchi**
 ## *4) Avvio applicazione*
+Si consiglia per una corretta visualizzazione della scacchiera di utilizzare il terminale di visual studio code. In caso contrario l'applicazione sarà completamente funzionante, però la scacchiera potrebbe non essere visualizzata correttamente.
+<br>
+- Per avviare l'applicazione direttamente da terminale, dopo aver installato l'estensione di [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker) per VS code, è possibile utilizzare il comando:
+
+```shell
+docker run --rm -it ghcr.io/softeng2425-inf-uniba/scacchi-naur:latest
+```
+<br>
 All'avvio dell'applicazione viene mostrato in grande il titolo "**SCACCHI**" insieme a dei messaggi di benvenuto. 
 
 <div align="center">  

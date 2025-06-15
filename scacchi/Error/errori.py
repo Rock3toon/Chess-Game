@@ -48,6 +48,12 @@ def errore_mossa_pedone():
     """Stampa un messaggio di errore se la mossa del pedone non è valida."""
     print("Errore, la mossa è illegale. Il pedone non può muoversi in quella casella. \
         \nDigita /help per altre informazioni.")
+    
+def errore_mossa_pedone_simulazione():
+    """Stampa un messaggio di errore se la mossa del pedone non è valida."""
+    print("Errore, la mossa è illegale. Il pedone non può muoversi in quella casella "
+          "poichè il Re è sotto scacco o potrebbe diventarlo. "
+          "\nDigita /help per altre informazioni.")
 
 def errore_cattura_non_valida():
     """Stampa un messaggio di errore se la cattura non è valida."""
@@ -81,6 +87,11 @@ def errore_cavallo_mossa_illegale():
     """Stampa un messaggio di errore se la mossa del cavallo non è valida."""
     print("Errore, la mossa del cavallo è illegale. \
         \nDigita /help per altre informazioni.")
+def errore_cavallo_mossa_illegale_simulazione():
+    """Stampa un messaggio di errore se la mossa del cavallo non è valida."""
+    print("Errore, la mossa del cavallo è illegale. "
+          "Il Re è sotto scacco o potrebbe diventarlo."
+          "\nDigita /help per altre informazioni.")
 def errore_cavallo_mossa_ambigua():
     """Stampa un messaggio di errore se la mossa del cavallo è ambigua."""
     print("Errore, la mossa del cavallo è ambigua. \
@@ -105,6 +116,12 @@ def errore_alfiere_mossa_illegale():
     """Stampa un messaggio di errore se la mossa dell'alfiere non è valida."""
     print("Errore, la mossa dell'alfiere è illegale. \
         \nDigita /help per altre informazioni.")
+    
+def errore_alfiere_mossa_illegale_simulazione():
+    """Stampa un messaggio di errore se la mossa dell'alfiere non è valida."""
+    print("Errore, la mossa dell'alfiere è illegale. "
+           "Il Re è sotto scacco o potrebbe diventarlo."
+           "\nDigita /help per altre informazioni.")
 
 def errore_alfiere_mossa_ambigua():
     """Stampa un messaggio di errore se la mossa dell'alfiere è ambigua."""
@@ -134,6 +151,12 @@ def errore_torre_mossa_illegale():
     """Stampa un messaggio di errore se la mossa della torre non è valida."""
     print("Errore, la mossa della torre è illegale. \
         \nDigita /help per altre informazioni.")
+    
+def errore_torre_mossa_illegale_simulazione():
+    """Stampa un messaggio di errore se la mossa della torre non è valida."""
+    print("Errore, la mossa della torre è illegale. "
+          "Il Re è sotto scacco o potrebbe diventarlo."
+          "\nDigita /help per altre informazioni.")
 
 def errore_torre_mossa_ambigua():
     """Stampa un messaggio di errore se la mossa della torre è ambigua."""
@@ -217,6 +240,12 @@ def errore_donna_mossa_illegale():
     """Stampa un messaggio di errore se la mossa della donna non è valida."""
     print("Errore, la mossa della donna è illegale. \
         \nDigita /help per altre informazioni.")
+    
+def errore_donna_mossa_illegale_simulazione():
+    """Stampa un messaggio di errore se la mossa della donna non è valida."""
+    print("Errore, la mossa della donna è illegale. "
+           "Il Re è sotto scacco o potrebbe diventarlo."
+            "\nDigita /help per altre informazioni.")
 
 def errore_donna_mossa_ambigua():
     """Stampa un messaggio di errore se la mossa della donna è ambigua."""

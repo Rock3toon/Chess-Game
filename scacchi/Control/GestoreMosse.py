@@ -1,6 +1,6 @@
 import re
 
-import scacchi.Boundary.errori as errori
+import scacchi.Error.errori as errori
 from scacchi.Entity.Pezzi.Alfiere import Alfiere
 from scacchi.Entity.Pezzi.Cavallo import Cavallo
 from scacchi.Entity.Pezzi.Donna import Donna

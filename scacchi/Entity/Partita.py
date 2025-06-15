@@ -2,7 +2,8 @@ from rich.console import Console
 from rich.text import Text
 
 import scacchi.Boundary.cli as cli
-import scacchi.Boundary.errori as errori
+import scacchi.Boundary.scacchi_ui as ui
+import scacchi.Error.errori as errori
 
 console = Console()
 
@@ -78,7 +79,7 @@ class Partita:
         lista_re = scacchiera.filtra_istanze("R", self.get_turno())
         for re in lista_re:
             if re.sotto_scacco(scacchiera, self) and \
-                not self.scaccomatto_evitabile(scacchiera):
+            not self.scaccomatto_evitabile(scacchiera):
                 self.__lista_mosse[-1] = self.__lista_mosse[-1].replace("+", "#")
                 cli.partita_in_scacco_matto(self)
                 return True
@@ -108,7 +109,7 @@ class Partita:
                 return True
         elif not re.sotto_scacco(scacchiera, self) and \
             not self.almeno_una_legale(scacchiera): 
-                cli.partita_in_stallo(self)
+                ui.print_stallo_partita()
                 return True      
         else:
             return False
@@ -233,18 +234,18 @@ class Partita:
         for partenza_re in scacchiera.filtra_istanze("R", self.get_turno()):
             riga = partenza_re.get_riga()
             colonna = partenza_re.get_colonna()
-            for dr, dc in mosse_re:
+            for (dr, dc) in mosse_re:
                 riga_arrivo = riga + dr
                 colonna_arrivo = colonna + dc
                 if not self.out_of_bounds(riga_arrivo, colonna_arrivo):
                     arrivo = scacchiera.get_casa(riga_arrivo, colonna_arrivo)
-                    if arrivo.get_pezzo() is not None:
-                        if arrivo.get_pezzo().get_colore() != self.get_turno() and \
-                        not scacchiera.simula(partenza_re, arrivo, self):
-                            return True
+                    if arrivo.get_pezzo() is not None and\
+                    arrivo.get_pezzo().get_colore() != self.get_turno() and \
+                        not scacchiera.simula(partenza_re, arrivo, self):  # noqa: SIM114
+                        return True
                     elif arrivo.get_pezzo() is None and\
                     not scacchiera.simula(partenza_re, arrivo, self):
-                            return True
+                        return True
         #Simulazioni Arrocco
         re_lista = scacchiera.filtra_istanze("R", self.get_turno())
         re = re_lista[0]

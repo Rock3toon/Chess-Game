@@ -5,6 +5,7 @@
 
 </p>
 <p><b>
+
   
 1. [Introduzione](#1-introduzione)  
     1.1 [Presentazione del progetto](#11-presentazione-del-progetto)  
@@ -24,34 +25,33 @@
     6.1 [Strumenti di analisi/testing del codice utilizzati](#61-strumenti-di-analisitesting-del-codice-utilizzati)  
     6.2 [Presentazione della fase di testing](#62-presentazione-della-fase-di-testing)  
     6.3 [Descrizione dei test effettuati](#63-descrizione-dei-test-effettuati)  
+    6.4 [Esiti della fase di test](#64-esiti-della-fase-di-test)  
 7. [Processo di Sviluppo e Organizzazione del lavoro](#7-processo-di-sviluppo-e-organizzazione-del-lavoro)  
     7.1 [Introduzione al processo di sviluppo](#71-introduzione-al-processo-di-sviluppo)  
     7.2 [Milestone e Project Board](#72-milestone-e-project-board)  
     7.3 [GitHub Flow](#73-github-flow)  
     7.4 [Roadmap degli Sprint](#74-roadmap-degli-sprint)  
     7.5 [Gestione degli Sprint](#75-gestione-degli-sprint)  
-        7.5.1 [Sprint 0](#751-sprint-0)  
-        7.5.2 [Sprint 1](#752-sprint-1)  
-        7.5.3 [Sprint 2](#753-sprint-2)  
+    ---- 7.5.1 [Sprint 0](#751-sprint-0)  
+    ---- 7.5.2 [Sprint 1](#752-sprint-1)  
+    ---- 7.5.3 [Sprint 2](#753-sprint-2)  
     7.6 [Software utilizzati](#76-software-utilizzati)  
     7.7 [Comunicazione interna](#77-comunicazione-interna)  
 8. [Analisi retrospettiva](#8-analisi-retrospettiva)  
     8.1 [Sprint 0](#81-sprint-0)  
-        8.1.1 [Arrabbiato, Triste, Contento](#811-arrabbiato-triste-contento)  
-        8.1.2 [Stop, Continua](#812-stop-continua)  
-        8.1.3 [Azioni da intraprendere](#813-azioni-da-intraprendere)  
-        8.1.4 [Conclusione](#814-conclusione)  
+    ---- 8.1.1 [Arrabbiato, Triste, Contento](#811-arrabbiato-triste-contento)  
+    ---- 8.1.2 [Stop, Continua](#812-stop-continua)  
+    ---- 8.1.3 [Azioni da intraprendere](#813-azioni-da-intraprendere)  
+    ---- 8.1.4 [Conclusione](#814-conclusione)  
     8.2 [Sprint 1](#82-sprint-1)  
-        8.2.1 [Arrabbiato, Triste, Contento](#821-arrabbiato-triste-contento)  
-        8.2.2 [Stop, Continua](#822-stop-continua)  
-        8.2.3 [Azioni da intraprendere](#823-azioni-da-intraprendere)  
-        8.2.4 [Conclusione](#824-conclusione)
+    ---- 8.2.1 [Arrabbiato, Triste, Contento](#821-arrabbiato-triste-contento)  
+    ---- 8.2.2 [Stop, Continua](#822-stop-continua)  
+    ---- 8.2.3 [Azioni da intraprendere](#823-azioni-da-intraprendere)  
+    ---- 8.2.4 [Conclusione](#824-conclusione)
 
 </b><br/><br/><br/></p>
 
-</b><br/><br/><br/></p>
 
-<p>
   
 # 1. Introduzione
 
@@ -827,32 +827,29 @@ I ***requisiti non funzionali*** rappresentano le aspettative o le condizioni su
 
 # 4. System Design
 
-<br/>
+Il **System Design** rappresenta la fase in cui si definisce l’architettura generale del sistema, specificando come i vari componenti interagiscono tra loro. In questa sezione vengono illustrate le scelte strutturali e organizzative adottate per garantire modularità, scalabilità e manutenibilità al progetto.
+
 
 ## 4.1 Diagramma dei pacchetti
 
-**Il seguente diagramma rappresenta la struttura dei pacchetti utilizzati per implementare il progetto, realizzato utilizzando il software [Draw.io](https://www.drawio.com/).**
+Il seguente diagramma rappresenta la struttura dei pacchetti utilizzati per implementare il progetto, realizzato utilizzando il software [Draw.io](https://www.drawio.com/).
 
----
+
 
 - **Struttura dei pacchetti:**  
   Il diagramma mostra la suddivisione logica del progetto in diversi *package*, ognuno con responsabilità ben definite secondo il pattern architetturale adottato.
 
-
----
-
-*Per ulteriori dettagli sulla struttura e sulle responsabilità di ciascun package, consulta la sezione successiva.*
 
 
 <div align="center">
 <img src="img/diagrammaDeiPackage.png">
 </div><br/>
 
+>*Per ulteriori dettagli sulla struttura e sulle responsabilità di ciascun package, consulta la sezione successiva.*
+
 ## 4.2 Architettura dell’applicazione
 
-**Il progetto è stato suddiviso in modo da renderlo il più modulare e scalabile possibile.**  
-Per raggiungere questo obiettivo, è stato adottato il pattern architetturale **Entity-Control-Boundary (ECB)**.  
-Questo modello promuove una chiara separazione delle responsabilità tra componenti:
+Il progetto è stato suddiviso in modo da renderlo il più modulare e scalabile possibile. Per raggiungere questo obiettivo, è stato adottato il pattern architetturale **Entity-Control-Boundary (ECB)**. Questo modello promuove una chiara separazione delle responsabilità tra componenti:
 
 - **ENTITY**:  
   _Classi che rappresentano le entità del dominio del problema._  
@@ -866,9 +863,7 @@ Questo modello promuove una chiara separazione delle responsabilità tra compone
   _Classi che si occupano di interfacciarsi con l'utente e di gestire le logiche di presentazione._  
   In particolare, ricevono i comandi dell'utente e mostrano i risultati delle operazioni.
 
----
-
-**I package del progetto finale sono i seguenti:**
+I package del progetto finale sono i seguenti:
 
 - Il package `scacchi` contiene la classe **main.py** che si occupa di inizializzazione/avvio del software e i package principali.
 
@@ -891,25 +886,23 @@ Questo modello promuove una chiara separazione delle responsabilità tra compone
   - `errori.py`: _centralizza tutti i messaggi di errore testuali_ mostrati all’utente.  
     Questa separazione migliora la manutenibilità e garantisce l'uniformità dei messaggi di errore in tutta l'applicazione.
 
----
 
 ## **4.3 Commenti sulle decisioni**
 
-Durante lo sviluppo dell’applicazione, il team ha scelto di adottare il pattern architetturale **Entity-Control-Boundary (ECB)**.
+Durante lo sviluppo dell’applicazione, il team ha scelto di adottare il pattern architetturale **Entity-Control-Boundary (ECB)**. Grazie al pattern ECB, l’architettura è **pulita**, **comprensibile** e **facilmente estensibile**.  
 
-Grazie al pattern ECB, l’architettura è **pulita**, **comprensibile** e **facilmente estensibile**.  
-Ogni componente ha un ruolo ben definito e può essere modificata o ampliata senza impattare negativamente sul resto del sistema.  
-Questo rende il progetto **scalabile**, **modulare** e **facilmente manutenibile** in vista di possibili futuri ampliamenti, come l’integrazione di una GUI o il supporto a nuove modalità di interazione.
+Ogni componente ha un ruolo ben definito e può essere modificata o ampliata senza impattare negativamente sul resto del sistema. Questo rende il progetto **scalabile**, **modulare** e **facilmente manutenibile** in vista di possibili futuri ampliamenti, come l’integrazione di una GUI o il supporto a nuove modalità di interazione.
 
 > **Esempio:**  
 > L’introduzione di un’interfaccia grafica o nuove modalità di input richiederebbe soltanto la modifica o estensione dei componenti **Boundary**, senza toccare la logica dei pezzi (**Entity**) o la gestione del flusso di gioco (**Control**).
 
-<br/>
-<p>
+
 
 <br/>
 
 # 5. Object Oriented Design
+
+L’**Object Oriented Design** è la fase della progettazione software in cui si definiscono le classi, le loro responsabilità e le relazioni tra oggetti, seguendo i principi della programmazione orientata agli oggetti. L’obiettivo è modellare il sistema in modo *modulare*, *riusabile* e facilmente *manutenibile*.
 
 <br/>
 
@@ -920,9 +913,9 @@ Questo rende il progetto **scalabile**, **modulare** e **facilmente manutenibile
 > **_NOTA IMPORTANTE:_**  
 > _Ciò che viene rappresentato nei seguenti diagrammi **non** è la mappatura 1:1 delle classi nel codice. Le classi potrebbero risultare incoerenti tra le loro versioni in diagrammi diversi, poiché in ogni diagramma vengono riportati **solo** gli attributi e i metodi rilevanti per la user story protagonista, al fine di rendere il tutto il più leggibile e comprensibile possibile._
 
----
+<br/>
 
-### **RF2 – _Come giocatore voglio iniziare una nuova partita_**
+#### **RF2 – _Come giocatore voglio iniziare una nuova partita_**
 
 **Diagramma delle classi**
 
@@ -940,7 +933,7 @@ Questo rende il progetto **scalabile**, **modulare** e **facilmente manutenibile
 
 ---
 
-### **RF5 - RF4 – _Come giocatore voglio proporre la patta_ / _Come giocatore voglio abbandonare la partita_**
+#### **RF5 - RF4 – _Come giocatore voglio proporre la patta_ / _Come giocatore voglio abbandonare la partita_**
 
 **Diagramma delle classi**
 
@@ -967,7 +960,7 @@ In questo modo, si evidenzia la **struttura comune** e si favorisce la riusabili
 
 ---
 
-## **RF8 – _Come giocatore voglio mostrare le mosse giocate_**
+#### **RF8 – _Come giocatore voglio mostrare le mosse giocate_**
 
 **Diagramma delle classi**
 
@@ -984,7 +977,7 @@ In questo modo, si evidenzia la **struttura comune** e si favorisce la riusabili
 
 ---
 
-## **RF10 - RF11 - RF12 - RF13 – _Come giocatore voglio muovere la Donna, Torre, Alfiere, Cavallo_**
+#### **RF10 - RF11 - RF12 - RF13 – _Come giocatore voglio muovere la Donna, Torre, Alfiere, Cavallo_**
 
 **Diagramma delle classi**
 
@@ -1006,7 +999,7 @@ In questo modo, si evidenzia la **struttura comune** e si favorisce la riusabili
 
 ---
 
-## **RF14 – _Come giocatore voglio muovere il re senza arrocco_**
+#### **RF14 – _Come giocatore voglio muovere il re senza arrocco_**
 
 **Diagramma delle classi**
 
@@ -1023,7 +1016,7 @@ In questo modo, si evidenzia la **struttura comune** e si favorisce la riusabili
 
 ---
 
-## **RF15 – _Come giocatore voglio giocare un arrocco_**
+#### **RF15 – _Come giocatore voglio giocare un arrocco_**
 
 **Diagramma delle classi**
 
@@ -1040,7 +1033,7 @@ In questo modo, si evidenzia la **struttura comune** e si favorisce la riusabili
 
 ---
 
-## **RF16 – _Come giocatore voglio promuovere un pedone_**
+#### **RF16 – _Come giocatore voglio promuovere un pedone_**
 
 **Diagramma delle classi**
 
@@ -1057,7 +1050,7 @@ In questo modo, si evidenzia la **struttura comune** e si favorisce la riusabili
 
 ---
 
-## **RF17 – _Come giocatore voglio mettere un re sotto scacco_**
+#### **RF17 – _Come giocatore voglio mettere un re sotto scacco_**
 
 **Diagramma delle classi**
 
@@ -1072,27 +1065,14 @@ In questo modo, si evidenzia la **struttura comune** e si favorisce la riusabili
   <img src="img/SEQUENZA_Scacco Matto.drawio.png" alt="Diagramma di sequenza - Scacco Matto">
 </div>
 
----
 
+## 5.2 Design Pattern
 
-**Il nostro progetto applica in modo evidente e corretto diversi dei pattern GoF. Ecco quali sono e come sono stati implementati:**
-
----
-
-### **Strategy Pattern (Comportamentale)**
-
-> _Definizione:_ **"Definire una famiglia di algoritmi, incapsularli in una gerarchia di classi in modo tale da renderli intercambiabili."**
-
-**Applicazione nel progetto:**
-
-- Le famiglie di algoritmi sono le logiche di movimento e cattura di ogni singolo pezzo (_come si muove un alfiere è un algoritmo, come si muove un cavallo è un altro_).
-- Il **Context** è la classe `GestoreMosse`. Non conosce i dettagli di come si muove un pezzo, ma sa che deve delegare questa responsabilità.
-- Le **Strategy concrete** sono le classi `Alfiere`, `Cavallo`, `Torre`, ecc. Ognuna incapsula il proprio algoritmo di movimento.
-- `GestoreMosse`, in base all'input dell'utente (es. `Cf3`), seleziona dinamicamente la strategia corretta (l'oggetto `Cavallo`) e invoca il suo metodo (`mossa()`), rendendo di fatto gli algoritmi di movimento intercambiabili.
+Il nostro progetto applica in modo evidente e corretto diversi dei pattern GoF. Ecco quali sono e come sono stati implementati:
 
 ---
 
-### **Template Method Pattern (Comportamentale)**
+#### **Template Method Pattern (Comportamentale)**
 
 > _Definizione:_ **"Definire in un'operazione la struttura dell'algoritmo rinviando alcuni passi a operazioni delle sottoclassi."**
 
@@ -1104,7 +1084,7 @@ In questo modo, si evidenzia la **struttura comune** e si favorisce la riusabili
 
 ---
 
-### **Singleton (Creazionale) e Dependency Injection (non-GoF)**
+#### **Singleton (Creazionale) e Dependency Injection (non-GoF)**
 
 > _Problema del Singleton:_ **"Garantire l'univocità di un'istanza e fornire un punto d'accesso globale a tale istanza".**  
 > Nel nostro caso, le classi `Scacchiera` e `Partita` devono esistere in una sola istanza per tutta la durata del gioco.
@@ -1118,7 +1098,7 @@ In questo modo, si evidenzia la **struttura comune** e si favorisce la riusabili
 
 ---
 
-### **Facade Pattern (Strutturale)**
+#### **Facade Pattern (Strutturale)**
 
 > _Definizione:_ **"Fornire un'interfaccia semplice per un sottosistema complesso."**
 
@@ -1135,9 +1115,10 @@ Il progetto non solo applica correttamente i pattern **Strategy** e **Template M
 
 <br/>
 
+## 5.3 Principi di OO Desging
+
 **Data la realizzazione del progetto in Python**, un linguaggio che supporta la programmazione orientata agli oggetti ma con una sintassi più flessibile e dinamica, l’architettura dell’applicazione ha seguito i seguenti principi:
 
----
 
 ### **Information Hiding**
 
@@ -1145,21 +1126,16 @@ Il progetto non solo applica correttamente i pattern **Strategy** e **Template M
   - Gli attributi interni delle classi (es. `__stato_partita`, `__turno` in `Partita`) sono nascosti tramite *name mangling* e accessibili solo tramite metodi getter/setter.
   - Altri attributi o metodi interni (es. `_prima_mossa`, `_istanze`) sono prefissati con un singolo underscore (`_`), segnalando chiaramente il loro uso riservato all'interno della classe o delle sue sottoclassi.
 
----
 
 ### **Alta coesione**
 
-- Le classi sono state progettate seguendo la tassonomia **ECB** e presentano responsabilità ben definite e focalizzate.
-  - Ad esempio, la classe **Scacchiera** si occupa solo della gestione della griglia di gioco e dei pezzi su di essa, mentre **Partita** gestisce lo stato del gioco (turno, cronologia mosse).
+- Le classi sono state progettate seguendo la tassonomia **ECB** e presentano responsabilità ben definite e focalizzate. Ad esempio, la classe **Scacchiera** si occupa solo della gestione della griglia di gioco e dei pezzi su di essa, mentre **Partita** gestisce lo stato del gioco (turno, cronologia mosse).
 
----
 
 ### **Basso accoppiamento**
 
 - Le entità **non condividono strutture dati interne** né accedono direttamente a dettagli di implementazione altrui.
 - La comunicazione avviene attraverso **interfacce pubbliche ben definite** (metodi), riducendo l’impatto delle modifiche locali sul resto del sistema.
-
----
 
 ### **Presentazione separata**
 
@@ -1168,19 +1144,16 @@ Il progetto non solo applica correttamente i pattern **Strategy** e **Template M
   - I moduli **Control** (`parse_input.py`, `GestoreMosse.py`) elaborano comandi e mosse.
   - I moduli **Entity** rappresentano i concetti del dominio (pezzi, scacchiera, partita).
 
----
 
 ### **Principi SOLID**
 
 Sono stati rispettati i principi **SOLID** per garantire leggibilità, estendibilità e manutenibilità del codice:
 
 - **Single Responsibility**
-  - Ogni classe si occupa di una sola responsabilità.
-    - *Esempio*: `Pedone` gestisce esclusivamente la logica di movimento, cattura e promozione del pedone; `parse_input` si occupa solo di validare e classificare l'input testuale dell'utente.
+  - Ogni classe si occupa di una sola responsabilità. Ad esempio: `Pedone` gestisce esclusivamente la logica di movimento, cattura e promozione del pedone; `parse_input` si occupa solo di validare e classificare l'input testuale dell'utente.
 
 - **Open/Closed**
-  - L’astrazione `Pezzo` è una classe base astratta (ABC) che viene estesa da ogni tipo di pezzo concreto.
-  - Questo permette l’estensione del comportamento (ad esempio, l'aggiunta di un nuovo pezzo degli scacchi delle fate) **senza modificare il codice esistente** che si basa sull'astrazione `Pezzo`.
+  - L’astrazione `Pezzo` è una classe base astratta (ABC) che viene estesa da ogni tipo di pezzo concreto. Questo permette l’estensione del comportamento (ad esempio, l'aggiunta di un nuovo pezzo degli scacchi delle fate) **senza modificare il codice esistente** che si basa sull'astrazione `Pezzo`.
 
 - **Liskov Substitution**
   - Ogni sottoclasse (`Torre`, `Cavallo`, `Alfiere`, ecc.) può essere usata al posto della classe base `Pezzo`, rispettando le aspettative del programma, grazie all'implementazione coerente dei metodi astratti `mossa`, `cattura` e del metodo `fattibilità` in ogni sottoclasse.
@@ -1190,11 +1163,9 @@ Sono stati rispettati i principi **SOLID** per garantire leggibilità, estendibi
   - Le entità implementano solo i metodi di cui hanno bisogno, e l'interfaccia definita dalla classe astratta `Pezzo` è snella e specifica per il suo dominio.
 
 - **Dependency Inversion**
-  - Il principio è **parzialmente applicato**.
-  - Le classi ad alto livello, come `GestoreMosse`, dipendono dall'astrazione `Pezzo` piuttosto che solo da implementazioni concrete.
-  - Sebbene `GestoreMosse` crei istanze dirette dei pezzi (es. `pedone = Pedone(colore)`), successivamente interagisce con essi tramite i metodi definiti nell'interfaccia comune (`mossa`, `cattura`).
+  - Il principio è **parzialmente applicato**. Le classi ad alto livello, come `GestoreMosse`, dipendono dall'astrazione `Pezzo` piuttosto che solo da implementazioni concrete. Sebbene `GestoreMosse` crei istanze dirette dei pezzi (es. `pedone = Pedone(colore)`), successivamente interagisce con essi tramite i metodi definiti nell'interfaccia comune (`mossa`, `cattura`).
 
----
+
 
 La struttura attuale, basata su un’interfaccia comune, **semplifica notevolmente l'estensione del sistema**: per aggiungere un nuovo pezzo è sufficiente creare la sua classe (che estende `Pezzo`) e aggiungere una condizione di smistamento in `GestoreMosse`, **senza alterare il resto della logica**.
 <br/>
@@ -1205,37 +1176,28 @@ La struttura attuale, basata su un’interfaccia comune, **semplifica notevolmen
 # 6. Riepilogo dei Test
 
 ## 6.1 Strumenti di analisi/testing del codice utilizzati
-[PyTest 8.3.5](https://docs.pytest.org/en/8.3.x/)  
-[Ruff 0.11.0](https://docs.astral.sh/ruff/)
+- [PyTest 8.3.5](https://docs.pytest.org/en/8.3.x/)  
+- [Ruff 0.11.0](https://docs.astral.sh/ruff/)
 
 ## 6.2 Presentazione della fase di testing
 
-**Il testing** rappresenta una fase _cruciale_ e **dinamica** nel ciclo di vita dello sviluppo software, finalizzata alla **verifica** e **validazione** del nostro progetto di scacchi.  
+**Il testing** rappresenta una fase _cruciale_ e **dinamica** nel ciclo di vita dello sviluppo software, finalizzata alla **verifica** e **validazione** del nostro progetto di scacchi. 
 L'obiettivo principale è stato quello di **confrontare il comportamento osservato del programma con quello atteso**, al fine di identificare eventuali malfunzionamenti prima che possano essere riscontrati dall'utente finale.
 
-Durante lo **Sprint 2**, il nostro gruppo, _Naur_, si è dedicato al testing, in particolare all'attività di **Verifica e Validazione (V&V)** del progetto.  
-Questa attività è stata articolata in due processi complementari:
+Durante lo **Sprint 2**, il nostro gruppo, _Naur_, si è dedicato al testing, in particolare all'attività di **Verifica e Validazione (V&V)** del progetto. Questa attività è stata articolata in due processi complementari:
 
-- **Analisi statica del codice**  
-  - Eseguita tramite lo strumento **Ruff** per garantire la qualità e la coerenza dello stile.
-- **Analisi dinamica**  
-  - Ovvero il testing vero e proprio, implementato con il framework **Pytest**.
+- **Analisi statica del codice** : eseguita tramite lo strumento **Ruff** per garantire la qualità e la coerenza dello stile.
+- **Analisi dinamica** : testing vero e proprio, implementato con il framework **Pytest**.
 
 La parte successiva della relazione si concentra su quest'ultimo aspetto, **descrivendo in dettaglio l'approccio adottato per la fase di testing**.
 
 
 ## 6.3 Descrizione dei test effettuati
 
-**Tipologie di Test e Ambito di Applicazione**
-
-La nostra strategia di testing si è concentrata deliberatamente sulla **logica di business** del gioco, che risiede nei moduli _Control_ (`GestoreMosse.py`, `parse_input.py`) e _Entity_ (Pezzi, Casa, Partita, Scacchiera), oltre che nei file `main.py` e `cli.py`.  
+La nostra strategia di testing si è concentrata deliberatamente sulla **logica di business** del gioco, che risiede nei moduli _Control_ (`GestoreMosse.py`, `parse_input.py`) e _Entity_ (Pezzi, Casa, Partita, Scacchiera), oltre che nei file `main.py` e `cli.py`. 
 Abbiamo **escluso** dal nostro ambito di test le classi _Boundary_ (`scacchi_ui.py`, `errori.py`), in quanto contengono logica di presentazione e non di gioco.
 
 L'obiettivo primario era garantire la **correttezza dei movimenti dei pezzi**, prevenendo mosse illegali come uscire dalla scacchiera o catturare un pezzo del proprio colore.
-
----
-
-### **Approccio Multi-livello: Tipologie di Test**
 
 Per garantire una copertura completa abbiamo adottato un approccio multi-livello, impiegando diverse tipologie di test:
 
@@ -1282,7 +1244,7 @@ In particolare, abbiamo utilizzato:
 - **Analisi dei valori limite**  
   (es. mosse dai bordi della scacchiera, mosse di un pedone dalla posizione iniziale)
 
-> _Non sono stati impiegati criteri White-Box, che richiedono la conoscenza della struttura del codice per garantire, ad esempio, che ogni ramo di un if venga eseguito._
+> _Non sono stati impiegati criteri White-Box, che richiedono ad esempio che ogni ramo di un if venga eseguito._
 
 ---
 
@@ -1325,9 +1287,9 @@ Questa organizzazione ha garantito una facile navigazione fra i test implementat
 - `scacchi/Error/errori.py`
 - `scacchi/main.py`
 
----
 
-### **Esiti della fase di test**
+
+## 6.4 Esiti della fase di test
 
 #### **RUFF**
 **Esito Ruff Generale**
@@ -1382,13 +1344,16 @@ Questa organizzazione ha garantito una facile navigazione fra i test implementat
 
 # 7. Processo di Sviluppo e Organizzazione del lavoro
 
+  Il **processo di sviluppo e organizzazione del lavoro** descrive le modalità operative adottate dal team per pianificare, realizzare e coordinare le attività di progetto. In questa sezione vengono illustrati i metodi, gli strumenti e le pratiche utilizzati per garantire efficienza, collaborazione e qualità durante tutte le fasi dello sviluppo software.
+
+
 ## 7.1 Introduzione al processo di sviluppo
 
 Durante tutto lo sviluppo del progetto, il team ha adottato un **approccio Agile**.
 
 Dopo una prima fase di _analisi dei requisiti_, il lavoro è proseguito per **iterazioni**, in cui veniva prodotto codice funzionante, testato e integrato. Questo ha permesso **miglioramenti continui** e un aggiornamento costante del prodotto.
 
-Il team ha seguito i principi fondamentali del **Manifesto Agile** ([agilemanifesto.org](https://agilemanifesto.org/)), come:
+Il team ha seguito i principi fondamentali del  [**Manifesto Agile**](https://agilemanifesto.org/), come:
 
 - dare importanza alle **persone e alle interazioni** più che ai processi,
 - al **software funzionante** più che alla documentazione,
@@ -1402,7 +1367,7 @@ Il metodo usato si ispirava al framework **Scrum**, pertanto possiamo definirlo 
 - Il **Product Owner** è stato il professore, responsabile del **Product Backlog**, cioè l’elenco dei requisiti del prodotto.
 - Per ogni Sprint, i requisiti venivano presentati sotto forma di **User Story**, seguendo il formato:
 
-  > _“Come <ruolo>, voglio <obiettivo> [così da <motivo>]”_
+  > _“Come ruolo, voglio obiettivo [così da motivo]”_
 
 - Veniva inoltre definita la **Definition Of Done** utile per capire quando il progetto poteva ritenersi completato per lo sprint corrente e pronto per la consegna.
 - La comunicazione di questa lista è avvenuta tramite **Teams**, preceduta da una spiegazione dettagliata dei vari punti in aula.
@@ -1410,6 +1375,7 @@ Il metodo usato si ispirava al framework **Scrum**, pertanto possiamo definirlo 
 
 ## 7.2 Milestone e Project Board
 **Ogni Sprint ha una _Milestone_ e un _Project_ dedicati.**  
+
 Le *issue* sono state assegnate al relativo Project per dividerle per sprint e tenere traccia delle issue dello sprint relativo.  
 Al completamento delle issue, i progressi della Milestone venivano aggiornati.  
 **Una Milestone completata corrispondeva al completamento delle task dello Sprint.**
@@ -1736,7 +1702,7 @@ Il meeting di retrospettiva ci ha offerto l’occasione di riflettere sulle meto
 </p>
 
 ## 8.2 Sprint 1
-<br/>
+
 
 ### 8.2.1 Arrabbiato, Triste, Contento
 
@@ -1763,7 +1729,9 @@ Dalla lavagna sono emerse le seguenti considerazioni:
 Durante la retrospettiva, il team ha condiviso pratiche da interrompere e altre da mantenere:
 </p>
 <p>
+
 ❌ <ins>**STOP**</ins>
+
 <ul>
 <li>Pubblicare codice contenente warning;</li>
 <li>Effettuare revisioni solo tramite la scheda “File changed” di GitHub, senza aprire e analizzare il codice nel proprio IDE;</li>
@@ -1771,7 +1739,9 @@ Durante la retrospettiva, il team ha condiviso pratiche da interrompere e altre 
 </ul>
 </p>
 <p>
+
 ✅ <ins>**CONTINUA**</ins>
+
 <ul>
 <li>Mantenere la disponibilità e il supporto reciproco tra i membri del team;</li>
 <li>Proseguire con meeting frequenti e con un focus sul lavoro condiviso;</li>

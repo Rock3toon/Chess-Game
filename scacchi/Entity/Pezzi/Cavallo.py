@@ -1,4 +1,4 @@
-import scacchi.Boundary.errori as errori
+import scacchi.Error.errori as errori
 from scacchi.Entity.Pezzo import Pezzo
 
 

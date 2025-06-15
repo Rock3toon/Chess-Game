@@ -1,0 +1,1 @@
+"""Pacchetto <<Error>> per la gestione degli errori del programma."""

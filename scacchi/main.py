@@ -1,6 +1,6 @@
 import argparse
 
-import scacchi.Boundary.errori as errori
+import scacchi.Error.errori as errori
 from scacchi.Boundary.cli import HelpCompleto, HelpRapido, abbandona, esci, gioca, patta
 from scacchi.Boundary.scacchi_ui import print_benvenuto
 from scacchi.Control.GestoreMosse import GestioneInput

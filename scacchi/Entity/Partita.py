@@ -2,8 +2,8 @@ from rich.console import Console
 from rich.text import Text
 
 import scacchi.Boundary.cli as cli
-import scacchi.Boundary.errori as errori
 import scacchi.Boundary.scacchi_ui as ui
+import scacchi.Error.errori as errori
 
 console = Console()
 

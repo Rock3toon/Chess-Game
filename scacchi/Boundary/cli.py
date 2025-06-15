@@ -14,8 +14,8 @@ import sys
 from rich.console import Console
 from rich.text import Text
 
-import scacchi.Boundary.errori as errori
 import scacchi.Boundary.scacchi_ui as ui
+import scacchi.Error.errori as errori
 from scacchi.Control.parse_input import parse_input
 from scacchi.Entity.Pezzi.Alfiere import Alfiere
 from scacchi.Entity.Pezzi.Cavallo import Cavallo

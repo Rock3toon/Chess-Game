@@ -17,10 +17,13 @@
     3.3 [Requisiti non funzionali](#33-requisiti-non-funzionali)  
 4. [System Design](#4-system-design)  
     4.1 [Diagramma dei pacchetti](#41-diagramma-dei-pacchetti)  
-    4.2 [Architettura dell’applicazione](#42-architettura-dellapplicazione)  
+    4.2 [Architettura dell'applicazione](#42-architettura-dellapplicazione)  
     4.3 [Commenti sulle decisioni](#43-commenti-sulle-decisioni)  
+    4.4 [Componenti esterne](#44-componenti-esterne)   
 5. [Object Oriented Design](#5-object-oriented-design)  
     5.1 [Diagrammi di Classi e Sequenza](#51-diagrammi-di-classi-e-sequenza)  
+    5.2 [Design Pattern](#52-design-pattern)  
+    5.3 [Principi di OO Design](#53-principi-di-oo-design)   
 6. [Riepilogo dei Test](#6-riepilogo-dei-test)  
     6.1 [Strumenti di analisi/testing del codice utilizzati](#61-strumenti-di-analisitesting-del-codice-utilizzati)  
     6.2 [Presentazione della fase di testing](#62-presentazione-della-fase-di-testing)  
@@ -148,7 +151,8 @@ L’applicazione resta in attesa di un nuovo comando.
 
 **Scenario 1**:  
 1. Il giocatore digita il comando `/help`  
-2. Il sistema fornisce un elenco comandi con una descrizione per ognuno e attende un input del giocatore 
+2. Il sistema fornisce una guida all'utilizzo dell'applicazione e un elenco comandi con una descrizione per ognuno
+3. Il sistema attende un input del giocatore 
 
 **Scenario 2**:  
 1. Il giocatore all’avvio dell’applicazione inserisce un flag per visualizzare l’elenco comandi  
@@ -318,7 +322,7 @@ Se l’operazione è stata confermata viene chiusa l’applicazione mentre se l�
 **Codice caso d’uso**: UC07  
 **Nome**: Muovere un pedone  
 **Attori**: Giocatore  
-**Obiettivo**: Il sistema esegue la mossa per spostare un pedone descritta in notazione algebrica dall’utente. Il pedone potrà avanzare di una casella (o di due se è la prima mossa) e non è previsto nessun movimento all’indietro né superamento di pezzo ostacolante.  
+**Obiettivo**: Il sistema esegue la mossa per spostare un pedone descritta in notazione algebrica abbreviata dall’utente. Il pedone potrà avanzare di una casella (o di due se è la prima mossa) e non è previsto nessun movimento all’indietro né superamento di pezzo ostacolante.  
 
 > Nota: in questo requisito non è prevista la cattura di un altro pedone.
 
@@ -351,7 +355,7 @@ Scacchiera aggiornata e attesa di un comando da parte dell’avversario. Se la m
 **Attori**: Giocatore  
 **Obiettivo**: Al comando `/mosse` il sistema restituisce l’elenco di tutte le mosse effettuate fino a quel momento, numerate e in notazione algebrica. Se nessuna partita è in corso il sistema suggerisce di usare `/gioca` </br>
 <ins>**Pre-condizioni**</ins> : <br/>
-L’applicazione deve essere avviata. Deve esserci una partita in corso. <br/>
+L’applicazione deve essere avviata. Deve essere avviata almeno una partita <br/>
 <ins>**Post-condizioni**</ins> : <br/>
 Il sistema rimane in attesa di un comando o in attesa di una mossa. <br/>
 
@@ -361,7 +365,7 @@ Il sistema rimane in attesa di un comando o in attesa di una mossa. <br/>
 
 **Scenario 2**:  
 1. Il giocatore digita il comando `/mosse` quando nessuna partita è in corso  
-2. Il sistema suggerisce di usare il comando `/gioca` per iniziare una partita
+2. Il sistema sistema stampa il messaggio *"Nessuna mossa effettuata"*
 
 </p>
 
@@ -370,23 +374,23 @@ Il sistema rimane in attesa di un comando o in attesa di una mossa. <br/>
 
 <p>
 
-## 3.1 Requisiti funzionali Sprint 2
+## 3.2 Requisiti funzionali Sprint 2
 
 </p>
 
 <p>
   
 ### RF9 - Come giocatore voglio muovere un pedone con cattura
-**Codice caso d’uso**: UC09 
-**Nome**: Muovere un pedone con cattura 
+**Codice caso d’uso**: UC09 <br/>
+**Nome**: Muovere un pedone con cattura <br/>
 **Attori**: Giocatore  
 **Obiettivo**: Il sistema esegue la mossa per spostare un pedone con cattura descritta in notazione algebrica abbreviata. Il pedone potrà catturare un pezzo avversario secondo le regole degli scacchi, inclusa la cattura en passant. <br/>
 <ins>**Pre-condizioni**</ins> : 
-•	L’applicazione deve essere avviata.
-•	Deve esserci una partita in corso.
-•	È il turno del giocatore.
+- L’applicazione deve essere avviata.
+- Deve esserci una partita in corso.
+- È il turno del giocatore.
 
-<ins>**Post-condizioni**</ins>: 
+<ins>**Post-condizioni**</ins>: <br/>
 La scacchiera viene aggiornata correttamente in base al movimento o eventualmente alla cattura effettuata; Il turno passa all’avversario; Se la mossa non è valida viene stampato il messaggio "mossa illegale" e viene richiesto allo stesso giocatore di inserire una mossa valida.
 
 **Scenario 1**:  
@@ -415,14 +419,14 @@ La scacchiera viene aggiornata correttamente in base al movimento o eventualment
 **Codice caso d’uso**: UC10  
 **Nome**: Muovere la Donna  
 **Attori**: Giocatore  
-**Obiettivo**: Il sistema esegue la mossa della Donna descritta in notazione algebrica abbreviata dall’utente. La Donna può muoversi e catturare secondo le regole degli scacchi, in linea retta o in diagonale. 
+**Obiettivo**: Il sistema esegue la mossa della Donna descritta in notazione algebrica abbreviata dall’utente. La Donna può muoversi e catturare secondo le regole degli scacchi, in linea retta o in diagonale.<br/>
 <ins>**Pre-condizioni**</ins> :   
-•	L’applicazione deve essere avviata.
-•	Deve esserci una partita in corso.
-•	È il turno del giocatore.
-•	La traiettoria di movimento della donna deve essere completamente sgombra da altri pezzi (la donna non può “saltare” sopra altri pezzi)
+- L’applicazione deve essere avviata.
+- Deve esserci una partita in corso.
+- È il turno del giocatore.
+- La traiettoria di movimento della donna deve essere completamente sgombra da altri pezzi (la donna non può “saltare” sopra altri pezzi)
 
-<ins>**Post-condizioni**</ins> : 
+<ins>**Post-condizioni**</ins> : <br/>
 La scacchiera viene aggiornata con la nuova posizione della Donna; Se è avvenuta una cattura, il pezzo avversario viene rimosso; Il turno passa all’avversario; Se la mossa non è valida, viene mostrato il messaggio "mossa illegale" e il sistema rimane in attesa di una mossa valida.
 
 
@@ -460,14 +464,14 @@ La scacchiera viene aggiornata con la nuova posizione della Donna; Se è avvenut
 <p>
   
 **Codice caso d’uso**: UC11  
-**Nome**: Muovere una Torre
+**Nome**: Muovere una Torre<br/>
 **Attori**: Giocatore  
 **Obiettivo**: Il sistema esegue la mossa della Torre, descritta in notazione algebrica abbreviata, secondo le regole degli scacchi. La Torre può muoversi orizzontalmente o verticalmente e può catturare pezzi avversari.<br/>
 <ins>**Pre-condizioni**</ins> : 
-•	L’applicazione è avviata.
-•	Una partita è in corso.
-•	È il turno del giocatore.
-•	La traiettoria di movimento della torre deve essere completamente sgombra da altri pezzi (la torre non può “saltare” sopra altri pezzi)
+- L’applicazione è avviata.
+- Una partita è in corso.
+- È il turno del giocatore.
+- La traiettoria di movimento della torre deve essere completamente sgombra da altri pezzi (la torre non può “saltare” sopra altri pezzi)
 
 <ins>**Post-condizioni**</ins> : <br/>
 La scacchiera viene aggiornata con la nuova posizione della Torre; Se è avvenuta una cattura, il pezzo avversario viene rimosso; Il turno passa all’avversario; Se la mossa è illegale, viene mostrato il messaggio "mossa illegale" e il sistema attende una nuova mossa valida dallo stesso giocatore.
@@ -505,16 +509,16 @@ La scacchiera viene aggiornata con la nuova posizione della Torre; Se è avvenut
 <p>
   
 **Codice caso d’uso**: UC12  
-**Nome**: Muovere un Alfiere 
+**Nome**: Muovere un Alfiere <br/>
 **Attori**: Giocatore  
 **Obiettivo**: Il sistema esegue la mossa dell’Alfiere, descritta in notazione algebrica abbreviata, secondo le regole degli scacchi. L’Alfiere può muoversi lungo diagonali libere e può catturare pezzi avversari.<br/>
 <ins>**Pre-condizioni**</ins> : 
-•	L’applicazione è avviata.
-•	Una partita è in corso.
-•	È il turno del giocatore.
-•	La traiettoria di movimento dell’alfiere deve essere completamente sgombra da altri pezzi (l’alfiere non può “saltare” sopra altri pezzi)
+- L’applicazione è avviata.
+- Una partita è in corso.
+- È il turno del giocatore.
+- La traiettoria di movimento dell’alfiere deve essere completamente sgombra da altri pezzi (l’alfiere non può “saltare” sopra altri pezzi)
 
-<ins>**Post-condizioni**</ins> :
+<ins>**Post-condizioni**</ins> : <br/>
 La scacchiera viene aggiornata con la nuova posizione dell’Alfiere; Se è avvenuta una cattura, il pezzo avversario viene rimosso; Il turno passa all’avversario; Se la mossa è illegale, viene mostrato il messaggio "mossa illegale" e il sistema attende una nuova mossa valida dallo stesso giocatore.
 <br/>
 
@@ -549,17 +553,17 @@ La scacchiera viene aggiornata con la nuova posizione dell’Alfiere; Se è avve
 </p>
 <p>
   
-**Codice caso d’uso**: UC13 
+**Codice caso d’uso**: UC13 <br/> 
 **Nome**: Muovere un Cavallo  
 **Attori**: Giocatore, Giocatore avversario  
-**Obiettivo**: Il sistema esegue la mossa del Cavallo descritta in notazione algebrica abbreviata secondo le regole degli scacchi. Il Cavallo può muoversi a "L" (due caselle in una direzione e una perpendicolare) e può catturare pezzi avversari anche saltando altri pezzi.
+**Obiettivo**: Il sistema esegue la mossa del Cavallo descritta in notazione algebrica abbreviata secondo le regole degli scacchi. Il Cavallo può muoversi a "L" (due caselle in una direzione e una perpendicolare) e può catturare pezzi avversari anche saltando altri pezzi. <br/>
 <ins>**Pre-condizioni**</ins> :
-•	L’applicazione è avviata.
-•	Una partita è in corso.
-•	È il turno del giocatore.
-•	La casella di arrivo del cavallo non deve essere occupata da altri pezzi dello stesso colore
+- L’applicazione è avviata.
+- Una partita è in corso.
+- È il turno del giocatore.
+- La casella di arrivo del cavallo non deve essere occupata da altri pezzi dello stesso colore.
 
-<ins>**Post-condizioni**</ins> : 
+<ins>**Post-condizioni**</ins> : <br/>
 La scacchiera viene aggiornata con la nuova posizione del Cavallo; Se è avvenuta una cattura, il pezzo avversario viene rimosso; Il turno passa all’avversario; Se la mossa è illegale, viene mostrato il messaggio "mossa illegale" e il sistema attende una nuova mossa valida dallo stesso giocatore.
 
 
@@ -600,17 +604,17 @@ La scacchiera viene aggiornata con la nuova posizione del Cavallo; Se è avvenut
 > **Nota**:  L’arrocco non è contemplato in questo caso d’uso.
 
 <ins>**Pre-condizioni**</ins> :
-•	L’applicazione è avviata.
-•	Una partita è in corso.
-•	È il turno del giocatore.
-•	La casella di arrivo deve essere libera o occupata da un pezzo avversario (che può catturare) e non può essere una casella minacciata da un pezzo avversario
+- L’applicazione è avviata.
+- Una partita è in corso.
+- È il turno del giocatore.
+- La casella di arrivo deve essere libera o occupata da un pezzo avversario (che può catturare) e non può essere una casella minacciata da un pezzo avversario.
 
-<ins>**Post-condizioni**</ins> :
+<ins>**Post-condizioni**</ins> :<br/>
 La scacchiera viene aggiornata con la nuova posizione del Re; 	Se è avvenuta una cattura, il pezzo avversario viene rimosso; 	Il turno passa all’avversario; Se la mossa è illegale, viene mostrato il messaggio "mossa illegale" e il sistema attende una nuova mossa valida dallo stesso giocatore.
 
 
 **Scenario 1**:  
-1.	Il giocatore inserisce una mossa legale del Re (es. Re2, Kd7).
+1.	Il giocatore inserisce una mossa legale del Re (es. Re2).
 2.	Il sistema verifica che la casa di arrivo non sia minacciata e che la mossa sia di una sola casella in qualunque direzione.
 3.	Il Re viene spostato nella nuova posizione.
 4.	Il turno passa all’avversario.
@@ -641,36 +645,39 @@ La scacchiera viene aggiornata con la nuova posizione del Re; 	Se è avvenuta un
 <p>
   
 **Codice caso d’uso**: UC15  
-**Nome**: Giocare un arrocco 
+**Nome**: Giocare un arrocco <br/>
 **Attori**: Giocatore  
 **Obiettivo**: Il sistema consente al giocatore di eseguire l’arrocco, corto (0-0) o lungo (0-0-0), in conformità con le regole ufficiali degli scacchi.  
 
 
 <ins>**Pre-condizioni**</ins> : 
-•	L’applicazione è avviata, è in corso una partita, è il turno del giocatore.
-•	Il Re e la Torre coinvolti non devono mai essere stati mossi.
-•	Tra il Re e la Torre non devono esserci altri pezzi.
-•	Le case attraversate e di arrivo del Re non devono essere sotto attacco.
+- L’applicazione è avviata.
+- È in corso una partita.
+- È il turno del giocatore.
+- Il Re e la Torre coinvolti non devono mai essere stati mossi.
+- Tra il Re e la Torre non devono esserci altri pezzi.
+- La casa di partenza, le case attraversate e la casa di arrivo del Re non devono essere sotto attacco.
 
-<ins>**Post-condizioni**</ins> :
+<ins>**Post-condizioni**</ins> : <br/>
 La scacchiera viene aggiornata: il Re si sposta di due caselle verso la Torre e la Torre si sposta accanto al Re; Il turno passa all’avversario; Se le condizioni non sono rispettate, viene mostrato il messaggio "mossa illegale" e il sistema attende una nuova mossa valida dallo stesso giocatore.
 
 
 **Scenario 1**:  
 1.	Il giocatore scrive 0-0.
-2.	Il sistema verifica:
-o	Che il Re e la Torre del lato di re non siano mai stati mossi.
-o	Che non ci siano pezzi tra loro.
-o	Che le tre case coinvolte (partenza, attraversamento e arrivo del Re) non siano minacciate.
+2. Il sistema verifica:
+   - Che il Re e la Torre del lato di re non siano mai stati mossi.
+   - Che non ci siano pezzi tra loro.
+   - Che le tre case coinvolte (partenza, attraversamento e arrivo del Re) non siano minacciate.
+   - Che le tre case coinvolte (partenza, attraversamento e arrivo del Re) non siano minacciate.
 3.	Il Re si sposta di due case verso la Torre e la Torre si posiziona accanto al Re.
 4.	Il turno passa all’avversario.
 
 **Scenario 2**:  
 1.	Il giocatore scrive 0-0-0.
-2.	Il sistema verifica:
-o	Che il Re e la Torre del lato di donna non siano mai stati mossi.
-o	Che non ci siano pezzi tra loro.
-o	Che le tre case coinvolte non siano minacciate.
+2. Il sistema verifica:
+   - Che il Re e la Torre del lato di donna non siano mai stati mossi.
+   - Che non ci siano pezzi tra loro.
+   - Che le tre case coinvolte (partenza, attraversamento e arrivo del Re) non siano minacciate.
 3.	Il Re si sposta di due case verso la Torre e la Torre si posiziona accanto al Re.
 4.	Il turno passa all’avversario.
 
@@ -695,30 +702,30 @@ o	Che le tre case coinvolte non siano minacciate.
 <p>
   
 **Codice caso d’uso**: UC16  
-**Nome**: Promuovere un pedone
+**Nome**: Promuovere un pedone <br/>
 **Attori**: Giocatore  
 **Obiettivo**: Il sistema consente al giocatore di promuovere un pedone, una volta raggiunta l’ottava traversa, scegliendo il pezzo in cui trasformarlo (donna, torre, alfiere o cavallo), in conformità con le regole degli scacchi. </br>
 <ins>**Pre-condizioni**</ins> :
-•	L’applicazione è avviata.
-•	È in corso una partita.
-•	Un pedone ha raggiunto l’ottava traversa (per i bianchi: riga 8; per i neri: riga 1).
-•	Il giocatore specifica la promozione con la corretta notazione algebrica (es. D per promozione a donna).
+- L’applicazione è avviata.
+- È in corso una partita.
+- La mossa effettuata porta un pedone sull' ottava traversa (per i bianchi: riga 8; per i neri: riga 1).
+- Il giocatore specifica la promozione con la corretta notazione algebrica (es. D per promozione a donna).
 
-<ins>**Post-condizioni**</ins> :
+<ins>**Post-condizioni**</ins> : <br/>
 Il pedone viene sostituito con il nuovo pezzo scelto; La scacchiera viene aggiornata; Il turno passa all’avversario; Se la promozione non rispetta le regole o la sintassi, viene mostrato il messaggio "mossa illegale" e il sistema resta in attesa di una nuova mossa valida dallo stesso giocatore.
 
 
 **Scenario 1**:  
-1.	Il giocatore scrive una mossa di promozione valida, come e8=D.
-2.	Il sistema verifica che:
-o	Il pedone abbia raggiunto l’ottava traversa.
-o	Il formato e il pezzo richiesto siano corretti.
+1.	Il giocatore scrive una mossa di promozione valida, come e8.
+2.  Il sistema verifica che:
+    - Il pedone abbia raggiunto l’ottava traversa.
+    - Il formato e il pezzo richiesto siano corretti.
 3.	Il pedone viene sostituito con il pezzo richiesto (donna, torre, alfiere o cavallo).
 4.	Il turno passa all’avversario.
 
 
 **Scenario 2**:  
-1.	Il giocatore scrive una mossa come dxe8=T, che indica cattura su e8 e promozione a torre.
+1.	Il giocatore scrive una mossa come dxe8, che indica cattura su e8 e promozione a torre.
 2.	Il sistema verifica la validità della cattura e della promozione.
 3.	Il pezzo catturato viene rimosso e il pedone promosso.
 4.	Il turno passa all’avversario.
@@ -737,29 +744,29 @@ o	Il formato e il pezzo richiesto siano corretti.
 </p>
 <p>
   
-**Codice caso d’uso**: UC17 
-**Nome**: Mettere un Re sotto scacco
+**Codice caso d’uso**: UC17 <br/>
+**Nome**: Mettere un Re sotto scacco <br/>
 **Attori**: Giocatore  
 **Obiettivo**: Il sistema consente al giocatore di eseguire una mossa che metta il re avversario sotto scacco, riconoscendone la condizione e aggiornando correttamente lo stato della partita.</br>
 <ins>**Pre-condizioni**</ins> :
-•	L’applicazione è avviata.
-•	È in corso una partita.
-•	Il giocatore ha a disposizione una mossa legale che minaccia direttamente il re avversario.
+- L’applicazione è avviata.
+- È in corso una partita.
+- Il giocatore ha a disposizione una mossa legale che minaccia direttamente il re avversario.
 
 
-<ins>**Post-condizioni**</ins> :
-Il sistema rileva la condizione di scacco e lo segnala con un avviso; La scacchiera è aggiornata; Il turno passa all’avversario, che potrà esclusivamente compiere mosse in grado di rimuovere lo scacco (o la partita termina se si verifica scacco matto).
+<ins>**Post-condizioni**</ins> : <br/>
+Il sistema rileva la condizione di scacco e registra la mossa con + alla fine; La scacchiera è aggiornata; Il turno passa all’avversario, che potrà esclusivamente compiere mosse in grado di rimuovere lo scacco (o la partita termina se si verifica scacco matto).
 
 
 **Scenario 1**:  
-1.	Il giocatore effettua una mossa valida in notazione algebrica (es. Dg4+).
+1.	Il giocatore effettua una mossa valida in notazione algebrica (es. Dg4).
 2.	Il sistema verifica la legalità della mossa e che metta il re avversario sotto minaccia.
 3.	La scacchiera viene aggiornata.
 4.	Il sistema notifica la condizione di scacco al re.
-5.	Il turno passa all’avversario, che può:
-o	Spostare il re in una casa non minacciata.
-o	Catturare il pezzo che dà scacco.
-o	Bloccare lo scacco frapposizione un altro pezzo (se possibile).
+5. Il turno passa all’avversario, che può:
+   - Spostare il re in una casa non minacciata.
+   - Catturare il pezzo che dà scacco.
+   - Bloccare lo scacco frapposizione un altro pezzo (se possibile).
 
 
 
@@ -776,7 +783,7 @@ o	Bloccare lo scacco frapposizione un altro pezzo (se possibile).
 4.	Il sistema rimane in attesa di una nuova mossa valida dallo stesso giocatore.
 
 **Scenario 4**:  
-1.	Dopo una mossa, il sistema verifica che il re non sia sotto scacco, ma nessuna mossa legale sia disponibile per l’avversario.
+1.	Dopo una mossa, il sistema verifica che il re non sia sotto scacco e che nessuna mossa legale sia disponibile per l’avversario.
 2.	Il sistema riconosce lo stallo.
 3.	Il sistema segnala il termine della partita con pareggio.
 
@@ -886,6 +893,8 @@ I package del progetto finale sono i seguenti:
   - `errori.py`: _centralizza tutti i messaggi di errore testuali_ mostrati all’utente.  
     Questa separazione migliora la manutenibilità e garantisce l'uniformità dei messaggi di errore in tutta l'applicazione.
 
+<br/>
+
 
 ## **4.3 Commenti sulle decisioni**
 
@@ -895,6 +904,46 @@ Ogni componente ha un ruolo ben definito e può essere modificata o ampliata sen
 
 > **Esempio:**  
 > L’introduzione di un’interfaccia grafica o nuove modalità di input richiederebbe soltanto la modifica o estensione dei componenti **Boundary**, senza toccare la logica dei pezzi (**Entity**) o la gestione del flusso di gioco (**Control**).
+
+<br/>
+
+## **4.4 Componenti Esterne**
+
+**Il nostro progetto di scacchi integra una serie di componenti esterne**, selezionate per svolgere compiti specifici, come il miglioramento dell’interfaccia utente o l’efficienza del parsing. 
+Non essendoci un numero rilevante di componenti esterne, il team ha deciso di rappresentarle sotto forma di elenco piuttosto che utilizzare un modello grafico.
+
+**Librerie Esterne:**
+
+- **Rich**  
+  Questa è la principale libreria esterna utilizzata per migliorare l'interfaccia utente a riga di comando (CLI). Viene impiegata estensivo per:
+  1. **Colorare e formattare il testo:** rende l'output più leggibile e visivamente accattivante (es. messaggi di benvenuto, errori, stato della partita).
+  2. **Creare tabelle:** usata in `scacchi_ui.py` per mostrare i suggerimenti iniziali in una tabella ben formattata.
+  3. **Creare pannelli:** racchiude messaggi importanti (come la vittoria o la patta) in box con titoli e bordi.
+  4. **Allineare il testo:** centra i titoli e altri elementi nell'interfaccia.
+  5. **Stilizzare le caselle della scacchiera:** `Scacchiera.py` la usa per colorare le caselle bianche e nere.
+
+  _Moduli specifici importati da Rich:_  
+  `Console`, `Text`, `Panel`, `Table`, `Align`, `Style`, `Box`.
+
+---
+
+**Librerie Standard di Python:**
+
+Queste librerie sono incluse in Python e non richiedono un'installazione separata, ma sono comunque componenti esterne al codice del progetto.
+
+- **argparse**
+  - Utilizzata in `main.py` e `cli.py` per gestire gli argomenti passati al programma all'avvio (come `-h` e `--help`) e per generare automaticamente i messaggi di aiuto.
+
+- **re** (_Regular Expressions_)
+  - Fondamentale per la validazione degli input. Usata in `parse_input.py` e `GestoreMosse.py` per verificare che le mosse inserite dall'utente seguano la notazione algebrica standard degli scacchi (es. `e4`, `Cxf3`, `bxa1T`).
+
+- **sys**
+  - Impiegata in `cli.py` nella funzione `esci()` per terminare l'esecuzione del programma in modo pulito (`sys.exit(0)`).
+
+- **abc** (_Abstract Base Classes_)
+  - Utilizzata in `Pezzo.py` per definire la classe `Pezzo` come una classe base astratta. Questo assicura che tutte le classi di pezzi concrete (come Torre, Alfiere, ecc.) implementino i metodi richiesti (come `mossa()`).
+
+
 
 
 
@@ -1480,7 +1529,8 @@ Grazie a questo approccio, il team ha potuto lavorare in modo **organizzato, fle
   - Studio della notazione algebrica abbreviata italiana per le mosse dei pedoni.
   - Identificata la logica di gioco minima necessaria per gestire le partite, lo stato della scacchiera, e l'input/output testuale.
 - **Fase di progettazione**
-  - Definita la struttura dell’app: titolo, messaggio di benvenuto, testo per l’help e interazione con l’utente.
+  - Definita l'interfaccia dell’app: titolo, messaggio di benvenuto, testo per l’help e interazione con l’utente.
+  - Progettata la struttura dell’applicazione individuando una suddivisione ottimale in classi.
   - Definita la struttura dei comandi, la rappresentazione interna della scacchiera e il flusso base di una partita.
   - Modellate le regole per il movimento dei pedoni e i messaggi di conferma/interazione con l’utente.
   - Scelte convenzioni di notazione e gestione input.

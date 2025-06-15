@@ -12,39 +12,40 @@
 2. [Modello di dominio](#2-modello-di-dominio)  
 3. [Requisiti specifici](#3-requisiti-specifici)  
     3.1 [Requisiti funzionali Sprint 1](#31-requisiti-funzionali-sprint-1)  
-    3.2 [Requisiti non funzionali](#32-requisiti-non-funzionali)  
-4. [System Design](#4-system-design)
-    4.1 [Diagramma dei pacchetti](#41-diagramma-dei-pacchetti)
-    4.2 [Architettura dell’applicazione](#42-architettura-dellapplicazione)
-    4.3 [Commenti sulle decisioni](#43-commenti-sulle-decisioni)
-5. [Object Oriented Design](#5-object-oriented-design)
-    5.1 [Diagrammi di Classi e Sequenza](#51-diagrammi-di-classi-e-sequenza)
-    5.2 [Design Pattern](#52-design-pattern)
-    5.3 [Principi di Object Oriented Design](#53-principi-di-object-oriented-design)
-6. [Riepilogo dei Test](#6-riepilogo-dei-test)
-    6.1 [Strumenti di analisi/testing del codice utilizzati](#61-strumenti-di-analisitesting-del-codice-utilizzati)
-    6.2 [Presentazione della fase di testing](#62-presentazione-della-fase-di-testing)
-    6.3 [Descrizione dei test effettuati](#63-descrizione-dei-test-effettuati)
-    6.4 [Esiti della fase di test](#64-esiti-della-fase-di-test)
-7. [Processo di Sviluppo e Organizzazione del lavoro](#7-processo-di-sviluppo-e-organizzazione-del-lavoro)
-    7.1 [Introduzione al processo di sviluppo](#71-introduzione-al-processo-di-sviluppo)
-    7.2 [Milestone e Project Board](#72-milestone-e-project-board)
-    7.3 [GitHub Flow](#73-github-flow)
-    7.4 [Roadmap degli Sprint](#74-roadmap-degli-sprint)
-    7.5 [Gestione degli Sprint](#75-gestione-degli-sprint)
-    7.6 [Software utilizzati](#76-software-utilizzati)
-  
+    3.2 [Requisiti funzionali Sprint 2](#32-requisiti-funzionali-sprint-2)  
+    3.3 [Requisiti non funzionali](#33-requisiti-non-funzionali)  
+4. [System Design](#4-system-design)  
+    4.1 [Diagramma dei pacchetti](#41-diagramma-dei-pacchetti)  
+    4.2 [Architettura dell’applicazione](#42-architettura-dellapplicazione)  
+    4.3 [Commenti sulle decisioni](#43-commenti-sulle-decisioni)  
+5. [Object Oriented Design](#5-object-oriented-design)  
+    5.1 [Diagrammi di Classi e Sequenza](#51-diagrammi-di-classi-e-sequenza)  
+6. [Riepilogo dei Test](#6-riepilogo-dei-test)  
+    6.1 [Strumenti di analisi/testing del codice utilizzati](#61-strumenti-di-analisitesting-del-codice-utilizzati)  
+    6.2 [Presentazione della fase di testing](#62-presentazione-della-fase-di-testing)  
+    6.3 [Descrizione dei test effettuati](#63-descrizione-dei-test-effettuati)  
+7. [Processo di Sviluppo e Organizzazione del lavoro](#7-processo-di-sviluppo-e-organizzazione-del-lavoro)  
+    7.1 [Introduzione al processo di sviluppo](#71-introduzione-al-processo-di-sviluppo)  
+    7.2 [Milestone e Project Board](#72-milestone-e-project-board)  
+    7.3 [GitHub Flow](#73-github-flow)  
+    7.4 [Roadmap degli Sprint](#74-roadmap-degli-sprint)  
+    7.5 [Gestione degli Sprint](#75-gestione-degli-sprint)  
+        7.5.1 [Sprint 0](#751-sprint-0)  
+        7.5.2 [Sprint 1](#752-sprint-1)  
+        7.5.3 [Sprint 2](#753-sprint-2)  
+    7.6 [Software utilizzati](#76-software-utilizzati)  
+    7.7 [Comunicazione interna](#77-comunicazione-interna)  
 8. [Analisi retrospettiva](#8-analisi-retrospettiva)  
     8.1 [Sprint 0](#81-sprint-0)  
-           8.1.1 [Arrabbiato, Triste, Contento](#811-arrabbiato-triste-contento)  
-           8.1.2 [Stop, Continua](#812-stop-continua)  
-           8.1.3 [Azioni da intraprendere](#813-azioni-da-intraprendere)  
-           8.1.4 [Conclusione](#814-conclusione)
+        8.1.1 [Arrabbiato, Triste, Contento](#811-arrabbiato-triste-contento)  
+        8.1.2 [Stop, Continua](#812-stop-continua)  
+        8.1.3 [Azioni da intraprendere](#813-azioni-da-intraprendere)  
+        8.1.4 [Conclusione](#814-conclusione)  
     8.2 [Sprint 1](#82-sprint-1)  
-           8.2.1 [Arrabbiato, Triste, Contento](#821-arrabbiato-triste-contento)  
-           8.2.2 [Stop, Continua](#822-stop-continua)  
-           8.2.3 [Azioni da intraprendere](#823-azioni-da-intraprendere)  
-           8.2.4 [Conclusione](#824-conclusione)
+        8.2.1 [Arrabbiato, Triste, Contento](#821-arrabbiato-triste-contento)  
+        8.2.2 [Stop, Continua](#822-stop-continua)  
+        8.2.3 [Azioni da intraprendere](#823-azioni-da-intraprendere)  
+        8.2.4 [Conclusione](#824-conclusione)
 
 </b><br/><br/><br/></p>
 
@@ -988,14 +989,14 @@ In questo modo, si evidenzia la **struttura comune** e si favorisce la riusabili
 **Diagramma delle classi**
 
 <div align="center">
-  <img src="img/CLASSI_Muovere la Donna.drawio.png" alt="Diagramma delle classi - Muovere la Donna, Torre, Alfiere, Cavallo">
+  <img src="img/CLASSI_Muovere la donna.drawio.png" alt="Diagramma delle classi - Muovere la donna, Torre, Alfiere, Cavallo">
 </div>
 <br/>
 
 **Diagramma di sequenza**
 
 <div align="center">
-  <img src="img/SEQUENZA_Muovere la Donna.drawio.png" alt="Diagramma di sequenza - Muovere la Donna, Torre, Alfiere, Cavallo">
+  <img src="img/SEQUENZA_Muovere la donna.drawio.png" alt="Diagramma di sequenza - Muovere la Donna, Torre, Alfiere, Cavallo">
 </div>
 
 > _Il diagramma mostra che abbiamo scelto di rappresentare alcuni pezzi degli scacchi insieme in un'unica sequenza per evidenziare le somiglianze comportamentali nella loro logica di movimento e validazione delle mosse._
@@ -1027,14 +1028,14 @@ In questo modo, si evidenzia la **struttura comune** e si favorisce la riusabili
 **Diagramma delle classi**
 
 <div align="center">
-  <img src="img/CLASSI_Arrocco.drawio.png" alt="Diagramma delle classi - Arrocco">
+  <img src="img/CLASSI_arrocco.drawio.png" alt="Diagramma delle classi - Arrocco">
 </div>
 <br/>
 
 **Diagramma di sequenza**
 
 <div align="center">
-  <img src="img/SEQUENZA_Arrocco.drawio.png" alt="Diagramma di sequenza - Arrocco">
+  <img src="img/SEQUENZA_arrocco.drawio.png" alt="Diagramma di sequenza - Arrocco">
 </div>
 
 ---

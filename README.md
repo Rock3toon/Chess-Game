@@ -3,19 +3,30 @@
 Progetto del corso di *Software Engineering* del Corso di Laurea in Informatica dell'Università degli Studi di Bari Aldo Moro.
 
 ## Gruppo: Naur
-* [Rock3Toon]() 
+* [Rock3Toon](https://github.com/Rock3toon) 
+
   * Development, Documentation.
-* [lorenzoPeluso04]() 
-  * Development, Software Architecture.
-* [FabioPSTELL]() 
-  * Development, Software Architecture..
-* [PrinceH4k]() 
+
+* [lorenzoPeluso04](https://github.com/lorenzoPeluso04) 
+
+  * Development.
+* [FabioPSTELL](https://github.com/FabioPSTELL) 
+
+  * Development.
+
+* [PrinceH4k](https://github.com/PrinceH4k) 
+
   * DeveLopment.
-* [Areeex]() 
-  * Development, Software Architecture.
+
+* [Areeex](https://github.com/Areeex) 
+
+  * Development.
+
 * [frenk437]() 
+
   * Documentation.
   
+
 
 
 

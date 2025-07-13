@@ -1,5 +1,11 @@
 # **MANUALE UTENTE**
-
+Per il gioco degli **Scacchi** in modalità testuale, sviluppato in linguaggio ***Python*** e containerizzato con ***Docker*** a cura di: <br>
+**Domenico Mastrolonardo**<br>
+**Lorenzo Peluso**<br>
+**Fabio Pistillo**<br>
+**Arcangelo Paradiso**<br>
+**Pio Prencipe**<br>
+**Frank Mastrapasqua**<br>
 
 ## **INDICE**
 1. [Introduzione](#1-introduzione)

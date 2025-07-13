@@ -1,6 +1,25 @@
 # App scacchi
 
-### Badge di workflow
+Progetto del corso di *Software Engineering* del Corso di Laurea in Informatica dell'Università degli Studi di Bari Aldo Moro.
+
+## Gruppo: Naur
+* [Rock3Toon]() 
+  * Development, Documentation.
+* [lorenzoPeluso04]() 
+  * Development, Software Architecture.
+* [FabioPSTELL]() 
+  * Development, Software Architecture..
+* [PrinceH4k]() 
+  * DeveLopment.
+* [Areeex]() 
+  * Development, Software Architecture.
+* [frenk437]() 
+  * Documentation.
+  
+
+
+
+## Badge di workflow
 [![Continuous Integration (CI)](https://github.com/softeng2425-inf-uniba/project2-naur/actions/workflows/CI.yml/badge.svg)](https://github.com/softeng2425-inf-uniba/project2-naur/actions/workflows/CI.yml)
 
 [![Continuous Integration and Continuous Delivery (CI/CD)](https://github.com/softeng2425-inf-uniba/project2-naur/actions/workflows/CI-CD.yml/badge.svg)](https://github.com/softeng2425-inf-uniba/project2-naur/actions/workflows/CI-CD.yml)

@@ -1,7 +1,10 @@
 # App scacchi
+Repo personale con storico del progetto del corso di *Software Engineering* del Corso di Laurea in Informatica dell'Università degli Studi di Bari Aldo Moro.
+<br>
+# Scacchi CLI
+![GitHub license](https://img.shields.io/badge/License-Not_Commercial-blue.svg)
 
-Progetto del corso di *Software Engineering* del Corso di Laurea in Informatica dell'Università degli Studi di Bari Aldo Moro.
-
+Progetto a cura di:
 ## Gruppo: Naur
 * [Rock3Toon](https://github.com/Rock3toon) 
 

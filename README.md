@@ -12,18 +12,18 @@ Progetto a cura di:
 
 * [lorenzoPeluso04](https://github.com/lorenzoPeluso04) 
 
-  * Development.
+  * Development. Documentation.
 * [FabioPSTELL](https://github.com/FabioPSTELL) 
 
-  * Development.
+  * Development, Documentation.
 
 * [PrinceH4k](https://github.com/PrinceH4k) 
 
-  * DeveLopment.
+  * DeveLopment, Documentation.
 
 * [Areeex](https://github.com/Areeex) 
 
-  * Development.
+  * Development, Documentation.
 
 * [frenk437]() 
 
@@ -49,3 +49,4 @@ ____
    - 3. d4 
 
 ![scacchiera](scacchiera.png)
+
